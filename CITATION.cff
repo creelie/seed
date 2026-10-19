@@ -19,13 +19,16 @@ abstract: >-
 type: software
 license: MIT
 version: 1.0.1
-doi: 10.5281/zenodo.23483240
+doi: 10.5281/zenodo.23483443
 date-released: "2026-10-19"
 repository-code: "https://github.com/creelie/seed"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.23483239
     description: "Concept DOI of all versions"
+  - type: doi
+    value: 10.5281/zenodo.23483443
+    description: "Version DOI of release v1.0.1"
   - type: doi
     value: 10.5281/zenodo.23483240
     description: "Version DOI of release v1.0.0"

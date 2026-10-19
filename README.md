@@ -75,6 +75,7 @@ cites the version DOI of release v1.0.0.
 
 | | DOI |
 | --- | --- |
+| release v1.0.1 (version DOI) | [10.5281/zenodo.23483443](https://doi.org/10.5281/zenodo.23483443) |
 | release v1.0.0 (version DOI) | [10.5281/zenodo.23483240](https://doi.org/10.5281/zenodo.23483240) |
 | all versions (concept DOI) | [10.5281/zenodo.23483239](https://doi.org/10.5281/zenodo.23483239) |
 

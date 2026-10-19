@@ -1,13 +1,16 @@
 """Matrix of the certificate farm, read by .github/workflows/farm.yml.
 queue.json gives the threshold T, the number of row groups per job and optionally an explicit
-list of groups (file:rowgroup); by default every row group of the Kreuzer-Skarke list is used,
-with the small files of fewer than a million polytopes put together in one job."""
+list of groups (file:rowgroup) or of jobs (each a comma-separated list of groups); by default
+every row group of the Kreuzer-Skarke list is used, with the small files of fewer than a million
+polytopes put together in one job."""
 import json, os
 here=os.path.dirname(os.path.abspath(__file__))
 Q=json.load(open(os.path.join(here,'queue.json')))
 RG=json.load(open(os.path.join(here,'rowgroups.json')))
 per=Q.get('per_job',2)
-if Q.get('groups'):
+if Q.get('jobs'):
+    jobs=Q['jobs']
+elif Q.get('groups'):
     G=Q['groups']; jobs=[','.join(G[i:i+per]) for i in range(0,len(G),per)]
 else:
     small=[f'{v}:0' for v,s in RG.items() if len(s)==1]

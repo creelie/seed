@@ -1,5 +1,7 @@
 # Reflexive Descent to Minimal Seeds in the Kreuzer–Skarke List
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23483239.svg)](https://doi.org/10.5281/zenodo.23483239)
+
 Deep Bhattacharjee and Ushashi Bhattacharya
 
 This repository holds the paper, the data and the independent checks for
@@ -67,8 +69,18 @@ the point counts were read from its public copy on Hugging Face
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). The code and data are archived at Zenodo
-with every release.
+See [`CITATION.cff`](CITATION.cff). Zenodo archives each GitHub release under
+its own version DOI and gathers all of them under one concept DOI; the paper
+cites the version DOI of release v1.0.0.
+
+| | DOI |
+| --- | --- |
+| release v1.0.0 (version DOI) | [10.5281/zenodo.23483240](https://doi.org/10.5281/zenodo.23483240) |
+| all versions (concept DOI) | [10.5281/zenodo.23483239](https://doi.org/10.5281/zenodo.23483239) |
+
+Everything in the paper, with the data, the checks and the release assets, is
+also collected in one file,
+[`ReflexiveDescent_masterzipfinal2.zip`](https://github.com/creelie/seed/raw/main/ReflexiveDescent_masterzipfinal2.zip).
 
 ## License
 

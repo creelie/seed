@@ -1,0 +1,18 @@
+'Seed.volume_delta680' does not depend on any axioms
+'Seed.volume_dual' does not depend on any axioms
+'Seed.egyptian' does not depend on any axioms
+'Seed.weights_over_sum' does not depend on any axioms
+'Seed.sylvester_first' does not depend on any axioms
+'Seed.sylvester_42' does not depend on any axioms
+'Seed.points_delta680' does not depend on any axioms
+'Seed.points_dual' does not depend on any axioms
+'Seed.chain_first' does not depend on any axioms
+'Seed.chain_dual' does not depend on any axioms
+'Seed.counting_lemma' depends on axioms: [propext]
+'Seed.simple_bound_680' does not depend on any axioms
+'Seed.witness_chain' does not depend on any axioms
+'Seed.uniform_depth' does not depend on any axioms
+'Seed.descent680_chain' does not depend on any axioms
+'Seed.descent680_counting' does not depend on any axioms
+'Seed.depth680' does not depend on any axioms
+'Seed.triangle_depth' does not depend on any axioms

@@ -1,0 +1,459 @@
+[
+  {
+    "target": "seed-literal and uniform bound",
+    "label": "CANDIDATE",
+    "blocking": [
+      "human"
+    ],
+    "certified_root": true,
+    "rounds": [
+      {
+        "round": 1,
+        "strategy": "descend by vertex deletion",
+        "secs": 1.6,
+        "checks": {
+          "vertex-deletion-descends": {
+            "ok": false,
+            "evidence": "of 400 polytopes, 7 have no reflexive vertex deletion and 237 have a cover that is not a vertex deletion"
+          }
+        },
+        "failed": [
+          "vertex-deletion-descends"
+        ],
+        "change": "replace vertex deletion by cuts T^inf(Delta cap {<x,q> >= -1}) at dual lattice points q",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 2,
+        "strategy": "cuts at gauge-2 dual points",
+        "secs": 18.4,
+        "checks": {
+          "gauge-two-cuts-complete": {
+            "ok": false,
+            "evidence": "gauge-2 cuts give the wrong cover set for 73 of 400 polytopes"
+          }
+        },
+        "failed": [
+          "gauge-two-cuts-complete"
+        ],
+        "change": "candidate q from the dual volume bound of Balletti-Kasprzyk-Nill and the facet condition; branch at non-reflexive fixed points",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 3,
+        "strategy": "complete candidate set with branching",
+        "secs": 44.3,
+        "checks": {
+          "complete-covers-3d": {
+            "ok": true,
+            "evidence": "complete covers agree with the vertex-deletion poset on 400 of 400 polytopes (0 non-reflexive fixed points met)"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 4,
+        "strategy": "literal reading and counting bound",
+        "secs": 0.1,
+        "checks": {
+          "literal-D-equals-1": {
+            "ok": true,
+            "evidence": "Kreuzer-Skarke: every reflexive 4-polytope contains a minimal polytope, so a chain of one step exists (Theorem A of the paper)"
+          },
+          "uniform-654": {
+            "ok": true,
+            "evidence": "473800776 polytopes; max of min(|P|-6, 680-|P*|) = 654"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 5,
+        "strategy": "longest chain of realised pairs",
+        "secs": 0.2,
+        "checks": {
+          "uniform-348": {
+            "ok": true,
+            "evidence": "longest chain of realised pairs with points falling and dual points rising: 348 steps, only from (521, 22); so D_4 <= 348 and D = 349 with the minimal seed"
+          },
+          "low-dimensions": {
+            "ok": true,
+            "evidence": "dimension 2: 16 polytopes, largest depth 5; dimension 3: 4319 polytopes, largest depth 11"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "CANDIDATE",
+        "blocking": [
+          "human"
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "t": 1,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 2,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 3,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 4,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 5,
+        "label": "CANDIDATE",
+        "factors": {
+          "proof": 1,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      }
+    ]
+  },
+  {
+    "target": "seed-sharp",
+    "label": "OPEN",
+    "blocking": [
+      "proof",
+      "human"
+    ],
+    "certified_root": false,
+    "rounds": [
+      {
+        "round": 1,
+        "strategy": "sweep all 473,800,776 polytopes",
+        "secs": 0.1,
+        "checks": {
+          "sweep-feasible": {
+            "ok": false,
+            "evidence": "162328050 polytopes have trivial bound above 40; certifying 'a few tens' needs a chain or an exact depth for each, at about 3 minutes for the largest"
+          }
+        },
+        "failed": [
+          "sweep-feasible"
+        ],
+        "change": "certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 2,
+        "strategy": "certified chains and exact lower bounds",
+        "secs": 0.0,
+        "checks": {
+          "chain-680-length-38": {
+            "ok": true,
+            "evidence": "certified chain from the 680-point polytope of length 38"
+          },
+          "exact-lower-bounds": {
+            "ok": true,
+            "evidence": "exact depths (points, depth) of chain polytopes [(15, 4), (20, 9)]; D_4 >= 9"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 3,
+        "strategy": "exact depths along the chain",
+        "secs": 0.0,
+        "checks": {
+          "depth-680-at-most-36": {
+            "ok": true,
+            "evidence": "step 27 of the chain has exact depth 9, so delta(Delta_680) <= 27 + 9 = 36"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 4,
+        "strategy": "skew bipyramids",
+        "secs": 10.9,
+        "checks": {
+          "depth-22": {
+            "ok": true,
+            "evidence": "certificate of 5592 polytopes with complete cover lists below the skew bipyramids P_1, P_2 (37 points each): depth exactly 22; checks/check_depth22.py: 7 checks passed, 0 failed"
+          },
+          "depth-680-at-most-32": {
+            "ok": true,
+            "evidence": "the unimodular map G carries P_1 onto step 10 of the chain of Delta_680, so delta(Delta_680) <= 10 + 22 = 32"
+          },
+          "sharp-constant": {
+            "ok": false,
+            "evidence": "22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with more lattice points, or a certified chain of at most 22 steps for each polytope above 22"
+          }
+        },
+        "failed": [
+          "sharp-constant"
+        ],
+        "change": "descend from step 9 of the chain through complete covers, choosing at each step the cover of least greedy rank; test the polytopes above P_1 and P_2 for depth 23",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 5,
+        "strategy": "descent from step 9",
+        "secs": 0.0,
+        "checks": {
+          "depth-680-at-most-31": {
+            "ok": true,
+            "evidence": "a descent of 22 covers from step 9 of the chain (44 to 19 points, each a complete cover), so delta(Delta_680) <= 9 + 22 = 31"
+          },
+          "sharp-constant": {
+            "ok": false,
+            "evidence": "22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with more lattice points, or a certified chain of at most 22 steps for each polytope above 22"
+          }
+        },
+        "failed": [
+          "sharp-constant"
+        ],
+        "change": "certify every polytope of the list at threshold 50 by chains of cuts (code/certify)",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "t": 1,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 2,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 3,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 4,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 5,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 5,
+        "density": "1",
+        "accepted": true
+      }
+    ]
+  }
+]

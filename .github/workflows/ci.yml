@@ -1,0 +1,49 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    name: C, C++, Python, Julia, Macaulay2 and Lean
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numpy and scipy
+        run: python3 -m pip install -r requirements.txt
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: "1.11"
+      - name: Install Macaulay2
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y macaulay2
+      - name: Build PALP
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -sSfL --retry 5 -o palp.tar.gz https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-2.21.tar.gz
+          echo "7e4a7bf219998a844c0bcce0a176e49d0743cb4b505a0e195329bf2ec196ddd7  palp.tar.gz" | sha256sum -c
+          tar xzf palp.tar.gz
+          make -C palp-2.21 poly.x > /dev/null
+          echo "PALP=$RUNNER_TEMP/palp-2.21/poly.x" >> "$GITHUB_ENV"
+      - name: Install Lean (elan)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          # the toolchain download sometimes fails on a TLS error; retry it before the checks
+          for i in 1 2 3 4 5; do
+            "$HOME/.elan/bin/elan" toolchain install "$(cat lean/lean-toolchain)" && break
+            sleep $((15*i))
+          done
+      - name: Run every check
+        run: |
+          bash code/run_checks.sh | tee checks.log
+          test "${PIPESTATUS[0]}" -eq 0
+          grep -q '^77 checks passed, 0 failed$' checks.log
+          if grep -rnE '\bsorry\b|native_decide|^axiom ' lean/Seed.lean; then exit 1; fi

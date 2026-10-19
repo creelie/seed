@@ -1,0 +1,90 @@
+name: farm-left
+
+# Second stage of the certificate farm (code/certify).  A push that changes
+# code/certify/left_queue.json starts a run: the polytopes of results/<src>/left.json, left above T
+# by the first stage, are certified again with exact interval lengths (hcert.py), split over the
+# given number of jobs; the last job merges the summaries into code/certify/results/<tag>.
+
+on:
+  push:
+    paths: ["code/certify/left_queue.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      jobs: ${{ steps.p.outputs.jobs }}
+      n: ${{ steps.p.outputs.n }}
+      T: ${{ steps.p.outputs.T }}
+      src: ${{ steps.p.outputs.src }}
+      tag: ${{ steps.p.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        run: |
+          python3 - >> "$GITHUB_OUTPUT" <<'PY'
+          import json
+          Q=json.load(open('code/certify/left_queue.json'))
+          print('jobs='+json.dumps(list(range(Q['jobs']))))
+          for k in ('T','src','tag'): print(f'{k}={Q[k]}')
+          print(f"n={Q['jobs']}")
+          PY
+  shard:
+    needs: plan
+    name: Left ${{ matrix.k }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        k: ${{ fromJSON(needs.plan.outputs.jobs) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numpy
+        run: python3 -m pip install -q numpy
+      - name: Build PALP
+        run: |
+          curl -sSfL --retry 5 -o palp.tar.gz https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-2.21.tar.gz
+          echo "7e4a7bf219998a844c0bcce0a176e49d0743cb4b505a0e195329bf2ec196ddd7  palp.tar.gz" | sha256sum -c
+          tar xzf palp.tar.gz
+          make -C palp-2.21 poly.x > /dev/null
+          echo "PALP=$PWD/palp-2.21/poly.x" >> "$GITHUB_ENV"
+      - name: Certify
+        run: |
+          timeout 335m python3 code/certify/hcert_shard.py "code/certify/results/${{ needs.plan.outputs.src }}/left.json" "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "$(nproc)" out
+      - name: Keep the certificates and the summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ needs.plan.outputs.tag }}-${{ matrix.k }}
+          path: out/
+          retention-days: 90
+  merge:
+    needs: [plan, shard]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ needs.plan.outputs.tag }}-*
+          path: art
+      - name: Merge the summaries
+        run: python3 code/certify/hcert_merge.py art "code/certify/results/${{ needs.plan.outputs.tag }}" "${{ needs.plan.outputs.n }}"
+      - name: Commit the merged summary
+        run: |
+          git config user.name "Deep Bhattacharjee"
+          git config user.email "itsdeep@live.com"
+          git add code/certify/results
+          git commit -q -m "Certificate farm ${{ needs.plan.outputs.tag }}: merged summary"
+          for i in 1 2 3 4 5; do
+            git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && break
+            sleep $((10*i))
+          done

@@ -22,7 +22,7 @@ jobs:
       - name: Install Macaulay2
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends macaulay2 normaliz
+          sudo apt-get install -y macaulay2
       - name: Install Lean (elan)
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \

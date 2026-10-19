@@ -62,12 +62,19 @@ def facets(pts):
 def lattice_points_H(F,box):
     """integer points with a.x >= c for all (a,c) in F, inside box [(lo,hi)]*d"""
     d=len(box)
-    grids=np.meshgrid(*[np.arange(lo,hi+1) for lo,hi in box],indexing='ij')
-    X=np.stack([g.ravel() for g in grids],axis=1).astype(np.int64)
-    if len(F)==0: return [tuple(x) for x in X]
+    if len(F)==0:
+        grids=np.meshgrid(*[np.arange(lo,hi+1) for lo,hi in box],indexing='ij')
+        return [tuple(x) for x in np.stack([g.ravel() for g in grids],axis=1).astype(np.int64)]
     A=np.array([a for a,c in F],dtype=np.int64); C=np.array([c for a,c in F],dtype=np.int64)
-    ok=np.all(X@A.T>=C,axis=1)
-    return [tuple(int(t) for t in x) for x in X[ok]]
+    # one slice of the first coordinate at a time keeps the memory to one slice of the box
+    rest=np.meshgrid(*[np.arange(lo,hi+1) for lo,hi in box[1:]],indexing='ij')
+    R=np.stack([g.ravel() for g in rest],axis=1).astype(np.int64)
+    out=[]
+    for x0 in range(box[0][0],box[0][1]+1):
+        X=np.concatenate([np.full((len(R),1),x0,dtype=np.int64),R],axis=1)
+        ok=np.all(X@A.T>=C,axis=1)
+        out.extend(tuple(int(t) for t in x) for x in X[ok])
+    return out
 
 def interior_origin(F):
     return all(c<0 for a,c in F)

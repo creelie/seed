@@ -59,6 +59,7 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 - `depth-22` (construction, weight 1.0): PASS, verified by data/depth22.json.gz, checks/check_depth22.py
 - `depth-680-at-most-32` (construction, weight 1.0): PASS, verified by data/chain680.json
 - `sharp-constant` (proof, weight 1.0): FAIL
+- `depth-680-at-most-31` (construction, weight 1.0): PASS, verified by data/descent9.json, checks/check_chain.py
 
 ## 3. Dependency graph
 
@@ -70,11 +71,12 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 
 ## 8. Playbook
 
-- core failures: 4, bullets: 4, density 1, rejected updates: 0
+- core failures: 5, bullets: 5, density 1, rejected updates: 0
 - [FAIL/FAIL] computation: sweep-feasible failed its verifier
 - [UNK/UNK] strategy: certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths
 - [FAIL/FAIL] proof: sharp-constant failed its verifier
-- [UNK/UNK] strategy: the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23
+- [UNK/UNK] strategy: descend from step 9 of the chain through complete covers, choosing at each step the cover of least greedy rank; test the polytopes above P_1 and P_2 for depth 23
+- [UNK/UNK] strategy: certify every polytope of the list at threshold 50 by chains of cuts (code/certify)
 
 ## 14. Release label
 

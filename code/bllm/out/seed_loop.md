@@ -25,7 +25,8 @@ Final label: **CANDIDATE**; blocking factors: human.
 | 1 | sweep all 473,800,776 polytopes | sweep-feasible | certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths | OPEN |
 | 2 | certified chains and exact lower bounds | none | - | OPEN |
 | 3 | exact depths along the chain | none | - | OPEN |
-| 4 | skew bipyramids | sharp-constant | the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23 | OPEN |
+| 4 | skew bipyramids | sharp-constant | descend from step 9 of the chain through complete covers, choosing at each step the cover of least greedy rank; test the polytopes above P_1 and P_2 for depth 23 | OPEN |
+| 5 | descent from step 9 | sharp-constant | certify every polytope of the list at threshold 50 by chains of cuts (code/certify) | OPEN |
 
 - round 1, `sweep-feasible`: FAIL. 162328050 polytopes have trivial bound above 40; certifying 'a few tens' needs a chain or an exact depth for each, at about 3 minutes for the largest
 - round 2, `chain-680-length-38`: pass. certified chain from the 680-point polytope of length 38
@@ -34,6 +35,8 @@ Final label: **CANDIDATE**; blocking factors: human.
 - round 4, `depth-22`: pass. certificate of 5592 polytopes with complete cover lists below the skew bipyramids P_1, P_2 (37 points each): depth exactly 22; checks/check_depth22.py: 7 checks passed, 0 failed
 - round 4, `depth-680-at-most-32`: pass. the unimodular map G carries P_1 onto step 10 of the chain of Delta_680, so delta(Delta_680) <= 10 + 22 = 32
 - round 4, `sharp-constant`: FAIL. 22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with more lattice points, or a certified chain of at most 22 steps for each polytope above 22
+- round 5, `depth-680-at-most-31`: pass. a descent of 22 covers from step 9 of the chain (44 to 19 points, each a complete cover), so delta(Delta_680) <= 9 + 22 = 31
+- round 5, `sharp-constant`: FAIL. 22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with more lattice points, or a certified chain of at most 22 steps for each polytope above 22
 
 Final label: **OPEN**; blocking factors: proof, human.
 

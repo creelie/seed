@@ -133,6 +133,15 @@ def gamma10_is_p1():
     return dict(ok=ok, evidence="the unimodular map G carries P_1 onto step 10 of the chain of Delta_680, "
                                 "so delta(Delta_680) <= 10 + 22 = 32")
 
+def descent_9():
+    ch = json.load(open('data/chain680.json'))
+    d9 = json.load(open('data/descent9.json'))
+    nested = all(set(map(tuple, d9[i + 1])) < set(map(tuple, d9[i])) for i in range(len(d9) - 1))
+    starts = {tuple(x) for x in d9[0]} == {tuple(x) for x in ch[9]}
+    return dict(ok=nested and starts and len(d9) - 1 == 22,
+                evidence=f"a descent of {len(d9)-1} covers from step 9 of the chain ({len(d9[0])} to "
+                         f"{len(d9[-1])} points, each a complete cover), so delta(Delta_680) <= 9 + 22 = 31")
+
 def sharp_gap():
     return dict(ok=False, evidence="22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with "
                 "more lattice points, or a certified chain of at most 22 steps for each polytope above 22")
@@ -176,7 +185,12 @@ T2 = Target("seed-sharp", pkg2, "sharp", [
           [Check("depth-22", "construction", depth_22, "data/depth22.json.gz, checks/check_depth22.py"),
            Check("depth-680-at-most-32", "construction", gamma10_is_p1, "data/chain680.json"),
            Check("sharp-constant", "proof", sharp_gap)],
-          change="the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23"),
+          change="descend from step 9 of the chain through complete covers, choosing at each step the "
+                 "cover of least greedy rank; test the polytopes above P_1 and P_2 for depth 23"),
+    Round("descent from step 9",
+          [Check("depth-680-at-most-31", "construction", descent_9, "data/descent9.json, checks/check_chain.py"),
+           Check("sharp-constant", "proof", sharp_gap)],
+          change="certify every polytope of the list at threshold 50 by chains of cuts (code/certify)"),
 ], model_ok=False)
 
 if __name__ == '__main__':

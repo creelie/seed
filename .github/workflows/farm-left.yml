@@ -7,6 +7,8 @@ name: farm-left
 
 on:
   push:
+    # never on main, so that merging the farm data does not start a second run
+    branches-ignore: [main]
     paths: ["code/certify/left_queue.json"]
   workflow_dispatch:
 

@@ -8,6 +8,8 @@ name: farm
 
 on:
   push:
+    # never on main, so that merging the farm data does not start a second run
+    branches-ignore: [main]
     paths: ["code/certify/queue.json"]
   workflow_dispatch:
 

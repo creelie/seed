@@ -40,6 +40,9 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
+      # at most 12 runners at a time, so that the other repositories of the account keep
+      # runners for their own checks
+      max-parallel: 12
       matrix:
         k: ${{ fromJSON(needs.plan.outputs.jobs) }}
     steps:

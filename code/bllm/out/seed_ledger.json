@@ -1,0 +1,281 @@
+[
+  {
+    "target": "seed-literal and uniform bound",
+    "label": "CANDIDATE",
+    "blocking": [
+      "human"
+    ],
+    "certified_root": true,
+    "rounds": [
+      {
+        "round": 1,
+        "strategy": "descend by vertex deletion",
+        "secs": 1.6,
+        "checks": {
+          "vertex-deletion-descends": {
+            "ok": false,
+            "evidence": "of 400 polytopes, 7 have no reflexive vertex deletion and 237 have a cover that is not a vertex deletion"
+          }
+        },
+        "failed": [
+          "vertex-deletion-descends"
+        ],
+        "change": "replace vertex deletion by cuts T^inf(Delta cap {<x,q> >= -1}) at dual lattice points q",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 2,
+        "strategy": "cuts at gauge-2 dual points",
+        "secs": 22.3,
+        "checks": {
+          "gauge-two-cuts-complete": {
+            "ok": false,
+            "evidence": "gauge-2 cuts give the wrong cover set for 73 of 400 polytopes"
+          }
+        },
+        "failed": [
+          "gauge-two-cuts-complete"
+        ],
+        "change": "candidate q from the dual volume bound of Balletti-Kasprzyk-Nill and the facet condition; branch at non-reflexive fixed points",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 3,
+        "strategy": "complete candidate set with branching",
+        "secs": 48.7,
+        "checks": {
+          "complete-covers-3d": {
+            "ok": true,
+            "evidence": "complete covers agree with the vertex-deletion poset on 400 of 400 polytopes (0 non-reflexive fixed points met)"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 4,
+        "strategy": "literal reading and counting bound",
+        "secs": 0.2,
+        "checks": {
+          "literal-D-equals-1": {
+            "ok": true,
+            "evidence": "Kreuzer-Skarke: every reflexive 4-polytope contains a minimal polytope, so a chain of one step exists (Theorem A of the paper)"
+          },
+          "uniform-654": {
+            "ok": true,
+            "evidence": "473800776 polytopes; max of min(|P|-6, 680-|P*|) = 654"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "human"
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "t": 1,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 2,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 3,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 4,
+        "label": "OPEN",
+        "factors": {
+          "proof": 1,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      }
+    ]
+  },
+  {
+    "target": "seed-sharp",
+    "label": "OPEN",
+    "blocking": [
+      "proof",
+      "human"
+    ],
+    "certified_root": false,
+    "rounds": [
+      {
+        "round": 1,
+        "strategy": "sweep all 473,800,776 polytopes",
+        "secs": 0.2,
+        "checks": {
+          "sweep-feasible": {
+            "ok": false,
+            "evidence": "162328050 polytopes have trivial bound above 40; certifying 'a few tens' needs a chain or an exact depth for each, at about 3 minutes for the largest"
+          }
+        },
+        "failed": [
+          "sweep-feasible"
+        ],
+        "change": "certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 2,
+        "strategy": "certified chains and exact lower bounds",
+        "secs": 0.0,
+        "checks": {
+          "chain-680-length-38": {
+            "ok": true,
+            "evidence": "certified chain from the 680-point polytope of length 38"
+          },
+          "exact-lower-bounds": {
+            "ok": false,
+            "evidence": "exact depths of chain polytopes []; D_4 >= None"
+          }
+        },
+        "failed": [
+          "exact-lower-bounds"
+        ],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "t": 1,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 2,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 3,
+        "density": "1",
+        "accepted": true
+      }
+    ]
+  }
+]

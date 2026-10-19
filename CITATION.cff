@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite the paper below."
+title: "Reflexive Descent to Minimal Seeds in the Kreuzer–Skarke List: code, data and checks"
+abstract: >-
+  Code, data and independent checks for the paper "Reflexive Descent to
+  Minimal Seeds in the Kreuzer–Skarke List". The paper proves that every
+  reflexive polytope can be shrunk to a minimal seed through reflexive
+  polytopes one cover at a time, that no such descent in dimension four has
+  more than 348 steps, so that the conjecture of a uniform transition depth
+  holds with D = 349, and that the largest transition depths in dimensions two
+  and three are 5 and 11. The archive holds the joint distribution of point
+  counts over the 473,800,776 four-dimensional reflexive polytopes, the pair
+  bounds and a longest chain, the cover relation in dimensions two and three,
+  a certified descent of the largest polytope, and 68 independent checks in C,
+  C++, Python, Julia, Macaulay2 and shell with 18 Lean 4 theorems.
+type: software
+license: MIT
+version: 1.0.0
+date-released: "2026-10-19"
+repository-code: "https://github.com/creelie/seed"
+keywords:
+  - reflexive polytopes
+  - Kreuzer-Skarke list
+  - Calabi-Yau threefolds
+  - lattice polytopes
+  - toric geometry
+authors:
+  - family-names: Bhattacharjee
+    given-names: Deep
+    orcid: "https://orcid.org/0000-0003-0466-750X"
+    email: itsdeep@live.com
+    affiliation: "Formerly, Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar, Odisha 751030, India; Formerly, University of Calcutta, Senate House, 87/1 College Street, Kolkata 700073, West Bengal, India"
+preferred-citation:
+  type: article
+  title: "Reflexive Descent to Minimal Seeds in the Kreuzer–Skarke List"
+  year: 2026
+  authors:
+    - family-names: Bhattacharjee
+      given-names: Deep
+      orcid: "https://orcid.org/0000-0003-0466-750X"
+    - family-names: Bhattacharya
+      given-names: Ushashi
+      orcid: "https://orcid.org/0009-0002-2254-3914"

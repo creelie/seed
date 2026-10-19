@@ -36,6 +36,11 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
             | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          # the toolchain download sometimes fails on a TLS error; retry it before the checks
+          for i in 1 2 3 4 5; do
+            "$HOME/.elan/bin/elan" toolchain install "$(cat lean/lean-toolchain)" && break
+            sleep $((15*i))
+          done
       - name: Run every check
         run: |
           bash code/run_checks.sh | tee checks.log

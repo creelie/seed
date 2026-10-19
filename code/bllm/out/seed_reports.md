@@ -12,10 +12,12 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 - `complete-covers-3d` (computation, weight 1.0): PASS
 - `literal-D-equals-1` (lemma, weight 1.0): PASS, verified by Kreuzer-Skarke 1997
 - `uniform-654` (computation, weight 1.0): PASS, verified by data/ks4_point_pairs.csv
+- `uniform-348` (computation, weight 1.0): PASS, verified by data/ks4_point_pairs.csv, checks/pair_bound.c
+- `low-dimensions` (computation, weight 1.0): PASS, verified by data/poset2.json, data/poset3.json
 
 ## 3. Dependency graph
 
-- complete-covers-3d, literal-D-equals-1, uniform-654 ⇒ uniform-bound
+- complete-covers-3d, literal-D-equals-1, uniform-654, uniform-348 ⇒ uniform-bound
 
 ## 5. Residue ledger
 
@@ -31,7 +33,7 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 
 ## 14. Release label
 
-**OPEN**; factors {'proof': 1, 'formal': 1, 'code': 1, 'trace': 1, 'sim': 1, 'risk': 1, 'lit': 1, 'human': 0}; blocking: human
+**CANDIDATE**; factors {'proof': 1, 'formal': 1, 'code': 1, 'trace': 1, 'sim': 1, 'risk': 1, 'lit': 1, 'human': 0}; blocking: human
 
 ## 15. Human / referee checklist
 
@@ -52,7 +54,9 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 - `sharp` (theorem, weight 1.0): UNK
 - `sweep-feasible` (computation, weight 1.0): FAIL
 - `chain-680-length-38` (construction, weight 1.0): PASS
-- `exact-lower-bounds` (computation, weight 1.0): FAIL
+- `exact-lower-bounds` (computation, weight 1.0): PASS
+- `depth-680-at-most-36` (construction, weight 1.0): PASS
+- `sharp-constant` (proof, weight 1.0): FAIL
 
 ## 3. Dependency graph
 
@@ -64,10 +68,11 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 
 ## 8. Playbook
 
-- core failures: 3, bullets: 3, density 1, rejected updates: 0
+- core failures: 4, bullets: 4, density 1, rejected updates: 0
 - [FAIL/FAIL] computation: sweep-feasible failed its verifier
 - [UNK/UNK] strategy: certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths
-- [FAIL/FAIL] computation: exact-lower-bounds failed its verifier
+- [FAIL/FAIL] proof: sharp-constant failed its verifier
+- [UNK/UNK] strategy: the sharp constant stays open
 
 ## 14. Release label
 

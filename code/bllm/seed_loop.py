@@ -69,6 +69,27 @@ def uniform_bound():
     return dict(ok=N == 473800776 and M == 654,
                 evidence=f"{N} polytopes; max of min(|P|-6, 680-|P*|) = {M}")
 
+def pair_bound():
+    import pair_chain
+    rows = pair_chain.load('data/ks4_point_pairs.csv')
+    L = pair_chain.chain_lengths(rows)
+    M = max(L.values()); at = [k for k, v in L.items() if v == M]
+    return dict(ok=M == 348 and at == [(521, 22)],
+                evidence=f"longest chain of realised pairs with points falling and dual points rising: "
+                         f"{M} steps, only from {at[0]}; so D_4 <= 348 and D = 349 with the minimal seed")
+
+def low_dimensions():
+    out = []
+    for d, want in ((2, 5), (3, 11)):
+        P = json.load(open(f'data/poset{d}.json')); cov = P['covers']; memo = {}
+        def dep(k):
+            if k not in memo:
+                memo[k] = 0 if not cov[k] else 1 + min(dep(x) for x in cov[k])
+            return memo[k]
+        m = max(dep(k) for k in cov); out.append((d, len(cov), m, want))
+    return dict(ok=all(m == w for d, n, m, w in out),
+                evidence="; ".join(f"dimension {d}: {n} polytopes, largest depth {m}" for d, n, m, w in out))
+
 def sharp_constant():
     rows = [(int(r['points']), int(r['dual_points']), int(r['count'])) for r in csv.DictReader(open('data/ks4_point_pairs.csv'))]
     big = sum(c for a, b, c in rows if min(a - 6, 680 - b) > 40)
@@ -85,7 +106,17 @@ def lower_bounds():
         if f.startswith('depth_') and f.endswith('.json'):
             d = json.load(open(os.path.join('data', f))); deps.append((d['points'], d['depth']))
     m = max((d for p, d in deps), default=None)
-    return dict(ok=m is not None, evidence=f"exact depths of chain polytopes {deps}; D_4 >= {m}")
+    return dict(ok=m is not None, evidence=f"exact depths (points, depth) of chain polytopes {deps}; D_4 >= {m}")
+
+def shortened_680():
+    d = json.load(open('data/depth_20.json'))
+    return dict(ok=d['index'] + d['depth'] == 36,
+                evidence=f"step {d['index']} of the chain has exact depth {d['depth']}, so delta(Delta_680) <= "
+                         f"{d['index']} + {d['depth']} = {d['index'] + d['depth']}")
+
+def sharp_gap():
+    return dict(ok=False, evidence="9 <= D_4 <= 348; closing the gap needs exact depths of the polytopes "
+                "near the top of the pair bound, out of reach of breadth-first search")
 
 pkg = ConjecturePackage(name="Uniform transition depth", domain="reflexive 4-polytopes (Kreuzer-Skarke list)",
                         hypothesis="Delta reflexive, dimension 4",
@@ -100,7 +131,13 @@ T1 = Target("seed-literal and uniform bound", pkg, "uniform-bound", [
     Round("literal reading and counting bound",
           [Check("literal-D-equals-1", "lemma", literal_reading, "Kreuzer-Skarke 1997"),
            Check("uniform-654", "computation", uniform_bound, "data/ks4_point_pairs.csv")],
-          bridges=[(["complete-covers-3d", "literal-D-equals-1", "uniform-654"], "uniform-bound", 0.0)]),
+          change="the simple bound treats points and dual points separately; chain only through the "
+                 "pairs (|P|, |P*|) that occur in the list"),
+    Round("longest chain of realised pairs",
+          [Check("uniform-348", "computation", pair_bound, "data/ks4_point_pairs.csv, checks/pair_bound.c"),
+           Check("low-dimensions", "computation", low_dimensions, "data/poset2.json, data/poset3.json")],
+          bridges=[(["complete-covers-3d", "literal-D-equals-1", "uniform-654", "uniform-348"],
+                    "uniform-bound", 0.0)]),
 ])
 pkg2 = ConjecturePackage(name="Uniform transition depth, sharp form", domain="reflexive 4-polytopes",
                          conclusion="the least D is a few tens")
@@ -109,7 +146,11 @@ T2 = Target("seed-sharp", pkg2, "sharp", [
           change="certify chains only for extreme polytopes and bound the constant from below by exact "
                  "breadth-first depths"),
     Round("certified chains and exact lower bounds",
-          [Check("chain-680-length-38", "construction", chain_680), Check("exact-lower-bounds", "computation", lower_bounds)]),
+          [Check("chain-680-length-38", "construction", chain_680), Check("exact-lower-bounds", "computation", lower_bounds)],
+          change="shorten the chain of Delta_680 at the step where an exact depth is known"),
+    Round("exact depths along the chain",
+          [Check("depth-680-at-most-36", "construction", shortened_680), Check("sharp-constant", "proof", sharp_gap)],
+          change="the sharp constant stays open"),
 ], model_ok=False)
 
 if __name__ == '__main__':

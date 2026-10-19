@@ -30,7 +30,7 @@
       {
         "round": 2,
         "strategy": "cuts at gauge-2 dual points",
-        "secs": 22.3,
+        "secs": 21.4,
         "checks": {
           "gauge-two-cuts-complete": {
             "ok": false,
@@ -50,7 +50,7 @@
       {
         "round": 3,
         "strategy": "complete candidate set with branching",
-        "secs": 48.7,
+        "secs": 45.4,
         "checks": {
           "complete-covers-3d": {
             "ok": true,
@@ -68,7 +68,7 @@
       {
         "round": 4,
         "strategy": "literal reading and counting bound",
-        "secs": 0.2,
+        "secs": 0.1,
         "checks": {
           "literal-D-equals-1": {
             "ok": true,
@@ -82,6 +82,28 @@
         "failed": [],
         "change": "",
         "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 5,
+        "strategy": "longest chain of realised pairs",
+        "secs": 0.3,
+        "checks": {
+          "uniform-348": {
+            "ok": true,
+            "evidence": "longest chain of realised pairs with points falling and dual points rising: 348 steps, only from (521, 22); so D_4 <= 348 and D = 349 with the minimal seed"
+          },
+          "low-dimensions": {
+            "ok": true,
+            "evidence": "dimension 2: 16 polytopes, largest depth 5; dimension 3: 4319 polytopes, largest depth 11"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "CANDIDATE",
         "blocking": [
           "human"
         ]
@@ -158,6 +180,28 @@
         "t": 4,
         "label": "OPEN",
         "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 3.0,
+        "core": 4,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 5,
+        "label": "CANDIDATE",
+        "factors": {
           "proof": 1,
           "formal": 1,
           "code": 1,
@@ -189,7 +233,7 @@
       {
         "round": 1,
         "strategy": "sweep all 473,800,776 polytopes",
-        "secs": 0.2,
+        "secs": 0.1,
         "checks": {
           "sweep-feasible": {
             "ok": false,
@@ -216,14 +260,36 @@
             "evidence": "certified chain from the 680-point polytope of length 38"
           },
           "exact-lower-bounds": {
+            "ok": true,
+            "evidence": "exact depths (points, depth) of chain polytopes [(15, 4), (20, 9)]; D_4 >= 9"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 3,
+        "strategy": "exact depths along the chain",
+        "secs": 0.0,
+        "checks": {
+          "depth-680-at-most-36": {
+            "ok": true,
+            "evidence": "step 27 of the chain has exact depth 9, so delta(Delta_680) <= 27 + 9 = 36"
+          },
+          "sharp-constant": {
             "ok": false,
-            "evidence": "exact depths of chain polytopes []; D_4 >= None"
+            "evidence": "9 <= D_4 <= 348; closing the gap needs exact depths of the polytopes near the top of the pair bound, out of reach of breadth-first search"
           }
         },
         "failed": [
-          "exact-lower-bounds"
+          "sharp-constant"
         ],
-        "change": "",
+        "change": "the sharp constant stays open",
         "label": "OPEN",
         "blocking": [
           "proof",
@@ -271,8 +337,30 @@
           "proof",
           "human"
         ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 3,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
         "debt_mass": 3.0,
-        "core": 3,
+        "core": 4,
         "density": "1",
         "accepted": true
       }

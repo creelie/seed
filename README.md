@@ -55,7 +55,7 @@ FULL=1 PALP=/path/to/poly.x bash code/run_checks.sh   # 72 checks, recertifies e
 The script needs gcc, g++, Python 3 with numpy and scipy, Julia, Macaulay2 and
 Lean 4 (the version in `lean/lean-toolchain`); a missing tool is reported and
 its checks are skipped. `FULL=1` needs PALP (Kreuzer and Skarke's `poly.x`)
-and takes about an hour. The Kreuzer–Skarke list itself is not stored here:
+and takes about half an hour. The Kreuzer–Skarke list itself is not stored here:
 the point counts were read from its public copy on Hugging Face
 (`calabi-yau-data/polytopes-4d`).
 

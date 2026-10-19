@@ -4,7 +4,7 @@ Reads data/poset3.json (covers of each of the 4,319 polytopes, keyed by PALP
 normal form) and recomputes depth and height by induction, ignoring the
 stored values; then checks the statements of Section VI: D_3 = 11 by exactly
 two r-maximal polytopes with 35 and 31 lattice points and height 23, longest
-descent 28 (the polytope with 39 points, depth 8), simple counting bound 33,
+descent 28 (the polytope with 35 points, depth 8), simple counting bound 33,
 16 r-minimal polytopes, 21,841 covers, mean depth 5.67 and mean height 10.23.
 """
 import json, os, sys

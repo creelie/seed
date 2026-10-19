@@ -61,7 +61,7 @@ def cuts(X,Q):
     """distinct full-dimensional cut point sets, smallest first"""
     G=X@Q.T
     Q=Q[G.min(0)<=-2]; G=G[:,G.min(0)<=-2]
-    H=G>=-1; n=H.sum(0); keep=n>=6; H=H[:,keep]; n=n[keep]
+    H=G>=-1; n=H.sum(0); keep=n>=6; H=H[:,keep]; n=n[keep]; Q=Q[keep]
     if H.shape[1]==0: return []
     pk=np.packbits(H,axis=0).T.copy()
     _,idx=np.unique(pk.view(np.dtype((np.void,pk.shape[1]))).ravel(),return_index=True)

@@ -9,8 +9,9 @@ reflexive polytopes are the closed reflexive sets Gamma u S with S inside Delta 
 on the dual side, Delta* u S with S inside Gamma* minus Delta*; the shortest maximal chain is
 found by breadth-first search over the Hasse diagram of these sets.  A beam search keeps the
 best few partial chains at each step, scored by cost so far plus the pair bound L."""
-import itertools
+import itertools, os, sys
 import numpy as np
+sys.path.insert(0,os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 import bcert
 L=bcert.Lpair; BIG=bcert.BIG
 CAP=12
@@ -50,15 +51,25 @@ def ell(Xd,Xg,Dd,Dg,cap=CAP):
     else: r=interval_length(Dd,np.array(sorted(set(map(tuple,Dg.tolist()))-set(map(tuple,Dd.tolist())))),cap)
     return (r,True) if r is not None else (crude,False)
 
-def options(X):
+def options(X,full=False):
+    """dual points of X and the reflexive cuts (counts, points, q).  With full=True the cut
+    vectors q also run over the region of Proposition (cuts): q tight on four independent points
+    of X with nvol conv(X* u q) at most 3528 (complete.py), which is needed for thin simplices
+    whose 3 Delta* has no useful lattice point."""
     P,E=bcert.points_and_duals([X.tolist()])
     Dd=bcert.lattice_points([E[0].tolist()])[0]
     Q3=bcert.lattice_points([(3*E[0]).tolist()])[0]
+    if full:
+        import rhull, complete
+        Xt=[tuple(int(a) for a in x) for x in X.tolist()]
+        F=rhull.facets(Xt); V,Dst,w=complete.dual_points_and_weights(frozenset(Xt),F)
+        qs=set(map(tuple,Q3.tolist()))|set(complete.candidate_cuts(frozenset(Xt),F,V,Dst,w,4))
+        Q3=np.array(sorted(qs),dtype=np.int64)
     C=bcert.cuts(X,Q3)
     res=bcert.counts_safe([h.tolist() for h,_ in C])
     return Dd,[(r,h,qv) for (h,qv),r in zip(C,res) if r is not None]
 
-def certify(V,T,beam=3,maxsteps=40,tries=30):
+def certify(V,T,beam=3,maxsteps=40,tries=30,full=False):
     """returns (bound, [(q, points, dual points, cost, exact), ...])"""
     P,E=bcert.points_and_duals([V]); X0=P[0]
     c0=bcert.counts_safe([X0.tolist()])[0]
@@ -67,7 +78,7 @@ def certify(V,T,beam=3,maxsteps=40,tries=30):
         nxt=[]
         for cost,X,pq,path in states:
             if L.get(pq,BIG)==0: continue
-            Dd,opts=options(X)
+            Dd,opts=options(X,full)
             pick=sorted(opts,key=lambda o:L.get(o[0],BIG))[:tries]
             pick+=sorted(opts,key=lambda o:min(pq[0]-o[0][0],o[0][1]-pq[1]))[:tries]
             for r,h,qv in pick:
@@ -83,11 +94,11 @@ def certify(V,T,beam=3,maxsteps=40,tries=30):
         states=[(c2,h,r,path) for sc,c2,h,r,path in nxt[:beam]]
     return best
 
-def certify_escalate(V,T):
+def certify_escalate(V,T,full=False):
     """beam 3, then wider searches, until the bound is at most T"""
     best=None
     for beam,tries in ((3,30),(8,60),(16,120)):
-        b=certify(V,T,beam=beam,tries=tries)
+        b=certify(V,T,beam=beam,tries=tries,full=full)
         if best is None or b[0]<best[0]: best=b
         if best[0]<=T: break
     return best

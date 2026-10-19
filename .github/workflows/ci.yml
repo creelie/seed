@@ -23,6 +23,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y macaulay2
+      - name: Build PALP
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -sSfL --retry 5 -o palp.tar.gz https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-2.21.tar.gz
+          echo "7e4a7bf219998a844c0bcce0a176e49d0743cb4b505a0e195329bf2ec196ddd7  palp.tar.gz" | sha256sum -c
+          tar xzf palp.tar.gz
+          make -C palp-2.21 poly.x > /dev/null
+          echo "PALP=$RUNNER_TEMP/palp-2.21/poly.x" >> "$GITHUB_ENV"
       - name: Install Lean (elan)
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \

@@ -56,6 +56,8 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 - `chain-680-length-38` (construction, weight 1.0): PASS
 - `exact-lower-bounds` (computation, weight 1.0): PASS
 - `depth-680-at-most-36` (construction, weight 1.0): PASS
+- `depth-22` (construction, weight 1.0): PASS, verified by data/depth22.json.gz, checks/check_depth22.py
+- `depth-680-at-most-32` (construction, weight 1.0): PASS, verified by data/chain680.json
 - `sharp-constant` (proof, weight 1.0): FAIL
 
 ## 3. Dependency graph
@@ -72,7 +74,7 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 - [FAIL/FAIL] computation: sweep-feasible failed its verifier
 - [UNK/UNK] strategy: certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths
 - [FAIL/FAIL] proof: sharp-constant failed its verifier
-- [UNK/UNK] strategy: the sharp constant stays open
+- [UNK/UNK] strategy: the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23
 
 ## 14. Release label
 

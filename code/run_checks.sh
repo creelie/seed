@@ -5,6 +5,7 @@
 #   Python     checks/check_pairs.py    pair bound by a Fenwick tree, the witness chain
 #              checks/check_chain.py    the descent of Table III (add FULL=1 for all covers)
 #              checks/check_poset3.py   depths and heights in dimension three
+#              checks/check_depth22.py  two polytopes of depth 22 (add FULL=1 to recompute covers)
 #   Julia      checks/polygons.jl       the sixteen polygons from scratch, Table II
 #   Macaulay2  checks/delta680.m2       Delta_680 with the Polyhedra package
 #   Lean 4     ../lean/Seed.lean        the finite arithmetic and the counting lemma
@@ -38,6 +39,8 @@ if have "$PYTHON"; then
   if [ "${FULL:-0}" = 1 ]; then run "Python: descent of Delta_680 (full)" "$PYTHON" checks/check_chain.py --full || status=1
   else run "Python: descent of Delta_680" "$PYTHON" checks/check_chain.py || status=1; fi
   run "Python: dimension three" "$PYTHON" checks/check_poset3.py || status=1
+  if [ "${FULL:-0}" = 1 ]; then run "Python: depth 22 (full)" "$PYTHON" checks/check_depth22.py --full || status=1
+  else run "Python: depth 22" "$PYTHON" checks/check_depth22.py || status=1; fi
 else skipped+=("Python"); fi
 if have "$JULIA"; then
   run "Julia: polygons" "$JULIA" --startup-file=no checks/polygons.jl || status=1

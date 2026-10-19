@@ -10,7 +10,7 @@
       {
         "round": 1,
         "strategy": "descend by vertex deletion",
-        "secs": 1.6,
+        "secs": 1.8,
         "checks": {
           "vertex-deletion-descends": {
             "ok": false,
@@ -30,7 +30,7 @@
       {
         "round": 2,
         "strategy": "cuts at gauge-2 dual points",
-        "secs": 21.4,
+        "secs": 27.1,
         "checks": {
           "gauge-two-cuts-complete": {
             "ok": false,
@@ -50,7 +50,7 @@
       {
         "round": 3,
         "strategy": "complete candidate set with branching",
-        "secs": 45.4,
+        "secs": 46.0,
         "checks": {
           "complete-covers-3d": {
             "ok": true,
@@ -90,7 +90,7 @@
       {
         "round": 5,
         "strategy": "longest chain of realised pairs",
-        "secs": 0.3,
+        "secs": 0.2,
         "checks": {
           "uniform-348": {
             "ok": true,
@@ -280,16 +280,38 @@
           "depth-680-at-most-36": {
             "ok": true,
             "evidence": "step 27 of the chain has exact depth 9, so delta(Delta_680) <= 27 + 9 = 36"
+          }
+        },
+        "failed": [],
+        "change": "",
+        "label": "OPEN",
+        "blocking": [
+          "proof",
+          "human"
+        ]
+      },
+      {
+        "round": 4,
+        "strategy": "skew bipyramids",
+        "secs": 9.3,
+        "checks": {
+          "depth-22": {
+            "ok": true,
+            "evidence": "certificate of 5592 polytopes with complete cover lists below the skew bipyramids P_1, P_2 (37 points each): depth exactly 22; checks/check_depth22.py: 7 checks passed, 0 failed"
+          },
+          "depth-680-at-most-32": {
+            "ok": true,
+            "evidence": "the unimodular map G carries P_1 onto step 10 of the chain of Delta_680, so delta(Delta_680) <= 10 + 22 = 32"
           },
           "sharp-constant": {
             "ok": false,
-            "evidence": "9 <= D_4 <= 348; closing the gap needs exact depths of the polytopes near the top of the pair bound, out of reach of breadth-first search"
+            "evidence": "22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with more lattice points, or a certified chain of at most 22 steps for each polytope above 22"
           }
         },
         "failed": [
           "sharp-constant"
         ],
-        "change": "the sharp constant stays open",
+        "change": "the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23",
         "label": "OPEN",
         "blocking": [
           "proof",
@@ -344,6 +366,28 @@
       },
       {
         "t": 3,
+        "label": "OPEN",
+        "factors": {
+          "proof": 0,
+          "formal": 1,
+          "code": 1,
+          "trace": 1,
+          "sim": 1,
+          "risk": 1,
+          "lit": 1,
+          "human": 0
+        },
+        "blocking": [
+          "proof",
+          "human"
+        ],
+        "debt_mass": 2.0,
+        "core": 2,
+        "density": "1",
+        "accepted": true
+      },
+      {
+        "t": 4,
         "label": "OPEN",
         "factors": {
           "proof": 0,

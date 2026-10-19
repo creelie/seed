@@ -114,9 +114,28 @@ def shortened_680():
                 evidence=f"step {d['index']} of the chain has exact depth {d['depth']}, so delta(Delta_680) <= "
                          f"{d['index']} + {d['depth']} = {d['index'] + d['depth']}")
 
+def depth_22():
+    import gzip, subprocess
+    D = json.load(gzip.open('data/depth22.json.gz', 'rt'))
+    out = subprocess.run([sys.executable, 'checks/check_depth22.py'], capture_output=True, text=True).stdout
+    last = out.strip().splitlines()[-1]
+    return dict(ok=last.endswith('0 failed') and all(D['nodes'][r]['bound'] == 22 for r in D['roots']),
+                evidence=f"certificate of {len(D['nodes'])} polytopes with complete cover lists below the skew "
+                         f"bipyramids P_1, P_2 (37 points each): depth exactly 22; checks/check_depth22.py: {last}")
+
+def gamma10_is_p1():
+    ch = json.load(open('data/chain680.json'))
+    G = ((-1, -1, -1, -1), (-1, -1, 6, 0), (-1, 2, -1, 0), (1, -1, -1, 0))
+    e = [(1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0)]
+    P1 = rhull.closure(e + [(-4, -2, -1, 8), (-4, -2, -1, -8)])
+    img = {tuple(sum(G[r][c] * x[c] for c in range(4)) for r in range(4)) for x in P1}
+    ok = img == {tuple(x) for x in ch[10]} and abs(round(np.linalg.det(np.array(G, float)))) == 1
+    return dict(ok=ok, evidence="the unimodular map G carries P_1 onto step 10 of the chain of Delta_680, "
+                                "so delta(Delta_680) <= 10 + 22 = 32")
+
 def sharp_gap():
-    return dict(ok=False, evidence="9 <= D_4 <= 348; closing the gap needs exact depths of the polytopes "
-                "near the top of the pair bound, out of reach of breadth-first search")
+    return dict(ok=False, evidence="22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with "
+                "more lattice points, or a certified chain of at most 22 steps for each polytope above 22")
 
 pkg = ConjecturePackage(name="Uniform transition depth", domain="reflexive 4-polytopes (Kreuzer-Skarke list)",
                         hypothesis="Delta reflexive, dimension 4",
@@ -149,8 +168,15 @@ T2 = Target("seed-sharp", pkg2, "sharp", [
           [Check("chain-680-length-38", "construction", chain_680), Check("exact-lower-bounds", "computation", lower_bounds)],
           change="shorten the chain of Delta_680 at the step where an exact depth is known"),
     Round("exact depths along the chain",
-          [Check("depth-680-at-most-36", "construction", shortened_680), Check("sharp-constant", "proof", sharp_gap)],
-          change="the sharp constant stays open"),
+          [Check("depth-680-at-most-36", "construction", shortened_680)],
+          change="construct polytopes with long descents: skew bipyramids conv(Q x 0, (a,k), (b,-k)) over "
+                 "three-dimensional reflexive Q, ranked by the length of a greedy chain of cuts, then exact "
+                 "depths of the highest ranked by breadth-first search through complete covers"),
+    Round("skew bipyramids",
+          [Check("depth-22", "construction", depth_22, "data/depth22.json.gz, checks/check_depth22.py"),
+           Check("depth-680-at-most-32", "construction", gamma10_is_p1, "data/chain680.json"),
+           Check("sharp-constant", "proof", sharp_gap)],
+          change="the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23"),
 ], model_ok=False)
 
 if __name__ == '__main__':

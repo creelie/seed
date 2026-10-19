@@ -188,8 +188,79 @@ theorem descent680_chain : StrictChain descent680 ∧ descent680.length = 39 ∧
 /-- the descent of Table III is within the counting bounds -/
 theorem descent680_counting : 38 ≤ 680 - 6 ∧ 38 ≤ 680 - 26 := by decide
 
-/-- δ(Δ₆₈₀) ≤ 27 + δ(Γ₂₇) = 27 + 9, and Γ₂₇ has 20 points ending at 11 -/
-theorem depth680 : 27 + 9 = 36 ∧ 20 - 11 = 9 ∧ 15 - 11 = 4 := by decide
+/-! ## Two polytopes of depth 22 -/
+
+/-- a descent in an abstract order: a chain of covers ending at an element without covers -/
+inductive Descent {α : Type} (cover : α → α → Prop) : α → Nat → Prop
+  | stop (x : α) (h : ∀ y, ¬ cover x y) : Descent cover x 0
+  | step (x y : α) (k : Nat) (h : cover x y) (d : Descent cover y k) : Descent cover x (k + 1)
+
+/-- the certificate lemma: if every element with bound b > 0 has a cover and every cover has
+    bound at least b − 1, then every descent from x has at least b x steps -/
+theorem certificate_lemma {α : Type} (cover : α → α → Prop) (b : α → Nat)
+    (hb : ∀ x, 0 < b x → (∃ y, cover x y) ∧ ∀ y, cover x y → b x ≤ b y + 1) :
+    ∀ x k, Descent cover x k → b x ≤ k := by
+  intro x k d
+  induction d with
+  | stop x h =>
+    rcases Nat.eq_zero_or_pos (b x) with h0 | hpos
+    · exact Nat.le_of_eq h0
+    · obtain ⟨⟨y, hy⟩, _⟩ := hb x hpos
+      exact (h y hy).elim
+  | step x y k h _ ih =>
+    rcases Nat.eq_zero_or_pos (b x) with h0 | hpos
+    · rw [h0]; exact Nat.zero_le _
+    · exact Nat.le_trans ((hb x hpos).2 y h) (Nat.add_le_add_right ih 1)
+
+/-- lattice points and dual lattice points along a shortest descent of P₁ -/
+def descentP1 : List (Nat × Nat) := [
+  (37, 37), (36, 38), (35, 39), (34, 40), (33, 41), (32, 43), (31, 45), (30, 46),
+  (29, 49), (28, 52), (27, 53), (26, 57), (25, 63), (24, 78), (23, 90), (22, 102),
+  (21, 144), (20, 168), (19, 192), (18, 216), (17, 240), (16, 264), (15, 288)]
+
+/-- lattice points and dual lattice points along a shortest descent of P₂ -/
+def descentP2 : List (Nat × Nat) := [
+  (37, 37), (36, 38), (35, 39), (34, 40), (33, 41), (32, 43), (31, 45), (30, 47),
+  (29, 49), (28, 51), (27, 55), (26, 57), (25, 63), (24, 69), (23, 90), (22, 120),
+  (21, 144), (20, 168), (19, 192), (18, 216), (17, 240), (16, 264), (15, 288)]
+
+theorem descentP1_chain : StrictChain descentP1 ∧ descentP1.length = 23 ∧
+    descentP1.head? = some (37, 37) ∧ descentP1.getLast? = some (15, 288) := by
+  decide +kernel
+
+theorem descentP2_chain : StrictChain descentP2 ∧ descentP2.length = 23 ∧
+    descentP2.head? = some (37, 37) ∧ descentP2.getLast? = some (15, 288) := by
+  decide +kernel
+
+/-- the vertices e₁, e₂, e₃, u ± 8e₄ of P₁, u = (−4, −2, −1, 0), with the weights 8, 4, 2, 1, 1:
+    8e₁ + 4e₂ + 2e₃ + (u + 8e₄) + (u − 8e₄) = 0, coordinate by coordinate -/
+theorem weightsP1 : (8 : Int) * 1 + 1 * (-4) + 1 * (-4) = 0 ∧ (4 : Int) * 1 + 1 * (-2) + 1 * (-2) = 0 ∧
+    (2 : Int) * 1 + 1 * (-1) + 1 * (-1) = 0 ∧ (1 : Int) * 8 + 1 * (-8) = 0 := by decide
+
+/-- 4 × 4 integer matrices as lists of rows -/
+def mulVec (A : List (List Int)) (x : List Int) : List Int :=
+  A.map fun r => (List.zipWith (· * ·) r x).foldl (· + ·) 0
+
+def mulMat (A B : List (List Int)) : List (List Int) :=
+  A.map fun r => (List.range 4).map fun j =>
+    (List.zipWith (· * ·) r (B.map fun s => s.getD j 0)).foldl (· + ·) 0
+
+/-- the map G of the paper and its inverse -/
+def G : List (List Int) := [[-1, -1, -1, -1], [-1, -1, 6, 0], [-1, 2, -1, 0], [1, -1, -1, 0]]
+def Ginv : List (List Int) := [[0, 3, 7, 11], [0, 2, 5, 7], [0, 1, 2, 3], [-1, -6, -14, -21]]
+
+/-- G is unimodular: G · G⁻¹ = 1 with G⁻¹ integral -/
+theorem G_unimodular : mulMat G Ginv = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]] := by
+  decide
+
+/-- G carries the vertices of P₁ to the vertices of Γ₁₀ of the descent of Δ₆₈₀ -/
+theorem G_vertices :
+    mulVec G [1, 0, 0, 0] = [-1, -1, -1, 1] ∧ mulVec G [0, 1, 0, 0] = [-1, -1, 2, -1] ∧
+    mulVec G [0, 0, 1, 0] = [-1, 6, -1, -1] ∧ mulVec G [-4, -2, -1, 8] = [-1, 0, 1, -1] ∧
+    mulVec G [-4, -2, -1, -8] = [15, 0, 1, -1] := by decide
+
+/-- δ(Δ₆₈₀) ≤ 10 + δ(Γ₁₀) = 10 + 22, and Γ₁₀ ≅ P₁ is step 10 of Table III -/
+theorem depth680 : 10 + 22 = 32 ∧ descent680[10]? = some (37, 37) := by decide
 
 /-! ## Polygons -/
 
@@ -220,5 +291,11 @@ end Seed
 #print axioms Seed.uniform_depth
 #print axioms Seed.descent680_chain
 #print axioms Seed.descent680_counting
+#print axioms Seed.certificate_lemma
+#print axioms Seed.descentP1_chain
+#print axioms Seed.descentP2_chain
+#print axioms Seed.weightsP1
+#print axioms Seed.G_unimodular
+#print axioms Seed.G_vertices
 #print axioms Seed.depth680
 #print axioms Seed.triangle_depth

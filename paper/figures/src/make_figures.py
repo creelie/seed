@@ -213,19 +213,94 @@ def fig_chain680():
     fig, ax = plt.subplots(figsize=(3.4, 2.35))
     ax.semilogy(k, n, 'o-', ms=2.6, lw=1.0, color='#1b3a5c', label=r'$|\Gamma_i\cap M|$')
     ax.semilogy(k, nd, 's-', ms=2.4, lw=1.0, color='#d0583a', label=r'$|\Gamma_i^*\cap N|$')
-    ax.semilogy([27, 36], [n[27], 11], ls=(0, (2, 1.5)), lw=1.0, color='#3f9c8f')
-    ax.semilogy([36], [11], 'D', ms=3.2, color='#3f9c8f', label='shortest from step 27')
-    ax.annotate('9 steps', xy=(31.5, 14.8), xytext=(27.5, 6.0), fontsize=7, color='#3f9c8f',
+    c22 = descent22()[0]
+    ax.semilogy(range(10, 33), [len(rhull.closure(V)) for _, V in c22], ls=(0, (2, 1.5)), lw=1.1,
+                color='#3f9c8f', label='shortest from step 10: dual')
+    ax.semilogy([32], [15], 'D', ms=3.4, color='#3f9c8f', label='its r-minimal end, 15 points')
+    ax.semilogy([32], [288], 'D', ms=3.4, color='#3f9c8f', mfc='white')
+    ax.annotate('22 steps', xy=(25, 120), xytext=(16.5, 330), fontsize=7, color='#3f9c8f',
                 arrowprops=dict(arrowstyle='-', color='#3f9c8f', lw=0.6))
     ax.axvline(10, color='#cccccc', lw=0.6, zorder=0)
     ax.text(4.5, 900, 'climb', fontsize=7, ha='center', color='#444444')
     ax.text(24, 900, 'complete covers', fontsize=7, ha='center', color='#444444')
-    ax.set_xlabel('step $i$'); ax.set_ylabel('lattice points'); ax.set_ylim(4, 2000); ax.set_xlim(-1, 39)
-    ax.legend(fontsize=7, frameon=False, loc='lower left')
+    ax.set_xlabel('step $i$'); ax.set_ylabel('lattice points'); ax.set_ylim(2.5, 2000); ax.set_xlim(-1, 39)
+    ax.legend(fontsize=6.5, frameon=False, loc='lower left')
     fig.tight_layout(pad=0.3)
     save(fig, 'fig_chain680.png', 1300)
     return n, nd
 
+def descent22():
+    """Shortest descents of P_1 and P_2 from data/depth22.json.gz: lists of (points, dual points)."""
+    import gzip
+    sys.path.insert(0, os.path.join(HERE, '..', '..', '..', 'code'))
+    import rhull
+    D = json.load(gzip.open(os.path.join(DATA, 'depth22.json.gz'), 'rt')); N = D['nodes']
+    out = []
+    for r in D['roots']:
+        i, d, ch = r, 22, []
+        while True:
+            S = frozenset(tuple(x) for x in N[i]['points']); F = rhull.facets(list(S))
+            ch.append((S, [a for a, c in F]))
+            if d == 0: break
+            i = [c for c in N[i]['covers'] if N[c]['exact'] == d - 1][0]; d -= 1
+        out.append(ch)
+    return out
+
+def fig_depth22():
+    from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+    sys.path.insert(0, os.path.join(HERE, '..', '..', '..', 'code'))
+    import rhull
+    fig = plt.figure(figsize=(7.0, 3.1))
+    ax = fig.add_subplot(1, 2, 1, projection='3d')
+    proj = lambda x: (x[0] + 0.35 * x[2], x[1] - 0.75 * x[2])
+    Q = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-4, -2, -1)]
+    col = {8: '#d0583a', 4: '#e0b23a', 2: '#3f9c8f', 1: '#2a6f97', 0: '#1b3a5c'}
+    columns = [((-4, -2, -1), 8), ((-2, -1, 0), 4), ((-1, 0, 0), 2), ((0, 0, 0), 1),
+               ((1, 0, 0), 0), ((0, 1, 0), 0), ((0, 0, 1), 0)]
+    s = 0.25
+    for a in range(4):
+        for b in range(a + 1, 4):
+            pa, pb = proj(Q[a]), proj(Q[b])
+            ax.plot([pa[0], pb[0]], [pa[1], pb[1]], [0, 0], color='#888888', lw=0.7)
+    top, bot = proj(Q[3]), proj(Q[3])
+    for v in Q[:3]:
+        pv = proj(v)
+        for h in (8, -8):
+            ax.plot([pv[0], top[0]], [pv[1], top[1]], [0, s * h], color='#1b3a5c', lw=0.8, alpha=0.8)
+    ax.plot([top[0]] * 2, [top[1]] * 2, [-8 * s, 8 * s], color='#d0583a', lw=1.4)
+    for x, h in columns:
+        px = proj(x)
+        ts = range(-h, h + 1)
+        ax.scatter([px[0]] * len(ts), [px[1]] * len(ts), [s * t for t in ts], s=9, color=col[h],
+                   depthshade=False, zorder=5)
+    ax.text(top[0] - 0.5, top[1], 8 * s + 0.3, r'$u+8e_4$', fontsize=7)
+    ax.text(top[0] - 0.5, top[1], -8 * s - 0.55, r'$u-8e_4$', fontsize=7)
+    for v, lab, dz in zip(Q[:3], (r'$e_1$', r'$e_2$', r'$e_3$'), (0.12, 0.12, -0.45)):
+        pv = proj(v); ax.text(pv[0] + 0.2, pv[1], dz, lab, fontsize=7)
+    pu = proj(Q[3]); ax.text(pu[0] + 0.25, pu[1], -0.42, r'$u$', fontsize=7)
+    ax.quiver(1.6, 1.4, -1.6, 0, 0, 1.2, color='#555555', lw=0.7, arrow_length_ratio=0.18)
+    ax.text(1.75, 1.4, -0.6, r'$x_4$', fontsize=7, color='#555555')
+    ax.set_axis_off()
+    ax.view_init(elev=14, azim=-58)
+    ax.set_box_aspect((1.25, 1.0, 1.25))
+    ax.set_title('(a) $P_1$: columns of heights $8,4,2,1,0$', fontsize=8, pad=-2)
+    ax2 = fig.add_subplot(1, 2, 2)
+    styles = (('#1b3a5c', 'o', '$P_1$'), ('#d0583a', 's', '$P_2$'))
+    for ch, (c, m, lab) in zip(descent22(), styles):
+        n = [len(S) for S, _ in ch]
+        nd = [len(rhull.closure(V)) for _, V in ch]
+        k = np.arange(len(n))
+        ax2.semilogy(k, n, m + '-', ms=2.6, lw=1.0, color=c, label=lab + ': points')
+        ax2.semilogy(k, nd, m + '--', ms=2.4, lw=1.0, color=c, mfc='white', label=lab + ': dual points')
+    ax2.semilogy([22], [15], 'D', ms=4, color='#3f9c8f')
+    ax2.annotate('r-minimal, 15 points', xy=(22, 15), xytext=(10.5, 9.0), fontsize=7, color='#3f9c8f',
+                 arrowprops=dict(arrowstyle='-', color='#3f9c8f', lw=0.6))
+    ax2.set_xlabel('step'); ax2.set_ylabel('lattice points'); ax2.set_xlim(-1, 23.5); ax2.set_ylim(7, 450)
+    ax2.legend(fontsize=6.5, frameon=False, loc='upper left', ncol=1)
+    ax2.set_title('(b) shortest descents', fontsize=8)
+    fig.tight_layout(pad=0.4, w_pad=1.2)
+    save(fig, 'fig_depth22.png', 1600)
+
 if __name__ == '__main__':
-    which = sys.argv[1:] or ['hasse2', 'cut', 'pairs', 'depth3', 'chain680']
+    which = sys.argv[1:] or ['hasse2', 'cut', 'pairs', 'depth3', 'chain680', 'depth22']
     for w in which: globals()['fig_' + w]()

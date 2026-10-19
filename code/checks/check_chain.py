@@ -6,11 +6,14 @@ Default checks, from data/chain680.json (the lattice points of every Gamma_i):
   * Gamma_{i+1} is strictly inside Gamma_i;
   * steps 1 to 10 are covers by the climbing lemma: for every lattice point q'
     of Gamma_{i+1}^* outside Gamma_i^*, T^inf(H_q') = Gamma_{i+1};
-  * Gamma_38 has no cover (it is r-minimal).
-With --full (needs PALP for the depth searches, a few more minutes):
+  * Gamma_38 has no cover (it is r-minimal);
+  * data/descent9.json is a chain of 23 strictly nested reflexive polytopes from Gamma_9,
+    and its last polytope has no cover.
+With --full (needs PALP for the depth searches; about an hour):
   * steps 11 to 38 are covers, by listing all covers of Gamma_i;
-  * delta(Gamma_27) = 9 and delta(Gamma_32) = 4 by breadth-first search, so
-    delta(Delta_680) <= 27 + 9 = 36.
+  * delta(Gamma_27) = 9 and delta(Gamma_32) = 4 by breadth-first search;
+  * each step of data/descent9.json is a cover, so delta(Gamma_9) <= 22 and
+    delta(Delta_680) <= 9 + 22 = 31.
 """
 import json, os, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..')
@@ -51,6 +54,13 @@ check(ok, 'steps 1 to 10 are covers by the climbing lemma')
 
 check(not complete.covers(steps[38], F[38]), 'Gamma_38 has no cover, so it is r-minimal')
 
+d9 = [frozenset(tuple(p) for p in s) for s in json.load(open(os.path.join(ROOT, 'data', 'descent9.json')))]
+check(len(d9) == 23 and d9[0] == steps[9] and all(d9[j + 1] < d9[j] for j in range(22))
+      and all(rhull.closure(list(S)) == S and rhull.is_reflexive(rhull.facets(list(S))) for S in d9),
+      'data/descent9.json: 23 strictly nested reflexive lattice-point sets, starting at Gamma_9')
+check(not complete.covers(d9[-1], rhull.facets(list(d9[-1]))),
+      f'its last polytope, with {len(d9[-1])} lattice points, has no cover')
+
 if full:
     ok = True
     for i in range(10, 38):
@@ -65,7 +75,15 @@ if full:
     d32, info32 = exact_depth(sorted(steps[32]), verbose=False)
     check(d27 == 9 and len(info27['minimal']) == 11, 'delta(Gamma_27) = 9, ending at an r-minimal polytope with 11 points')
     check(d32 == 4, 'delta(Gamma_32) = 4')
-    check(27 + d27 == 36, 'delta(Delta_680) <= 27 + 9 = 36')
+    ok = True
+    for j in range(22):
+        t = time.time()
+        cv = complete.covers(d9[j], rhull.facets(list(d9[j])))
+        good = any(frozenset(c) == d9[j + 1] for c in cv)
+        ok &= good
+        print(f'  descent of Gamma_9, step {j + 1}: {len(d9[j])} -> {len(d9[j + 1])}, cover: {good} ({time.time() - t:.0f} s)', flush=True)
+    check(ok, 'each step of the descent of Gamma_9 is a cover, by listing all covers')
+    check(ok and 9 + len(d9) - 1 == 31, 'delta(Delta_680) <= 9 + 22 = 31')
 
 print(f'check_chain.py: {passes} passed, {fails} failed')
 sys.exit(1 if fails else 0)

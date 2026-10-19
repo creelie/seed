@@ -7,12 +7,15 @@ abstract: >-
   reflexive polytope can be shrunk to a minimal seed through reflexive
   polytopes one cover at a time, that no such descent in dimension four has
   more than 348 steps, so that the conjecture of a uniform transition depth
-  holds with D = 349, and that the largest transition depths in dimensions two
-  and three are 5 and 11. The archive holds the joint distribution of point
+  holds with D = 349, that the largest transition depths in dimensions two
+  and three are 5 and 11, and that two four-dimensional polytopes with 37
+  lattice points have transition depth exactly 22, so that 22 ≤ D_4 ≤ 348.
+  The archive holds the joint distribution of point
   counts over the 473,800,776 four-dimensional reflexive polytopes, the pair
   bounds and a longest chain, the cover relation in dimensions two and three,
-  a certified descent of the largest polytope, and 68 independent checks in C,
-  C++, Python, Julia, Macaulay2 and shell with 18 Lean 4 theorems.
+  a certified descent of the largest polytope, the certificate of depth 22,
+  and 77 independent checks in C, C++, Python, Julia, Macaulay2 and shell
+  with 24 Lean 4 theorems.
 type: software
 license: MIT
 version: 1.0.0

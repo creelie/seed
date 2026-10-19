@@ -59,7 +59,8 @@
 \newcommand{\Dbig}{\Delta_{680}}
 \newcommand{\UB}{348}
 \newcommand{\UBplus}{349}
-\newcommand{\LB}{9}
+\newcommand{\LB}{22}
+\newcommand{\DUB}{31}
 \newcommand{\ZDOI}{}
 \newcommand{\repolink}{\ifx\ZDOI\empty\url{https://github.com/creelie/seed}\else\href{https://doi.org/\ZDOI}{doi:\ZDOI}\fi}
 
@@ -90,8 +91,9 @@ when it is shrunk through reflexive polytopes only, one at a time and
 without skipping any. Such a descent always exists and always ends at a
 seed. In four dimensions no descent takes more than 348 steps, which
 proves the conjecture of a uniform transition depth, and in two and three
-dimensions the exact maxima are five and eleven. The exact maximum in four
-dimensions is open.
+dimensions the exact maxima are five and eleven. In four dimensions two
+polytopes with thirty-seven lattice points need exactly twenty-two steps, so
+the maximum lies between twenty-two and 348.
 \par\medskip\upshape\noindent
 \textit{2020 Mathematics Subject Classification.} Primary 52B20, 14M25;
 Secondary 14J32, 06A07, 52-08.
@@ -201,10 +203,12 @@ contained in no larger reflexive polytope.
 \end{theorem}
 
 \begin{theorem}\label{thm:D}
-The simplex $\Dbig$ with $680$ lattice points, the largest reflexive
-polytope in dimension four, has transition depth at most $36$, and a
-polytope with $20$ lattice points below it has transition depth exactly
-$\LB$. Hence $\LB\le D_4\le\UB$.
+The polytopes $P_1$ and $P_2$ of Section~\ref{ssec:depth22}, with $37$
+lattice points each, have transition depth exactly $\LB$, and $P_1$ is
+unimodularly equivalent to the polytope reached after ten steps of a
+reflexive descent of the simplex $\Dbig$ with $680$ lattice points, the
+largest reflexive polytope in dimension four. The transition depth of
+$\Dbig$ is at most $\DUB$. Hence $\LB\le D_4\le\UB$.
 \end{theorem}
 
 Theorem~\ref{thm:B} bounds every descent, not only the shortest one, so it
@@ -215,9 +219,10 @@ Theorem~\ref{thm:B} is that the constant can be read off from two numbers
 attached to each polytope, its lattice points and the lattice points of
 its dual, without examining any polytope. The guess of ``a few tens'' in
 the conjecture is neither confirmed nor refuted. The exact values $5$ and
-$11$ in lower dimension, the depth $\LB$ of a polytope with twenty points
-and the descent of length $36$ from the largest polytope are consistent
-with it, but we do not know where $D_4$ lies between $\LB$ and $\UB$.
+$11$ in lower dimension, the depth $\LB$ of two polytopes with thirty-seven
+points and the descent of length $\DUB$ from the largest polytope are
+consistent with it, but we do not know where $D_4$ lies between $\LB$ and
+$\UB$.
 
 Theorem~\ref{thm:A} is a short argument in the inclusion order
 (Section~\ref{sec:literal}). Theorem~\ref{thm:B} counts lattice points on
@@ -230,7 +235,14 @@ Nill~\cite{BKN22} leaves finitely many cuts to try, and a climbing lemma
 certifies one cover without listing the others. In dimension two these
 tools give $D_2=5$ by hand, and in dimensions three and four they give the
 exact values and constructions of Sections~\ref{sec:low}
-and~\ref{sec:four}. Section~\ref{sec:open} lists what remains open.
+and~\ref{sec:four}. A lower bound for a depth is a statement about every
+descent, and in dimension four we prove it with a certificate: a finite set
+of polytopes with their complete lists of covers and a bound attached to
+each, subject to a condition that can be checked one polytope at a time
+(Lemma~\ref{lem:certificate}). The polytopes $P_1$ and $P_2$ are skew
+bipyramids over a three-dimensional reflexive tetrahedron, and their
+certificate contains $5{,}592$ polytopes. Section~\ref{sec:open} lists what
+remains open.
 
 \subsection*{History}
 
@@ -290,7 +302,7 @@ the quintic and its mirror, and the list realises $30{,}108$ Hodge pairs),
 proved the statements that survive at a fixed polytope, and stated
 Conjecture~\ref{conj:depth}. The present paper answers it. Related work of
 the first author on Calabi--Yau geometry and the landscape
-includes~\cite{Bha26c,Bha25}.
+includes~\cite{Bha26c}.
 
 \section{Reflexive polytopes and their order}\label{sec:prelim}
 
@@ -895,44 +907,252 @@ whole descent.
 \includegraphics[width=\columnwidth]{figures/fig_chain680.png}
 \caption{The descent from $\Dbig$: lattice points of $\Gamma_i$ and of its
 dual at each step. The first ten covers were certified by the climbing
-lemma, the remaining ones by listing all covers. From the polytope at step
-$27$, with twenty lattice points, the shortest descent has nine steps and
-ends at an r-minimal polytope with eleven points (diamond).}
+lemma, the remaining ones by listing all covers. The polytope $\Gamma_{10}$
+is the polytope $P_1$ of Section~\ref{ssec:depth22}; a shortest descent of
+it has $22$ steps, removes one lattice point at each step like the descent
+drawn, and ends at an r-minimal polytope with $15$ lattice points (filled
+diamond) whose dual has $288$ (open diamond). The dashed line shows its
+dual counts.}
 \label{fig:chain680}
 \end{figure}
 
-\begin{proof}[Proof of Theorem~\ref{thm:D}]
-Let $\Gamma_i$ be the polytope at step $i$ of the descent above. For
-$\Gamma_{27}$, with $20$ lattice points, we computed all polytopes reached
-by $1,2,\dots$ covers, identifying unimodularly equivalent ones, until a
-polytope without covers appeared. That happens first after $9$ covers, at
-an r-minimal polytope with $11$ lattice points, so $\delta(\Gamma_{27})=9$;
-the same computation gives $\delta(\Gamma_{32})=4$ for the polytope with
-$15$ points. Following the descent to $\Gamma_{27}$ and then a shortest
-descent of $\Gamma_{27}$ gives a descent of $\Dbig$ of length $27+9=36$.
-Finally $D_4\ge\delta(\Gamma_{27})=9$, and $D_4\le\UB$ by
-Theorem~\ref{thm:B}.
+\subsection{A certificate for lower bounds}\label{ssec:certificate}
+
+An upper bound for a transition depth needs one descent, a lower bound a
+statement about all of them. The following lemma reduces a lower bound to
+a finite object that can be checked one polytope at a time.
+
+\begin{lemma}[Certificate lemma]\label{lem:certificate}
+Let $\mathcal{N}$ be a set of reflexive polytopes and
+$b\colon\mathcal{N}\to\mathbb{Z}_{\ge0}$ a function such that for every
+$\Gamma\in\mathcal{N}$ with $b(\Gamma)>0$ the polytope $\Gamma$ has a
+cover, and every cover of $\Gamma$ is unimodularly equivalent to some
+$\Gamma'\in\mathcal{N}$ with $b(\Gamma')\ge b(\Gamma)-1$. Then
+$\delta(\Gamma)\ge b(\Gamma)$ for every $\Gamma\in\mathcal{N}$.
+\end{lemma}
+
+\begin{proof}
+A unimodular map fixes the lattice and the origin and preserves inclusion,
+so it carries covers to covers and r-minimal polytopes to r-minimal ones;
+hence $\delta$ is constant on classes of unimodularly equivalent
+polytopes. We use induction on $|\Gamma|$. If $b(\Gamma)=0$ there is
+nothing to prove. Otherwise $\Gamma$ has a cover, so it contains a
+reflexive polytope other than itself and is not r-minimal, and every
+descent $\Gamma=\Gamma_0\supsetneq\Gamma_1\supsetneq\cdots\supsetneq
+\Gamma_k$ has $k\ge1$. Its first step $\Gamma_1$ is a cover of $\Gamma$,
+so it is equivalent to some $\Gamma'\in\mathcal{N}$ with $b(\Gamma')\ge
+b(\Gamma)-1$, and $|\Gamma'|=|\Gamma_1|<|\Gamma|$ by
+Lemma~\ref{lem:basic}(i). The chain $\Gamma_1\supsetneq\cdots\supsetneq
+\Gamma_k$ is a descent of $\Gamma_1$, so the induction hypothesis gives
+$k-1\ge\delta(\Gamma_1)=\delta(\Gamma')\ge b(\Gamma')\ge b(\Gamma)-1$, and
+$k\ge b(\Gamma)$.
 \end{proof}
 
-The search behind the lower bound grows quickly with the size of the
-polytope. For $\Gamma_{22}$, with $25$ points, the breadth-first search
-examined all $177$ polytopes within six covers of it, up to unimodular
-equivalence, and each of them has a cover, so $\delta(\Gamma_{22})\ge7$; we
-did not finish the search.
-Among the four-polytopes with at most eleven lattice points the largest
+The lemma asks for a complete list of covers only at the polytopes with
+positive bound, and Corollary~\ref{cor:covers} provides such lists. The
+polytopes need not be the same as those of any particular descent, and the
+bounds need not be exact depths. A certificate is produced by a bounded
+search: to show $\delta(\Gamma)>\ell$ it lists the covers of $\Gamma$ and
+shows $\delta(\Gamma')>\ell-1$ for each of them, identifying unimodularly
+equivalent polytopes by their normal forms and keeping every bound it has
+proved, so that a polytope reached along many paths is examined
+once.\footnote{The search is a depth-first search with a memory of exact
+depths and of lower bounds. For a bound $\ell$ it tries the covers of
+$\Gamma$ in the order of their known depths, smallest first, and stops as
+soon as one of them has depth at most $\ell-1$; if none has, the bound
+$\delta(\Gamma)\ge\ell+1$ is recorded. Repeating with $\ell=0,1,2,\dots$
+gives the exact depth, and the recorded bounds of all polytopes that were
+reached form a function $b$ as in Lemma~\ref{lem:certificate}. Exact depths
+found on the way are recorded as well; they give the descents that prove the
+matching upper bounds.} The certificate is then checked by a program that
+does not repeat the search: it verifies the hypothesis of the lemma
+polytope by polytope and recomputes the lists of covers.
+
+\subsection{Two polytopes of depth twenty-two}\label{ssec:depth22}
+
+Let $e_1,\dots,e_4$ be the standard basis of $M=\mathbb{Z}^4$, put
+$u=(-4,-2,-1,0)$, and let
+\begin{align*}
+P_1&=\conv\{e_1,\,e_2,\,e_3,\,u+8e_4,\,u-8e_4\},\\
+P_2&=\conv\{e_1,\,e_2,\,e_3,\,u,\,u+8e_4,\,e_3-8e_4\}.
+\end{align*}
+Both polytopes contain $Q\times\{0\}$, where the tetrahedron
+$Q=\conv\{e_1,e_2,e_3,(-4,-2,-1)\}$ lies in $\mathbb{R}^3$ with the
+lattice $\mathbb{Z}^3$, and both are bipyramids over it with apexes
+at height $\pm8$: $P_1$ is the convex hull of $Q\times\{0\}$ and the two
+points $((-4,-2,-1),\pm8)$, and $P_2$ that of $Q\times\{0\}$ and the points
+$((-4,-2,-1),8)$ and $(e_3,-8)$. The tetrahedron $Q$ is reflexive, it is the
+simplex of the weights $(4,2,1,1)$ because $4e_1+2e_2+e_3+(-4,-2,-1)=0$, and
+it has the seven lattice points
+\[
+e_1,\ e_2,\ e_3,\ (-4,-2,-1),\ (-2,-1,0),\ (-1,0,0),\ 0.
+\]
+It contains no reflexive polytope other than itself, so it is r-minimal
+and its transition depth in dimension three is $0$.
+
+The polytope $P_1$ is a simplex, and
+$8e_1+4e_2+2e_3+(u+8e_4)+(u-8e_4)=0$, so it is the simplex of the weights
+$(8,4,2,1,1)$. Its lattice points lie on vertical lines over the lattice
+points of $Q$. A point $(x,t)$ with $x\in Q$ lies in $P_1$ exactly when
+$|t|\le8\lambda(x)$, where $\lambda(x)$ is the barycentric coordinate of
+$x$ in $Q$ at the vertex $(-4,-2,-1)$; indeed, writing
+$(x,t)=\mu_1e_1+\mu_2e_2+\mu_3e_3+\alpha(u+8e_4)+\beta(u-8e_4)$ with
+nonnegative coefficients of sum $1$ gives $\alpha+\beta=\lambda(x)$ and
+$t=8(\alpha-\beta)$. The barycentric coordinates of the four lattice
+points $(-4,-2,-1)$, $(-2,-1,0)=\tfrac12(-4,-2,-1)+\tfrac12e_3$,
+$(-1,0,0)=\tfrac14(-4,-2,-1)+\tfrac12e_2+\tfrac14e_3$ and
+$0=\tfrac18(-4,-2,-1)+\tfrac12e_1+\tfrac14e_2+\tfrac18e_3$ at that vertex
+are $1,\tfrac12,\tfrac14,\tfrac18$, so the lines over them carry $17$,
+$9$, $5$ and $3$ lattice points, and the three points $e_1,e_2,e_3$ carry
+one each (Fig.~\ref{fig:depth22}(a)). Hence
+\[
+|P_1|=17+9+5+3+3=37.
+\]
+The dual simplex $P_1^*$ has the vertices $(-1,-1,-1,\pm1)$,
+$(-1,-1,7,0)$, $(-1,3,-1,0)$ and $(1,-1,-1,0)$, read off from the five
+facets of $P_1$, and it also has $37$ lattice points. The polytope $P_2$ has
+six vertices, and $|P_2|=|P_2^*|=37$. For both polytopes the Calabi--Yau
+hypersurfaces have Hodge numbers $(h^{1,1},h^{2,1})=(34,34)$.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_depth22.png}
+\caption{(a) The polytope $P_1$ as a bipyramid over the tetrahedron
+$Q\times\{0\}$ (grey edges), with the fourth coordinate vertical. Its $37$
+lattice points lie on vertical lines over the seven lattice points of $Q$,
+with $17$, $9$, $5$ and $3$ points over $(-4,-2,-1)$, $(-2,-1,0)$,
+$(-1,0,0)$ and $0$ and one point at each of $e_1,e_2,e_3$; the half-lengths
+$8,4,2,1,0$ of these lines are $8$ times the barycentric coordinate at the
+vertex $(-4,-2,-1)$ of $Q$. (b) Lattice points (solid) and dual lattice
+points (dashed) along shortest descents of $P_1$ and $P_2$. Each step
+removes one lattice point, and both descents end at the same r-minimal
+polytope, with $15$ lattice points and $288$ dual lattice points
+(diamond).}\label{fig:depth22}
+\end{figure*}
+
+The two polytopes were found by a search over skew bipyramids
+$\conv(Q'\times\{0\}\cup\{(a,k),(b,-k)\})$ over three-dimensional
+reflexive polytopes $Q'$, with $a,b$ lattice points of $Q'$ and $k\ge1$,
+ranked by the length of a descent found greedily with the cuts of
+Section~\ref{sec:cuts}; the exact depths of the highest ranked were then
+computed with complete lists of covers.\footnote{The search was organised
+on the Anaxia engine of the BLLM programme~\cite{Ana26,BB26}, release
+3.0.5. Anaxia runs a failure-driven loop: each strategy for a target is a
+list of checks, a computation or a proof with a named source, a failed
+check is recorded together with the change of strategy it forces, all
+checks are rerun from the archived data, and the label of a target (open,
+candidate, proved) is computed from the record, never assigned by hand.
+For the upper bound of Theorem~\ref{thm:B} its record shows the first two
+strategies failing: descent by deleting one vertex at a time fails on $7$
+of $400$ sampled three-dimensional polytopes, which have no reflexive
+vertex deletion, and cuts at dual lattice points of gauge two miss covers
+on $73$ of the $400$; the change forced by the second failure was the
+complete set of cuts of Corollary~\ref{cor:covers}, which agrees with the
+vertex-deletion order on all of them. For the sharp form of
+Conjecture~\ref{conj:depth} the first strategy, a sweep of the whole list,
+failed on cost, since $162{,}328{,}050$ polytopes have
+$\min(|\Delta|-6,680-|\Delta^*|)>40$; the second and third gave the descent
+of $\Dbig$ with exact depths of small polytopes along it; the fourth was
+the search over skew bipyramids that produced $P_1$ and $P_2$, with the
+certificate of Proposition~\ref{prop:depth22} and the identification of
+Proposition~\ref{prop:gamma10} as its checks. Its check that the sharp
+constant is determined fails, and that target stays open. The engine
+organises and reruns the computations; every statement of this section is
+proved in the text, and the certificate is checked by the programs of
+Appendix~\ref{app:checks}, which do not use the engine.}
+
+\begin{proposition}\label{prop:depth22}
+$\delta(P_1)=\delta(P_2)=22$.
+\end{proposition}
+
+\begin{proof}
+For the upper bound, each of $P_1$ and $P_2$ has a descent of $22$ steps,
+each step a cover by Corollary~\ref{cor:covers}. Both remove one lattice
+point at each step, so the numbers of lattice points run through
+$37,36,\dots,15$, while the dual counts rise from $37$ to $288$
+(Fig.~\ref{fig:depth22}(b)). Both end at the same polytope, with vertices
+\[
+(-4,-2,-1,7),\ (-2,-1,0,-1),\ (-2,-1,0,4),\ e_1,\ e_2,\ e_3,
+\]
+$15$ lattice points and no cover.
+
+For the lower bound we apply Lemma~\ref{lem:certificate} to a set
+$\mathcal{N}$ of $5{,}592$ polytopes containing $P_1$ and $P_2$, with
+$b(P_1)=b(P_2)=22$. Of these, $5{,}251$ have positive bound; for each of
+them the set $\mathcal{N}$ contains a representative of every cover, given
+by the complete list of Corollary~\ref{cor:covers}, $23{,}646$ covers in
+all, and each cover has bound at least one less. The lemma gives
+$\delta(P_1),\delta(P_2)\ge22$.
+\end{proof}
+
+The polytopes of the certificate have between $14$ and $37$ lattice
+points; the most frequent sizes are $17$ to $20$ points, with between
+$472$ and $494$ polytopes each, and only $61$ polytopes have more than
+$31$ points.
+
+\begin{proposition}\label{prop:gamma10}
+The matrix
+\[
+G=\begin{pmatrix}-1&-1&-1&-1\\-1&-1&6&0\\-1&2&-1&0\\1&-1&-1&0\end{pmatrix}
+\]
+is unimodular, and $x\mapsto Gx$ carries $P_1$ onto the polytope
+$\Gamma_{10}$ of the descent of $\Dbig$ in Table~\ref{tab:chain}. Hence
+$\delta(\Gamma_{10})=22$ and $\delta(\Dbig)\le32$.
+\end{proposition}
+
+\begin{proof}
+The matrix
+\[
+H=\begin{pmatrix}0&3&7&11\\0&2&5&7\\0&1&2&3\\-1&-6&-14&-21\end{pmatrix}
+\]
+is integral and $GH=1$, so $G$ is unimodular. The map sends $e_1$, $e_2$,
+$e_3$, $u+8e_4$ and $u-8e_4$ to
+\begin{gather*}
+(-1,-1,-1,1),\ (-1,-1,2,-1),\ (-1,6,-1,-1),\\
+(-1,0,1,-1),\ (15,0,1,-1),
+\end{gather*}
+which are the five vertices of the simplex $\Gamma_{10}$. Since
+$\Gamma_{10}$ is reached from $\Dbig$ by ten covers,
+$\delta(\Dbig)\le10+\delta(\Gamma_{10})=10+22$.
+\end{proof}
+
+Three of the vertices of $\Gamma_{10}$ are vertices of $\Dbig$, and the
+other two lie on its facet $x_4=-1$. One step higher the same search gives
+a descent of $22$ steps from $\Gamma_9$, which has $44$ lattice points: it
+removes one or two points at a time and ends at an r-minimal polytope with
+$19$ lattice points. Hence $\delta(\Dbig)\le9+22=\DUB$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:D}]
+Proposition~\ref{prop:depth22} gives $\delta(P_1)=\delta(P_2)=\LB$, so
+$D_4\ge\LB$, and Proposition~\ref{prop:gamma10} identifies $P_1$ with
+$\Gamma_{10}$. The nine covers from $\Dbig$ to $\Gamma_9$ in
+Table~\ref{tab:chain}, each certified by the climbing lemma,
+followed by the descent of $22$ steps from $\Gamma_9$, form a descent of
+$\Dbig$ of length $\DUB$. Finally $D_4\le\UB$ by Theorem~\ref{thm:B}.
+\end{proof}
+
+Smaller polytopes along the descent of $\Dbig$ have smaller depth: the
+same search gives $\delta(\Gamma_{27})=9$ for the polytope with twenty
+lattice points and $\delta(\Gamma_{32})=4$ for the one with fifteen, and
+among the four-polytopes with at most eleven lattice points the largest
 transition depth is $5$.
 
 \section{Open questions}\label{sec:open}
 
 The main open problem is the exact value of $D_4$. We know
 $\LB\le D_4\le\UB$. The upper bound comes from point counts alone and is
-attained by no descent that we know; the lower bound comes from a
-polytope with only twenty points. Two improvements look within reach. The
-upper bound can be lowered polytope by polytope: a few certified covers
-bring a polytope to one with a small pair bound, as for the polytope at
-$(521,22)$ in Section~\ref{sec:counting}, and only $106$ polytopes have
-pair bound above $340$. The lower bound would rise with exact depths of
-larger polytopes, for which a faster way to list covers is needed.
+attained by no descent that we know; the lower bound comes from two
+polytopes with thirty-seven points, one of which lies ten covers below
+$\Dbig$. Two improvements look within reach. The upper bound can be
+lowered polytope by polytope: a few certified covers bring a polytope to
+one with a small pair bound, as for the polytope at $(521,22)$ in
+Section~\ref{sec:counting}, and only $106$ polytopes have pair bound above
+$340$. The lower bound rises as soon as one polytope is found all of whose
+covers have depth at least $\LB$, and Lemma~\ref{lem:certificate} turns
+such a search into a checkable certificate. The reflexive polytopes that
+contain $P_1$ or $P_2$, and the polytopes $\Gamma_9,\dots,\Gamma_1$ of the
+descent of $\Dbig$, are the first candidates; the cost of the search lies
+in listing covers of polytopes with many lattice points.
 
 Three further questions seem natural. First, how does $D_d$ grow with the
 dimension? The counting argument of Section~\ref{sec:counting} bounds $D_d$
@@ -947,8 +1167,10 @@ points, whose depth is $8$ and whose longest descent has $28$ steps
 
 Third, do the polytopes of maximal depth share a structure? In dimension
 two the extreme polygon is the triangle of the weights $(1,1,1)$, and in
-dimension three both extremes are r-maximal. Whether the polytope of
-largest depth in dimension four is r-maximal is open.
+dimension three both extremes are r-maximal. In dimension four the
+polytope $P_1$ is the simplex of the weights $(8,4,2,1,1)$ and lies inside
+$\Dbig$, so it is not r-maximal; whether the polytope of largest depth in
+dimension four is r-maximal is open.
 
 \section*{Data availability}
 
@@ -957,11 +1179,15 @@ repository \url{https://github.com/creelie/seed}, whose releases are
 archived at Zenodo~\cite{Repo}. The
 archive contains the joint distribution of point counts over the whole
 list, the pair bounds, the cover relation in dimensions two and three, the
-descent of $\Dbig$ with its certificates, and independent checks in C, C++,
-Python, Julia, Macaulay2, shell and Lean~4. The Kreuzer--Skarke list was
-read from its public copy~\cite{HF4D}. The computations and the
-preparation of the text were carried out with AI assistance from Claude
-(Anthropic).
+descent of $\Dbig$ with its certificates, the certificate of
+Lemma~\ref{lem:certificate} for $P_1$ and $P_2$, and independent checks in
+C, C++, Python, Julia, Macaulay2, shell and Lean~4. The Kreuzer--Skarke
+list was read from its public copy~\cite{HF4D}. The search for long
+descents was organised and rechecked on the Anaxia engine, release
+3.0.5~\cite{Ana26}, described in~\cite{BB26}; its record of strategies,
+failed checks and the changes they forced is part of the archive. The
+computations and the preparation of the text were carried out with AI
+assistance from Claude (Anthropic).
 
 \section*{Declarations}
 
@@ -1021,6 +1247,26 @@ $\delta(\Gamma_{32})=4$ come from breadth-first searches through complete
 lists of covers, in which unimodularly equivalent polytopes are identified.
 The search stops at the first level that contains a polytope without
 covers, so it gives the least length of a descent.
+
+\paragraph*{The certificate for $P_1$ and $P_2$.} The archive stores the
+$5{,}592$ polytopes of the certificate by their lattice points and PALP
+normal forms, the list of covers of each of the $5{,}251$ polytopes with
+positive bound ($23{,}646$ covers in all), the bound of every polytope, and
+the two descents of length $22$. A separate program checks, without PALP,
+that every stored point set is the set of lattice points of a reflexive
+polytope, that the roots are $P_1$ and $P_2$, that every cover has fewer
+lattice points than the polytope it covers, that the bounds satisfy the
+hypothesis of Lemma~\ref{lem:certificate} and equal $22$ at the roots,
+that both descents end at a polytope without covers, and that the matrix
+$G$ of Proposition~\ref{prop:gamma10} is unimodular and carries the
+lattice points of $P_1$ onto those of $\Gamma_{10}$. With PALP it
+recomputes every normal form and every list of covers by
+Corollary~\ref{cor:covers}, and all $5{,}251$ recomputed lists agree with
+the stored ones. The descent of length $22$ from $\Gamma_9$ is
+stored as a chain of subpolytopes of $\Gamma_9$, and each of its steps is
+checked to be a cover in the same way. Lemma~\ref{lem:certificate}, the
+point counts along the descents and the arithmetic of $G$ are also
+theorems of the Lean file.
 
 \begingroup\raggedright
 \begin{thebibliography}{99}
@@ -1111,10 +1357,16 @@ Hodge statistics, and the higher-dimensional landscape, Int. J. Prof.
 Stud. \textbf{21}(1), 211--256 (2026),
 \href{https://doi.org/10.37648/ijps.v21i01.017}{doi:10.37648/ijps.v21i01.017}.
 
-\bibitem{Bha25}
-D.~Bhattacharjee \textit{et al.}, Hopf-like fibrations on Calabi--Yau
-manifolds, Preprints.org (2025),
-\href{https://doi.org/10.20944/preprints202504.2581.v4}{doi:10.20944/preprints202504.2581.v4}.
+\bibitem{Ana26}
+D.~Bhattacharjee, BLLM: Beyond the LLM with Deep Human-Mind-AI, the Anaxia
+engine, release 3.0.5, Zenodo (2026),
+\href{https://doi.org/10.5281/zenodo.23469389}{doi:10.5281/zenodo.23469389};
+all versions
+\href{https://doi.org/10.5281/zenodo.23286641}{doi:10.5281/zenodo.23286641}.
+
+\bibitem{BB26}
+D.~Bhattacharjee and U.~Bhattacharya, BLLM: Beyond the LLM with Deep
+Human-Mind-AI, paper distributed with the engine~\cite{Ana26} (2026).
 
 \bibitem{Repo}
 D.~Bhattacharjee, Code and data for ``Reflexive descent to minimal seeds

@@ -24,13 +24,16 @@ Final label: **CANDIDATE**; blocking factors: human.
 |---|---|---|---|---|
 | 1 | sweep all 473,800,776 polytopes | sweep-feasible | certify chains only for extreme polytopes and bound the constant from below by exact breadth-first depths | OPEN |
 | 2 | certified chains and exact lower bounds | none | - | OPEN |
-| 3 | exact depths along the chain | sharp-constant | the sharp constant stays open | OPEN |
+| 3 | exact depths along the chain | none | - | OPEN |
+| 4 | skew bipyramids | sharp-constant | the sharp constant stays open; test the polytopes above P_1 and P_2 for depth 23 | OPEN |
 
 - round 1, `sweep-feasible`: FAIL. 162328050 polytopes have trivial bound above 40; certifying 'a few tens' needs a chain or an exact depth for each, at about 3 minutes for the largest
 - round 2, `chain-680-length-38`: pass. certified chain from the 680-point polytope of length 38
 - round 2, `exact-lower-bounds`: pass. exact depths (points, depth) of chain polytopes [(15, 4), (20, 9)]; D_4 >= 9
 - round 3, `depth-680-at-most-36`: pass. step 27 of the chain has exact depth 9, so delta(Delta_680) <= 27 + 9 = 36
-- round 3, `sharp-constant`: FAIL. 9 <= D_4 <= 348; closing the gap needs exact depths of the polytopes near the top of the pair bound, out of reach of breadth-first search
+- round 4, `depth-22`: pass. certificate of 5592 polytopes with complete cover lists below the skew bipyramids P_1, P_2 (37 points each): depth exactly 22; checks/check_depth22.py: 7 checks passed, 0 failed
+- round 4, `depth-680-at-most-32`: pass. the unimodular map G carries P_1 onto step 10 of the chain of Delta_680, so delta(Delta_680) <= 10 + 22 = 32
+- round 4, `sharp-constant`: FAIL. 22 <= D_4 <= 348; closing the gap needs exact depths of polytopes with more lattice points, or a certified chain of at most 22 steps for each polytope above 22
 
 Final label: **OPEN**; blocking factors: proof, human.
 

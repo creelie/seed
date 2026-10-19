@@ -12,6 +12,10 @@ import hcert
 def work(args):
     T,d=args; t=time.time()
     b,path=hcert.certify_escalate(d['verts'],T)
+    if b>T:
+        # thin polytopes whose 3 Delta* has no useful lattice point need the full set of cuts
+        b2,path2=hcert.certify_escalate(d['verts'],T,full=True)
+        if b2<b: b,path=b2,path2
     return d,b,path,round(time.time()-t,1)
 
 if __name__=='__main__':

@@ -30,7 +30,9 @@ that interval consists of covers, so
 The intermediate reflexive polytopes are the closed reflexive point sets Gamma u S, S inside
 Delta minus Gamma (or, on the dual side, Delta* u S with S inside Gamma* minus Delta*), and
 ell is the breadth-first distance from bottom to top in their Hasse diagram. A beam search
-keeps the best partial chains, widening the beam when a polytope stays above T.
+keeps the best partial chains, widening the beam when a polytope stays above T; a polytope
+still above T is searched again with the full set of cuts of Proposition (cuts) of the paper,
+which thin simplices need because their 3 Delta* has no useful lattice point.
 `hcert_shard.py` runs one job of `.github/workflows/farm-left.yml`, which reads
 `left_queue.json`, and `hcert_merge.py` merges the run into `results/<tag>`.
 

@@ -6,7 +6,7 @@ Deep Bhattacharjee and Ushashi Bhattacharya
 
 This repository holds the paper, the data and the independent checks for
 *Reflexive Descent to Minimal Seeds in the Kreuzer–Skarke List*. The paper is
-in [`preprintReflexiveDescent/ReflexiveDescent.pdf`](preprintReflexiveDescent/ReflexiveDescent.pdf)
+in [`preprints/ReflexiveDescent.pdf`](preprints/ReflexiveDescent.pdf)
 and its LaTeX source in [`paper/`](paper/).
 
 ## What is proved
@@ -44,7 +44,7 @@ The exact value of D_4 is open.
 | Path | Contents |
 |---|---|
 | `paper/` | `main.tex`, the figures as PNG and the script that draws them |
-| `preprintReflexiveDescent/` | the compiled paper |
+| `preprints/` | the compiled paper |
 | `code/` | the programs used in the paper: convex hulls and lattice points (`rhull.py`), complete covers (`complete.py`), cuts and climbs (`greedy.py`), exact depths by breadth-first search (`bfs_depth.py`), the pair bound (`pair_chain.py`), the certification of the descent of Δ_680 (`certify_chain.py`), and the certificate farm for upper bounds (`certify/`) |
 | `code/data/` | the joint distribution of point counts over the four-dimensional list, the pair bounds and a longest chain, the cover relation in dimensions two and three, the descent of Δ_680 with its certificates, the shorter descent from its step 9 (`descent9.json`), and the depth-22 certificate for P_1 and P_2 (`depth22.json.gz`) |
 | `code/checks/` | independent checks in C, C++, Python, Julia and Macaulay2 |

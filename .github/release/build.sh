@@ -12,7 +12,7 @@ mkdir -p "$2"
 out=$(cd "$2" && pwd)
 root=$(cd "$(dirname "$0")/../.." && pwd)
 src=$root/paper
-pdf=$root/preprintReflexiveDescent/ReflexiveDescent.pdf
+pdf=$root/preprints/ReflexiveDescent.pdf
 name=ReflexiveDescent-v$version
 stamp=$(git -C "$root" log -1 --format=%cI)
 work=$(mktemp -d)

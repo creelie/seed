@@ -15,6 +15,7 @@
 - round 4, `uniform-654`: pass. 473800776 polytopes; max of min(|P|-6, 680-|P*|) = 654
 - round 5, `uniform-348`: pass. longest chain of realised pairs with points falling and dual points rising: 348 steps, only from (521, 22); so D_4 <= 348 and D = 349 with the minimal seed
 - round 5, `low-dimensions`: pass. dimension 2: 16 polytopes, largest depth 5; dimension 3: 4319 polytopes, largest depth 11
+- round 5, `every-dimension`: pass. Blichfeldt's bound |P| <= nvol P + d and the volume theorem of Balletti-Kasprzyk-Nill give D_d <= 2(s_d-1)^2 - 2 for d >= 4; checks/check_everydim.py: 6 checks passed, 0 failed
 
 Final label: **CANDIDATE**; blocking factors: human.
 

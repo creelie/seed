@@ -90,6 +90,14 @@ def low_dimensions():
     return dict(ok=all(m == w for d, n, m, w in out),
                 evidence="; ".join(f"dimension {d}: {n} polytopes, largest depth {m}" for d, n, m, w in out))
 
+def every_dimension():
+    import subprocess
+    out = subprocess.run([sys.executable, 'checks/check_everydim.py'], capture_output=True, text=True).stdout
+    last = out.strip().splitlines()[-1]
+    return dict(ok=last.endswith('0 failed'),
+                evidence="Blichfeldt's bound |P| <= nvol P + d and the volume theorem of Balletti-Kasprzyk-Nill "
+                          f"give D_d <= 2(s_d-1)^2 - 2 for d >= 4; checks/check_everydim.py: {last}")
+
 def sharp_constant():
     rows = [(int(r['points']), int(r['dual_points']), int(r['count'])) for r in csv.DictReader(open('data/ks4_point_pairs.csv'))]
     big = sum(c for a, b, c in rows if min(a - 6, 680 - b) > 40)
@@ -163,7 +171,8 @@ T1 = Target("seed-literal and uniform bound", pkg, "uniform-bound", [
                  "pairs (|P|, |P*|) that occur in the list"),
     Round("longest chain of realised pairs",
           [Check("uniform-348", "computation", pair_bound, "data/ks4_point_pairs.csv, checks/pair_bound.c"),
-           Check("low-dimensions", "computation", low_dimensions, "data/poset2.json, data/poset3.json")],
+           Check("low-dimensions", "computation", low_dimensions, "data/poset2.json, data/poset3.json"),
+           Check("every-dimension", "proof", every_dimension, "Blichfeldt 1914, BKN22, lean/Seed.lean")],
           bridges=[(["complete-covers-3d", "literal-D-equals-1", "uniform-654", "uniform-348"],
                     "uniform-bound", 0.0)]),
 ])

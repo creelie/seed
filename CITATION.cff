@@ -9,18 +9,20 @@ abstract: >-
   more than 348 steps, so that the conjecture of a uniform transition depth
   holds with D = 349, that the largest transition depths in dimensions two
   and three are 5 and 11, and that two four-dimensional polytopes with 37
-  lattice points have transition depth exactly 22, so that 22 ≤ D_4 ≤ 348.
+  lattice points have transition depth exactly 22, so that 22 ≤ D_4 ≤ 348,
+  and that in every dimension d ≥ 4 a chain of reflexive polytopes has at
+  most 2(s_d − 1)² − 2 steps, s_d being Sylvester's sequence.
   The archive holds the joint distribution of point
   counts over the 473,800,776 four-dimensional reflexive polytopes, the pair
   bounds and a longest chain, the cover relation in dimensions two and three,
   a certified descent of the largest polytope, the certificate of depth 22,
-  and 77 independent checks in C, C++, Python, Julia, Macaulay2 and shell
-  with 24 Lean 4 theorems.
+  and 83 independent checks in C, C++, Python, Julia, Macaulay2 and shell
+  with 27 Lean 4 theorems.
 type: software
 license: MIT
-version: 1.0.1
+version: 1.1.0
 doi: 10.5281/zenodo.23483443
-date-released: "2026-10-19"
+date-released: "2026-10-20"
 repository-code: "https://github.com/creelie/seed"
 identifiers:
   - type: doi

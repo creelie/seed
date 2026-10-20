@@ -36,6 +36,10 @@ polytopes of dimension d.
    time (the certificate lemma of the paper). P_1 is the polytope reached after
    ten steps of the descent of the largest polytope Δ_680, and Δ_680 has
    transition depth at most 31. Hence 22 ≤ D_4 ≤ 348.
+5. In every dimension d ≥ 4, every chain of reflexive polytopes has at most
+   2(s_d − 1)² − 2 steps, where s_1 = 2, s_{k+1} = s_k² − s_k + 1 is Sylvester's
+   sequence. This follows from Blichfeldt's bound on lattice points and the
+   volume theorem of Balletti, Kasprzyk and Nill, with no classification.
 
 The exact value of D_4 is open.
 
@@ -49,14 +53,14 @@ The exact value of D_4 is open.
 | `code/data/` | the joint distribution of point counts over the four-dimensional list, the pair bounds and a longest chain, the cover relation in dimensions two and three, the descent of Δ_680 with its certificates, the shorter descent from its step 9 (`descent9.json`), and the depth-22 certificate for P_1 and P_2 (`depth22.json.gz`) |
 | `code/checks/` | independent checks in C, C++, Python, Julia and Macaulay2 |
 | `code/bllm/` | the failure, change and retry log of the search, run on the Anaxia engine |
-| `lean/Seed.lean` | 24 theorems in Lean 4 (core library only) on the finite arithmetic, the counting lemma, the certificate lemma and the map from P_1 to step 10 of the descent of Δ_680 |
+| `lean/Seed.lean` | 27 theorems in Lean 4 (core library only) on the finite arithmetic, the counting lemma in dimension four and in every dimension, the certificate lemma and the map from P_1 to step 10 of the descent of Δ_680 |
 
 ## Running the checks
 
 ```sh
 python3 -m pip install -r requirements.txt
-PALP=/path/to/poly.x bash code/run_checks.sh          # 77 checks
-FULL=1 PALP=/path/to/poly.x bash code/run_checks.sh   # 84 checks, recomputes every cover of the descents
+PALP=/path/to/poly.x bash code/run_checks.sh          # 83 checks
+FULL=1 PALP=/path/to/poly.x bash code/run_checks.sh   # 90 checks, recomputes every cover of the descents
 ```
 
 The script needs gcc, g++, Python 3 with numpy and scipy, Julia, Macaulay2 and
@@ -71,7 +75,7 @@ the point counts were read from its public copy on Hugging Face
 
 See [`CITATION.cff`](CITATION.cff). Zenodo archives each GitHub release under
 its own version DOI and gathers all of them under one concept DOI; the paper
-cites the version DOI of release v1.0.0.
+cites the version DOI of release v1.0.1.
 
 | | DOI |
 | --- | --- |

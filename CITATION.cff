@@ -20,14 +20,17 @@ abstract: >-
   with 27 Lean 4 theorems.
 type: software
 license: MIT
-version: 1.1.0
-doi: 10.5281/zenodo.23483443
+version: 1.1.1
+doi: 10.5281/zenodo.23486780
 date-released: "2026-10-20"
 repository-code: "https://github.com/creelie/seed"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.23483239
     description: "Concept DOI of all versions"
+  - type: doi
+    value: 10.5281/zenodo.23486780
+    description: "Version DOI of release v1.1.0"
   - type: doi
     value: 10.5281/zenodo.23483443
     description: "Version DOI of release v1.0.1"

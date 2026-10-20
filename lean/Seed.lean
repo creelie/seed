@@ -113,6 +113,38 @@ theorem counting_lemma (a : Nat × Nat) (t : List (Nat × Nat)) (h : StrictChain
   · exact Nat.le_sub_of_add_le h1
   · exact Nat.le_sub_of_add_le (by rw [Nat.add_comm]; exact h2)
 
+/-- in any dimension: along a strict chain whose first entries are all at least m,
+    the first entry of the head exceeds the length by at least m -/
+theorem chain_first_ge (m : Nat) (a : Nat × Nat) (t : List (Nat × Nat)) (h : StrictChain (a :: t))
+    (lo : ∀ x ∈ a :: t, m ≤ x.1) : t.length + m ≤ a.1 := by
+  induction t generalizing a with
+  | nil =>
+    show 0 + m ≤ a.1
+    rw [Nat.zero_add]
+    exact lo a (List.mem_cons_self ..)
+  | cons b t ih =>
+    have hb : b.1 < a.1 := h.1
+    have ht : StrictChain (b :: t) := h.2.2
+    have := ih b ht (fun x hx => lo x (List.mem_cons_of_mem _ hx))
+    have h7 : t.length + m < a.1 := Nat.lt_of_le_of_lt this hb
+    show t.length + 1 + m ≤ a.1
+    rw [Nat.add_right_comm]
+    exact h7
+
+/-- the proposition for every dimension: a chain of reflexive d-polytopes, each with at
+    least d + 2 lattice points, starting at a polytope with at most V + d points
+    (Blichfeldt, with V the largest normalised volume), has at most V − 2 steps -/
+theorem every_dimension (d V : Nat) (a : Nat × Nat) (t : List (Nat × Nat))
+    (h : StrictChain (a :: t)) (lo : ∀ x ∈ a :: t, d + 2 ≤ x.1) (hi : a.1 ≤ V + d) :
+    t.length ≤ V - 2 := by
+  have h1 := Nat.le_trans (chain_first_ge (d + 2) a t h lo) hi
+  rw [← Nat.add_assoc, Nat.add_right_comm, Nat.add_comm V d] at h1
+  rw [Nat.add_comm (t.length + 2) d] at h1
+  exact Nat.le_sub_of_add_le (Nat.le_of_add_le_add_left h1)
+
+/-- the bound in dimension four from the volume 2 · 42² of Balletti, Kasprzyk and Nill -/
+theorem every_dimension_four : 2 * (sylvester 3 - 1) ^ 2 - 2 = 3526 := by decide
+
 /-- the simple bound at Δ₆₈₀ = (680, 26) and its maximum -/
 theorem simple_bound_680 : min (680 - 6) (680 - 26) = 654 := by decide
 
@@ -286,6 +318,9 @@ end Seed
 #print axioms Seed.chain_first
 #print axioms Seed.chain_dual
 #print axioms Seed.counting_lemma
+#print axioms Seed.chain_first_ge
+#print axioms Seed.every_dimension
+#print axioms Seed.every_dimension_four
 #print axioms Seed.simple_bound_680
 #print axioms Seed.witness_chain
 #print axioms Seed.uniform_depth

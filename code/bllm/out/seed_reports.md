@@ -14,6 +14,7 @@ Lean's type theory with propext, Classical.choice, Quot.sound
 - `uniform-654` (computation, weight 1.0): PASS, verified by data/ks4_point_pairs.csv
 - `uniform-348` (computation, weight 1.0): PASS, verified by data/ks4_point_pairs.csv, checks/pair_bound.c
 - `low-dimensions` (computation, weight 1.0): PASS, verified by data/poset2.json, data/poset3.json
+- `every-dimension` (proof, weight 1.0): PASS, verified by Blichfeldt 1914, BKN22, lean/Seed.lean
 
 ## 3. Dependency graph
 

@@ -45,5 +45,5 @@ jobs:
         run: |
           bash code/run_checks.sh | tee checks.log
           test "${PIPESTATUS[0]}" -eq 0
-          grep -q '^77 checks passed, 0 failed$' checks.log
+          grep -q '^83 checks passed, 0 failed$' checks.log
           if grep -rnE '\bsorry\b|native_decide|^axiom ' lean/Seed.lean; then exit 1; fi

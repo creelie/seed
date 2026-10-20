@@ -10,7 +10,7 @@
       {
         "round": 1,
         "strategy": "descend by vertex deletion",
-        "secs": 1.6,
+        "secs": 2.2,
         "checks": {
           "vertex-deletion-descends": {
             "ok": false,
@@ -30,7 +30,7 @@
       {
         "round": 2,
         "strategy": "cuts at gauge-2 dual points",
-        "secs": 18.4,
+        "secs": 23.0,
         "checks": {
           "gauge-two-cuts-complete": {
             "ok": false,
@@ -50,7 +50,7 @@
       {
         "round": 3,
         "strategy": "complete candidate set with branching",
-        "secs": 44.3,
+        "secs": 52.1,
         "checks": {
           "complete-covers-3d": {
             "ok": true,
@@ -68,7 +68,7 @@
       {
         "round": 4,
         "strategy": "literal reading and counting bound",
-        "secs": 0.1,
+        "secs": 0.2,
         "checks": {
           "literal-D-equals-1": {
             "ok": true,
@@ -90,7 +90,7 @@
       {
         "round": 5,
         "strategy": "longest chain of realised pairs",
-        "secs": 0.2,
+        "secs": 0.5,
         "checks": {
           "uniform-348": {
             "ok": true,
@@ -99,6 +99,10 @@
           "low-dimensions": {
             "ok": true,
             "evidence": "dimension 2: 16 polytopes, largest depth 5; dimension 3: 4319 polytopes, largest depth 11"
+          },
+          "every-dimension": {
+            "ok": true,
+            "evidence": "Blichfeldt's bound |P| <= nvol P + d and the volume theorem of Balletti-Kasprzyk-Nill give D_d <= 2(s_d-1)^2 - 2 for d >= 4; checks/check_everydim.py: 6 checks passed, 0 failed"
           }
         },
         "failed": [],
@@ -233,7 +237,7 @@
       {
         "round": 1,
         "strategy": "sweep all 473,800,776 polytopes",
-        "secs": 0.1,
+        "secs": 0.2,
         "checks": {
           "sweep-feasible": {
             "ok": false,
@@ -293,7 +297,7 @@
       {
         "round": 4,
         "strategy": "skew bipyramids",
-        "secs": 10.9,
+        "secs": 12.7,
         "checks": {
           "depth-22": {
             "ok": true,

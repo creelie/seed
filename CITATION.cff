@@ -16,13 +16,13 @@ abstract: >-
   counts over the 473,800,776 four-dimensional reflexive polytopes, the pair
   bounds and a longest chain, the cover relation in dimensions two and three,
   a certified descent of the largest polytope, the certificate of depth 22,
-  and 83 independent checks in C, C++, Python, Julia, Macaulay2 and shell
+  and 87 independent checks in C, C++, Python, Julia, Macaulay2 and shell
   with 27 Lean 4 theorems.
 type: software
 license: MIT
-version: 1.1.1
-doi: 10.5281/zenodo.23486780
-date-released: "2026-10-20"
+version: 1.2.0
+doi: 10.5281/zenodo.23483239
+date-released: "2026-10-21"
 repository-code: "https://github.com/creelie/seed"
 identifiers:
   - type: doi

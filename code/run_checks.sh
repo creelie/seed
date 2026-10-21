@@ -7,6 +7,8 @@
 #              checks/check_poset3.py   depths and heights in dimension three
 #              checks/check_depth22.py  two polytopes of depth 22 (add FULL=1 to recompute covers)
 #              checks/check_everydim.py the bound V_d - 2 in every dimension
+#              checks/check_cuts.py     no second case of the cut proposition in dimension
+#                                       three (add FULL=1 for the dimension-four certificate)
 #   Julia      checks/polygons.jl       the sixteen polygons from scratch, Table II
 #   Macaulay2  checks/delta680.m2       Delta_680 with the Polyhedra package
 #   Lean 4     ../lean/Seed.lean        the finite arithmetic and the counting lemma
@@ -43,6 +45,8 @@ if have "$PYTHON"; then
   if [ "${FULL:-0}" = 1 ]; then run "Python: depth 22 (full)" "$PYTHON" checks/check_depth22.py --full || status=1
   else run "Python: depth 22" "$PYTHON" checks/check_depth22.py || status=1; fi
   run "Python: every dimension" "$PYTHON" checks/check_everydim.py || status=1
+  if [ "${FULL:-0}" = 1 ]; then run "Python: cuts (full)" "$PYTHON" checks/check_cuts.py --full || status=1
+  else run "Python: cuts" "$PYTHON" checks/check_cuts.py || status=1; fi
 else skipped+=("Python"); fi
 if have "$JULIA"; then
   run "Julia: polygons" "$JULIA" --startup-file=no checks/polygons.jl || status=1

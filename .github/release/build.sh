@@ -4,7 +4,7 @@
 # checks, the data and the Lean file in anc/ (tar.gz).
 #
 # Usage: build.sh <version> <output directory>
-# Needs pdflatex with revtex4-2, pdfinfo (poppler), zip and gzip.
+# Needs pdflatex with amsart, pdfinfo (poppler), zip and gzip.
 set -euo pipefail
 
 version=$1

@@ -41,13 +41,19 @@ polytopes of dimension d.
    sequence. This follows from Blichfeldt's bound on lattice points and the
    volume theorem of Balletti, Kasprzyk and Nill, with no classification.
 
+6. The cuts that produce the covers never need the second case of the cut
+   proposition in dimension three, nor at any of the 5,250 polytopes of the
+   depth-22 certificate that have covers: every cut H_q met by the procedure is
+   reflexive and equals the cover (32,129 and 50,280 pairs). Whether the second
+   case occurs anywhere in dimension four is open.
+
 The exact value of D_4 is open.
 
 ## Layout
 
 | Path | Contents |
 |---|---|
-| `paper/` | `main.tex`, the figures as PNG and the script that draws them |
+| `paper/` | `main.tex`, the figures as PNG and the script that draws them; `paper1/` the compiled paper, `paper2/` its LaTeX source as a zip |
 | `preprints/` | the compiled paper |
 | `code/` | the programs used in the paper: convex hulls and lattice points (`rhull.py`), complete covers (`complete.py`), cuts and climbs (`greedy.py`), exact depths by breadth-first search (`bfs_depth.py`), the pair bound (`pair_chain.py`), the certification of the descent of Δ_680 (`certify_chain.py`), and the certificate farm for upper bounds (`certify/`) |
 | `code/data/` | the joint distribution of point counts over the four-dimensional list, the pair bounds and a longest chain, the cover relation in dimensions two and three, the descent of Δ_680 with its certificates, the shorter descent from its step 9 (`descent9.json`), and the depth-22 certificate for P_1 and P_2 (`depth22.json.gz`) |
@@ -59,8 +65,8 @@ The exact value of D_4 is open.
 
 ```sh
 python3 -m pip install -r requirements.txt
-PALP=/path/to/poly.x bash code/run_checks.sh          # 83 checks
-FULL=1 PALP=/path/to/poly.x bash code/run_checks.sh   # 90 checks, recomputes every cover of the descents
+PALP=/path/to/poly.x bash code/run_checks.sh          # 87 checks
+FULL=1 PALP=/path/to/poly.x bash code/run_checks.sh   # 98 checks, recomputes every cover of the descents and checks the cuts at the depth-22 certificate
 ```
 
 The script needs gcc, g++, Python 3 with numpy and scipy, Julia, Macaulay2 and

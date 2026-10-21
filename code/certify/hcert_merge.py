@@ -1,7 +1,7 @@
 """Merge the second-stage summaries (hcert_shard.py) into results/<tag>: summary.json (totals,
 the largest bound, the histogram, shards missing) and left.json (polytopes still above T)
 together with certs.jsonl.gz (all second-stage certificates).  An optional fourth argument is a
-JSON list of the shard indices that were run, when only some of the n shards were.
+JSON list of the shard indices that were run, when only some of the n shards were."""
 import sys, os, json, glob, gzip
 art,dst,n=sys.argv[1],sys.argv[2],int(sys.argv[3]); os.makedirs(dst,exist_ok=True)
 run=json.loads(sys.argv[4]) if len(sys.argv)>4 else list(range(n))

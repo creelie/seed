@@ -52,8 +52,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install numpy
-        run: python3 -m pip install -q numpy
+      - name: Install numpy and scipy
+        run: python3 -m pip install -q numpy scipy
       - name: Build PALP
         run: |
           curl -sSfL --retry 5 -o palp.tar.gz https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-2.21.tar.gz

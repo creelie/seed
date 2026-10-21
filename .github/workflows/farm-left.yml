@@ -4,6 +4,8 @@ name: farm-left
 # code/certify/left_queue.json starts a run: the polytopes of results/<src>/left.json, left above T
 # by the first stage, are certified again with exact interval lengths (hcert.py), split over the
 # given number of jobs; the last job merges the summaries into code/certify/results/<tag>.
+# Optional keys of the queue: "only" (the shard indices to run), "mem_gb" and "secs" (the limits
+# of hcert_shard.py on the memory of a worker and the time of one polytope).
 
 on:
   push:
@@ -24,6 +26,8 @@ jobs:
       T: ${{ steps.p.outputs.T }}
       src: ${{ steps.p.outputs.src }}
       tag: ${{ steps.p.outputs.tag }}
+      run: ${{ steps.p.outputs.run }}
+      limits: ${{ steps.p.outputs.limits }}
     steps:
       - uses: actions/checkout@v4
       - id: p
@@ -31,7 +35,9 @@ jobs:
           python3 - >> "$GITHUB_OUTPUT" <<'PY'
           import json
           Q=json.load(open('code/certify/left_queue.json'))
-          print('jobs='+json.dumps(list(range(Q['jobs']))))
+          run=Q.get('only',list(range(Q['jobs'])))
+          print('jobs='+json.dumps(run)); print('run='+json.dumps(run))
+          print('limits='+(f"{Q['mem_gb']} {Q['secs']}" if 'mem_gb' in Q else ''))
           for k in ('T','src','tag'): print(f'{k}={Q[k]}')
           print(f"n={Q['jobs']}")
           PY
@@ -63,7 +69,7 @@ jobs:
           echo "PALP=$PWD/palp-2.21/poly.x" >> "$GITHUB_ENV"
       - name: Certify
         run: |
-          timeout 335m python3 code/certify/hcert_shard.py "code/certify/results/${{ needs.plan.outputs.src }}/left.json" "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "$(nproc)" out
+          timeout 335m python3 code/certify/hcert_shard.py "code/certify/results/${{ needs.plan.outputs.src }}/left.json" "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "$(nproc)" out ${{ needs.plan.outputs.limits }}
       - name: Keep the certificates and the summaries
         if: always()
         uses: actions/upload-artifact@v4
@@ -82,7 +88,7 @@ jobs:
           pattern: ${{ needs.plan.outputs.tag }}-*
           path: art
       - name: Merge the summaries
-        run: python3 code/certify/hcert_merge.py art "code/certify/results/${{ needs.plan.outputs.tag }}" "${{ needs.plan.outputs.n }}"
+        run: python3 code/certify/hcert_merge.py art "code/certify/results/${{ needs.plan.outputs.tag }}" "${{ needs.plan.outputs.n }}" '${{ needs.plan.outputs.run }}'
       - name: Commit the merged summary
         run: |
           git config user.name "Deep Bhattacharjee"

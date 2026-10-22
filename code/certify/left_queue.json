@@ -1,8 +1,9 @@
 {
 "T": 50,
-"src": "t50c",
-"tag": "t50h4",
-"jobs": 100,
-"mem_gb": 3.5,
-"secs": 900
+"src": "t50hard",
+"tag": "t50h5",
+"jobs": 147,
+"nproc": 1,
+"mem_gb": 14,
+"secs": 9000
 }

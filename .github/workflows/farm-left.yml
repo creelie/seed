@@ -4,8 +4,9 @@ name: farm-left
 # code/certify/left_queue.json starts a run: the polytopes of results/<src>/left.json, left above T
 # by the first stage, are certified again with exact interval lengths (hcert.py), split over the
 # given number of jobs; the last job merges the summaries into code/certify/results/<tag>.
-# Optional keys of the queue: "only" (the shard indices to run), "mem_gb" and "secs" (the limits
-# of hcert_shard.py on the memory of a worker and the time of one polytope).
+# Optional keys of the queue: "only" (the shard indices to run), "nproc" (workers per runner,
+# default the number of cores), "mem_gb" and "secs" (the limits of hcert_shard.py on the memory
+# of a worker and the time of one polytope).
 
 on:
   push:
@@ -28,6 +29,7 @@ jobs:
       tag: ${{ steps.p.outputs.tag }}
       run: ${{ steps.p.outputs.run }}
       limits: ${{ steps.p.outputs.limits }}
+      nproc: ${{ steps.p.outputs.nproc }}
     steps:
       - uses: actions/checkout@v4
       - id: p
@@ -38,6 +40,7 @@ jobs:
           run=Q.get('only',list(range(Q['jobs'])))
           print('jobs='+json.dumps(run)); print('run='+json.dumps(run))
           print('limits='+(f"{Q['mem_gb']} {Q['secs']}" if 'mem_gb' in Q else ''))
+          print(f"nproc={Q.get('nproc','')}")
           for k in ('T','src','tag'): print(f'{k}={Q[k]}')
           print(f"n={Q['jobs']}")
           PY
@@ -68,8 +71,10 @@ jobs:
           make -C palp-2.21 poly.x > /dev/null
           echo "PALP=$PWD/palp-2.21/poly.x" >> "$GITHUB_ENV"
       - name: Certify
+        env:
+          NPROC: ${{ needs.plan.outputs.nproc }}
         run: |
-          timeout 335m python3 code/certify/hcert_shard.py "code/certify/results/${{ needs.plan.outputs.src }}/left.json" "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "$(nproc)" out ${{ needs.plan.outputs.limits }}
+          timeout 335m python3 code/certify/hcert_shard.py "code/certify/results/${{ needs.plan.outputs.src }}/left.json" "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "${NPROC:-$(nproc)}" out ${{ needs.plan.outputs.limits }}
       - name: Keep the certificates and the summaries
         if: always()
         uses: actions/upload-artifact@v4

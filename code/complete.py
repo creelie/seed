@@ -43,10 +43,12 @@ def candidate_cuts(S,F,V,Dst,w,d):
     X=np.array(sorted(S),dtype=np.int64)
     out=[]
     ranges=[np.arange(lo,hi+1) for lo,hi in box]
-    # chunk over first coordinate
-    for x0 in ranges[0]:
-        grids=np.meshgrid(*ranges[1:],indexing='ij')
-        Q=np.stack([np.full(grids[0].size,x0)]+[g.ravel() for g in grids],axis=1)
+    # chunk over the first d-2 coordinates, so that each chunk is a plane of the box
+    grids=np.meshgrid(*ranges[d-2:],indexing='ij'); tail=np.stack([g.ravel() for g in grids],axis=1)
+    for head in itertools.product(*ranges[:d-2]):
+        Q=np.hstack([np.tile(np.array(head,dtype=np.int64),(len(tail),1)),tail])
+        Q=Q[np.all(-(Q@Vv.T)<=b_ub+1e-9,axis=1)]
+        if len(Q)==0: continue
         P=-(Q@Vv.T)
         ok=(np.maximum(P,1)@wv<=Vm)&(P.max(axis=1)>=2)
         Q=Q[ok]

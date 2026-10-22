@@ -36,9 +36,15 @@ still above T is searched again with the full set of cuts of Proposition (cuts) 
 which thin simplices need because their 3 Delta* has no useful lattice point.
 `hcert_shard.py` runs one job of `.github/workflows/farm-left.yml`, which reads
 `left_queue.json`, and `hcert_merge.py` merges the run into `results/<tag>`.
+`hcert_wide.py` takes the polytopes that a job could not finish within its memory limit and
+searches them with beams up to (256, 1600) and 80 steps, then with the full set of cuts, whose
+candidate vectors `complete.candidate_cuts` enumerates one plane of the box at a time;
+`results/t50w` holds its certificates for the 41 polytopes left by `t50h5`.
 
 Run one job by hand:
 
     export PALP=/path/to/palp-2.21/poly.x
     python3 farm_shard.py 13:0,13:1 50 4 19500 out
     python3 hcert_shard.py results/t50/left.json 0 10 50 4 out
+    python3 hcert_wide.py results/t50h5/left.json 50 3 5 out
+    python3 verify_certs.py out/certs.jsonl 50

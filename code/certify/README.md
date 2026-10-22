@@ -16,7 +16,8 @@ Kreuzer-Skarke list (`calabi-yau-data/polytopes-4d`) whose pair bound exceeds T;
 left above T by the fast search are searched again with every cut. `farm_plan.py` turns
 `queue.json` into the job matrix of `.github/workflows/farm.yml`, and `farm_merge.py` merges
 the summaries of a run into `results/<tag>`. `queue.json` may also list the jobs explicitly; the
-run `t50b` takes the row groups that the run `t50` left unfinished. `rowgroups.json` lists the
+run `t50b` takes the row groups that the run `t50` left unfinished; a group written
+`file:rowgroup/k/n` is the k-th of n slices of a row group too large for one job. `rowgroups.json` lists the
 row groups of the thirty files (493 groups, 473,800,776 polytopes).
 
 The second stage takes the polytopes left above T by the first (`results/<tag>/left.json`)

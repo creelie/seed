@@ -1,0 +1,316 @@
+{
+ "T": 50,
+ "shards": 147,
+ "missing": [],
+ "items": 294,
+ "certified": 253,
+ "max": 100,
+ "left": 41,
+ "hard": [
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 138843,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 567036,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 1,
+   "row": 990447,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 52327,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 5,
+   "row": 985563,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 671485,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 742209,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 52254,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 217295,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 581584,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 265954,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 64224,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 753331,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 12,
+   "row": 647887,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 111633,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 536599,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 27,
+   "row": 188293,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 6,
+   "row": 951871,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 12,
+   "row": 978516,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 240842,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 14,
+   "row": 462344,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "13",
+   "rowgroup": 40,
+   "row": 580052,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 28,
+   "row": 152597,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 776815,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 173186,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 684801,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 730039,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 684737,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 776817,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 606288,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 20687,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 701415,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 159939,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 647464,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 154838,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 166569,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 424307,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 456729,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 19613,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 138817,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 606199,
+   "reason": "MemoryError"
+  }
+ ],
+ "hist": {
+  "11": 1,
+  "14": 2,
+  "15": 6,
+  "16": 6,
+  "17": 5,
+  "18": 5,
+  "19": 2,
+  "20": 4,
+  "21": 12,
+  "22": 13,
+  "23": 18,
+  "24": 23,
+  "25": 19,
+  "26": 16,
+  "27": 18,
+  "28": 14,
+  "29": 14,
+  "30": 16,
+  "31": 7,
+  "32": 4,
+  "33": 1,
+  "34": 1,
+  "35": 1,
+  "36": 2,
+  "38": 2,
+  "39": 2,
+  "40": 2,
+  "41": 4,
+  "42": 4,
+  "43": 1,
+  "44": 4,
+  "45": 4,
+  "46": 3,
+  "47": 3,
+  "48": 7,
+  "49": 5,
+  "50": 2,
+  "52": 1,
+  "54": 3,
+  "56": 3,
+  "57": 5,
+  "58": 3,
+  "59": 4,
+  "60": 2,
+  "61": 3,
+  "62": 2,
+  "64": 3,
+  "67": 2,
+  "71": 1,
+  "73": 1,
+  "74": 2,
+  "75": 1,
+  "76": 1,
+  "81": 1,
+  "90": 2,
+  "100": 1
+ },
+ "secs": 75994
+}

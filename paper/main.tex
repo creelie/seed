@@ -66,7 +66,7 @@ seed. In four dimensions no descent takes more than 348 steps, which
 proves the conjecture of a uniform transition depth, and in two and three
 dimensions the exact maxima are five and eleven. In four dimensions two
 polytopes with thirty-seven lattice points need exactly twenty-two steps, so
-the maximum lies between twenty-two and 348.
+the maximum shortest depth lies between twenty-two and 347.
 \end{abstract}
 
 \maketitle
@@ -520,6 +520,20 @@ polytope at $(521,22)$, two covers found by the method of the next section
 lead to a polytope with $257$ lattice points and $24$ dual points, whose
 pair bound is $247$, so that polytope has a descent of length at most
 $249$.
+
+\begin{corollary}\label{cor:347}
+The maximum shortest reflexive-descent depth satisfies $22\le D_4\le347$.
+\end{corollary}
+\begin{proof}
+The unique polytope whose pair bound is $348$ has a chain of two covers
+with point-count pairs $(521,22)$, $(516,23)$, $(257,24)$. The final pair
+has bound $247$, so this polytope has shortest depth at most $2+247=249$.
+Every other polytope has pair bound at most $347$. The lower bound $22$
+is unchanged. The certificate and an integer-arithmetic verifier are
+\texttt{code/data/top347\_certificate.json} and
+\texttt{code/checks/check\_top347.py}. This sharpens the bound for shortest
+descents; the bound $348$ for arbitrary descents is unchanged.
+\end{proof}
 
 In other dimensions the joint distribution of point counts is not known,
 but the extremes are, and they already bound the depth. Let

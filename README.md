@@ -35,7 +35,7 @@ polytopes of dimension d.
    polytopes with their complete lists of covers, checked one polytope at a
    time (the certificate lemma of the paper). P_1 is the polytope reached after
    ten steps of the descent of the largest polytope Δ_680, and Δ_680 has
-   transition depth at most 31. Hence 22 ≤ D_4 ≤ 348.
+   transition depth at most 31. The two-cover certificate for the unique polytope with pair bound 348 sharpens the global shortest-depth bound to 347. Hence 22 ≤ D_4 ≤ 347.
 5. In every dimension d ≥ 4, every chain of reflexive polytopes has at most
    2(s_d − 1)² − 2 steps, where s_1 = 2, s_{k+1} = s_k² − s_k + 1 is Sylvester's
    sequence. This follows from Blichfeldt's bound on lattice points and the
@@ -97,3 +97,7 @@ also collected in one file,
 ## License
 
 MIT for the code; the paper is licensed CC BY 4.0.
+
+## Supplement of 23 October 2026
+
+Run `python code/checks/check_top347.py` to verify the two-cover certificate, exact facet enumeration, and the improved bound D_4 <= 347 against the supplied Kreuzer-Skarke histogram. This does not determine the exact D_4 or lower the bound for every possible descent.

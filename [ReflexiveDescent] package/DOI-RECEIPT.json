@@ -1,0 +1,19 @@
+{
+  "doi": "10.5281/zenodo.23653341",
+  "record_id": 23653341,
+  "url": "https://zenodo.org/records/23653341",
+  "concept_doi": "10.5281/zenodo.23483239",
+  "version": "1.3.0",
+  "github_release": "https://github.com/creelie/seed/releases/tag/v1.3.0",
+  "archived_commit": "951d26fa76dcf8d8fe9bff6a187d42cb606e5ab4",
+  "archive": {
+    "key": "creelie/seed-v1.3.0.zip",
+    "bytes": 8555886,
+    "checksum": "md5:16116df48c61357439b779f3589bbb4f",
+    "payload_files_verified": 83
+  },
+  "verified_at_utc": "2026-10-26T00:51:49.702479+00:00",
+  "exact_D4_proved": false,
+  "full_manuscript_Lean_formalized": false,
+  "final_zip_creation_authorized_by_confirmed_DOI": true
+}

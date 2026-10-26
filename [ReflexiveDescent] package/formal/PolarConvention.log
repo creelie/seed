@@ -1,0 +1,1 @@
+'ReflexiveDescent.Geometry.dual_latticeHull_conventions_iff' depends on axioms: [propext, Classical.choice, Quot.sound]

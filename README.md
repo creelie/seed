@@ -1,3 +1,30 @@
+# Reflexive Descent to Minimal Seeds: Uniform Bounds and Free Sums
+
+Current research revision: **v1.3.0**, by **Deep Bhattacharjee**.
+The earlier joint work with Ushashi Bhattacharya is retained and credited.
+
+Current manuscript and complete release folder:
+[`[ReflexiveDescent] package`](%5BReflexiveDescent%5D%20package).
+The [release](https://github.com/creelie/seed/releases/tag/v1.3.0) has
+version-specific archival information in its DOI receipt.
+
+The revision adds the free-sum order theorem, exact depth families and
+Lean verification of the core geometric and descent results. It includes
+81 named source theorems, a 255-declaration axiom audit including generated
+auxiliaries, and kernel checks of the stored depth-22 graph. Read
+[`FORMAL-COVERAGE.md`](%5BReflexiveDescent%5D%20package/formal/FORMAL-COVERAGE.md)
+before interpreting the verification claims.
+
+**The exact D4 is not proved.** The stated range is 22 <= D4 <= 346
+relative to the supplied KS census. Geometric cover completeness and the
+census are not verified end to end in Lean. The arbitrary-descent bound
+remains 348. This archive is not a journal acceptance or a full closure.
+
+## Previous release documentation
+
+The following describes the preceding manuscript and checks. The current
+revision and verification scope above supersede its version-specific claims.
+
 # Reflexive Descent to Minimal Seeds in the Kreuzer–Skarke List
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23483239.svg)](https://doi.org/10.5281/zenodo.23483239)

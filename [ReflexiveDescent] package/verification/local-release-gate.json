@@ -1,0 +1,24 @@
+{
+  "pdfs": [
+    {
+      "file": "ReflexiveDescent.pdf",
+      "pages": 39,
+      "sha256": "af4c8f3eb8b52a01eaeea27ac88ae0b4ac38388817f6d07cdab1a2cbd9b82489"
+    },
+    {
+      "file": "coverletterjournal.pdf",
+      "pages": 1,
+      "sha256": "3d71ac44f05c9960836704cb57a247fd32a5b6fe3aaad5a99c829a9ff6c967af"
+    },
+    {
+      "file": "journalaideclarationform.pdf",
+      "pages": 1,
+      "sha256": "4b9aad69a25ce60600d170e915aefcd1718fe819325f7ffb8edc00103ac67528"
+    }
+  ],
+  "abstract_words": 174,
+  "margin_line_numbering_disabled": true,
+  "new_formal_verification_appendix": true,
+  "exact_D4_proved": false,
+  "no_new_zip_created": true
+}

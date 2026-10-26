@@ -1,0 +1,153 @@
+{
+  "shortest_depth_upper_bound": 346,
+  "certificates_verified": 12,
+  "histogram_polytopes": 473800776,
+  "sharp_constant_known": false,
+  "scope": "relative to the supplied KS census and classification",
+  "intervals": [
+    {
+      "parent_pair": [
+        445,
+        17
+      ],
+      "child_pair": [
+        112,
+        22
+      ],
+      "interval_cost": 5,
+      "upper_bound": 110
+    },
+    {
+      "parent_pair": [
+        680,
+        26
+      ],
+      "child_pair": [
+        422,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 340
+    },
+    {
+      "parent_pair": [
+        640,
+        26
+      ],
+      "child_pair": [
+        400,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 339
+    },
+    {
+      "parent_pair": [
+        600,
+        26
+      ],
+      "child_pair": [
+        378,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 327
+    },
+    {
+      "parent_pair": [
+        560,
+        26
+      ],
+      "child_pair": [
+        356,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 326
+    },
+    {
+      "parent_pair": [
+        576,
+        26
+      ],
+      "child_pair": [
+        360,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 327
+    },
+    {
+      "parent_pair": [
+        520,
+        26
+      ],
+      "child_pair": [
+        334,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 316
+    },
+    {
+      "parent_pair": [
+        520,
+        26
+      ],
+      "child_pair": [
+        325,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 309
+    },
+    {
+      "parent_pair": [
+        516,
+        23
+      ],
+      "child_pair": [
+        181,
+        25
+      ],
+      "interval_cost": 2,
+      "upper_bound": 175
+    },
+    {
+      "parent_pair": [
+        521,
+        22
+      ],
+      "child_pair": [
+        181,
+        25
+      ],
+      "interval_cost": 3,
+      "upper_bound": 176
+    },
+    {
+      "parent_pair": [
+        536,
+        26
+      ],
+      "child_pair": [
+        338,
+        27
+      ],
+      "interval_cost": 1,
+      "upper_bound": 317
+    },
+    {
+      "parent_pair": [
+        482,
+        22
+      ],
+      "child_pair": [
+        168,
+        25
+      ],
+      "interval_cost": 3,
+      "upper_bound": 164
+    }
+  ]
+}

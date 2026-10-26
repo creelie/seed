@@ -1,0 +1,19 @@
+C:\CLAUDE PAPERS\seed-closure-2026-10-26\formal\FiniteReflexive.lean:54:0: warning: automatically included section variable(s) unused in theorem `ReflexiveDescent.Geometry.support_hull_eq`:
+  [IsTopologicalAddGroup E]
+  [ContinuousSMul ℝ E]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+C:\CLAUDE PAPERS\seed-closure-2026-10-26\formal\FiniteReflexive.lean:103:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+'ReflexiveDescent.Geometry.finite_subpolytopes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.reflexive_descent_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.reflexive_depth_extrema_exist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.terminal_reflexive_iff_rminimal' depends on axioms: [propext, Classical.choice, Quot.sound]

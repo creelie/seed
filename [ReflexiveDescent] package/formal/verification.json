@@ -1,0 +1,154 @@
+{
+  "verified_at_utc": "2026-10-25T23:19:56.400336+00:00",
+  "lean_version": "4.34.0-rc2",
+  "lean_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+  "mathlib_commit": "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+  "positive_module_count": 13,
+  "all_positive_modules_compiled": true,
+  "audited_theorem_declarations_including_generated_auxiliaries": 255,
+  "named_source_theorems": 81,
+  "allowed_foundational_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "custom_axioms_or_admitted_proofs_found": false,
+  "corrupt_graph_negative_control": "rejected as a false proposition",
+  "kernel_replay": {
+    "runs": [
+      {
+        "exit_code": 0,
+        "modules": [
+          "DescentProducts",
+          "FiniteBases",
+          "FreeSumGeometry",
+          "CoordinateLattice",
+          "FreeSumDepth",
+          "DepthGrowth",
+          "IntervalDescents",
+          "FiniteReflexive",
+          "Depth22Certificate"
+        ],
+        "wall_seconds": 686.619,
+        "scope": "Lean kernel replay of new module declarations relative to their imports; not an independent proof assistant"
+      },
+      {
+        "exit_code": 0,
+        "modules": [
+          "IntervalDescents",
+          "FiniteReflexive",
+          "FourDimensionalObstruction",
+          "PolarConvention"
+        ],
+        "wall_seconds": 293.544,
+        "scope": "Lean kernel replay of new module declarations relative to their imports; not an independent proof assistant"
+      }
+    ],
+    "scope": "Initial nine-module replay, followed by replay of changed and added modules; each run is relative to imports"
+  },
+  "scope": {
+    "geometric_free_sum_order_isomorphism": true,
+    "geometric_depth_addition": true,
+    "stored_5592_node_graph_checked": true,
+    "both_stored_roots_shortest_22": true,
+    "geometric_pentagon_order_identification": false,
+    "triangle_enumeration_in_Lean": false,
+    "four_dimensional_geometric_cover_completeness": false,
+    "census_and_twelve_witnesses_in_Lean": false,
+    "full_manuscript_formalized": false,
+    "exact_D4_proved": false
+  },
+  "modules": [
+    {
+      "module": "DescentProducts",
+      "source_sha256": "ab767418681fb8ef75bfebc21e2bfd4afec0d3ed2dd3d958999a0b7967c1844d",
+      "olean_sha256": "70fc9de464ee16711a9d72ecdbd2deb2a401da7776b76aec4833f1358ee935a3",
+      "log_sha256": "3008c9052aaa1924846b5c8191b6d7ed774d36e3f3ab968964123c2cf662572c",
+      "named_source_theorems": 8
+    },
+    {
+      "module": "FiniteBases",
+      "source_sha256": "1a23a008cd75feb758dddb824aee9f9a90479bb6d1936210e2b8db4a35db931b",
+      "olean_sha256": "1bb3b6cd1a20fa844fcb648e9662e0810361702ac31f4495384aa1203b46a12e",
+      "log_sha256": "cfa4649280062d773447bb69a4aa64948f11ec39abfdbdc8f46cabfca6ad824b",
+      "named_source_theorems": 10
+    },
+    {
+      "module": "FreeSumGeometry",
+      "source_sha256": "a1c6fa1849716d80e422c74c7acf72bfcf27a15f4e7ca896b18d0cc71cf04b06",
+      "olean_sha256": "6d9f0129b0c98ad4050f7f70d9cb77b449721d36cabaeb9a3f364a31c2d9f103",
+      "log_sha256": "3a6193553aca68e26ca22e9877b347aa5731d955dfef3008e51f991075ad041b",
+      "named_source_theorems": 18
+    },
+    {
+      "module": "CoordinateLattice",
+      "source_sha256": "11a62548fc776b5d563bd7dffdf2c4574714a612a26ea35bef9357b9a1fe4191",
+      "olean_sha256": "08d762d9eb005db355bfc39c7048c6e342e4f733ce456783fe3026d3dfa5415a",
+      "log_sha256": "e7b7241f14df43f3c6b7c9190358b294db0bdde3dd0ca82b7a1dbeda9211e7dd",
+      "named_source_theorems": 1
+    },
+    {
+      "module": "FreeSumDepth",
+      "source_sha256": "ccbce698098aca3275dc0b1224636afed77398dd45e1c742c82631a5eca82188",
+      "olean_sha256": "90d3b390e0d7d1d299ff2027fb12d6857ef1889a19fd74a4e8f30d58190324a8",
+      "log_sha256": "bfedeaa043d05141fa27181735751450d2c0dd6481819de5ae9b6016f90eb5f6",
+      "named_source_theorems": 5
+    },
+    {
+      "module": "DepthGrowth",
+      "source_sha256": "9112e57c2ec2b90b15adf0209e9dde3475c09f5c58c73ff38490dac4e65eacc3",
+      "olean_sha256": "82464b8b0ccbd7f7aa7bde3e7aca1b828867330ddcbbf585580b4a1f408a662f",
+      "log_sha256": "003fe18abac2ff4465551d46301af0ee38f5bb788622e44b98a0ca22d62a2829",
+      "named_source_theorems": 3
+    },
+    {
+      "module": "IntervalDescents",
+      "source_sha256": "bb1a95d9a9e432ba41f4487abe88091777e25f3c03eba6430bf1d6f6cd3eb175",
+      "olean_sha256": "2ddec6bda8f4b44ff431d5faeae2afe4e1fd4cc11cbea57589bf8a49de91b217",
+      "log_sha256": "e97adf4fe539fb94586f6d596cde516192d3a1b6d2c84081a956ca93067da361",
+      "named_source_theorems": 6
+    },
+    {
+      "module": "FiniteReflexive",
+      "source_sha256": "a03015dab61b4f77dc18ccbcc8d161fe01f90fade7a4104432c67fb86871296f",
+      "olean_sha256": "cc0f4d64fd2afafe5e4aaebfe7337742cc7b0cf60ddc6290b76578c7a66de4d2",
+      "log_sha256": "a20a30c695694270ed3e48a94e559063f210d30159b72aa8ecf96c247c8a966f",
+      "named_source_theorems": 11
+    },
+    {
+      "module": "Depth22Certificate",
+      "source_sha256": "74e7bcfb7794f87f7043c7dbce62e42318e54025514fd3f7e7f29e631b32d059",
+      "olean_sha256": "c9c601f5c671fd0cdd9de5ac5c73fa89c3742528f1620ab774a7fe990369dffe",
+      "log_sha256": "8d20a0dfdf4fb2a1d289a33ea5daf3aa604c16ea5980ba0d96f83ec6143ff033",
+      "named_source_theorems": 13
+    },
+    {
+      "module": "FourDimensionalObstruction",
+      "source_sha256": "ea4e2b2961b4a5c3bd3b061d298ae6e39654f709c4d4ece4abb6d3de16498581",
+      "olean_sha256": "8ff13d3217b60889c97834e89ba44babd4678f65a8c1331dbdf49ecd7fc5189c",
+      "log_sha256": "bc3a21088f529a8d48817bbf368a12d8fee1ec34b8b6d236ae159b4682681a2e",
+      "named_source_theorems": 3
+    },
+    {
+      "module": "PolarConvention",
+      "source_sha256": "802e19e1cb162f21eebb0f8eca6714e2d38f02e405d59544f16f6ebfe4a26f29",
+      "olean_sha256": "4eb7bcaeb4645977407133290d8f12a261a4d9fb5d161124d2654b3baced8fda",
+      "log_sha256": "b9019dedbdd3c92bfc67afcbcced738cd71bf2ebf91c4ae48e53dfc40566ffc3",
+      "named_source_theorems": 3
+    },
+    {
+      "module": "ReflexiveDescentFormal",
+      "source_sha256": "ecb80ae574c550220444494af221b92ee9a04bf7afd19309d008f39ea359eb50",
+      "olean_sha256": "0a82cb6cec81cdc74baa16af189c97004a701106ef39f78863da8bac49c59f5e",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "named_source_theorems": 0
+    },
+    {
+      "module": "AxiomsAudit",
+      "source_sha256": "a7f7610e1b0467c2e6f990f2ccc983b81a01acdadca182231d2aa648442089d6",
+      "olean_sha256": "e60d895fe9619cff2ea32c6b96b70ecb2614551149cd570b3c3d72e2ff3f28c4",
+      "log_sha256": "4491567ca396e4270296ad63d2e7d3a3dcc43ba72801315f335a013711213fa7",
+      "named_source_theorems": 0
+    }
+  ]
+}

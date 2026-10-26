@@ -1,0 +1,13 @@
+name = "ReflexiveDescentFormal"
+version = "0.1.0"
+defaultTargets = ["ReflexiveDescentFormal"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "85e3a25e006c35636f0e53b0e9296caca2685bc0"
+
+[[lean_lib]]
+name = "ReflexiveDescentFormal"
+roots = ["ReflexiveDescentFormal"]
+globs = ["DescentProducts", "FiniteBases", "FreeSumGeometry", "CoordinateLattice", "FreeSumDepth", "DepthGrowth", "IntervalDescents", "FiniteReflexive", "Depth22Certificate", "FourDimensionalObstruction", "PolarConvention", "ReflexiveDescentFormal", "AxiomsAudit"]

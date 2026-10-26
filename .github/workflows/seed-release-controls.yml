@@ -1,0 +1,25 @@
+name: seed release controls
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  controls:
+    name: release-payload-and-data-controls
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check frozen payload, exact planar bases and interval witnesses
+        working-directory: '[ReflexiveDescent] package'
+        run: |
+          python verification/check_payload.py
+          python manuscript/anc/verify_free_sums.py
+          python manuscript/anc/seed_intervals.py
+      - name: Regenerate the stored graph source without trusting a cached object
+        working-directory: '[ReflexiveDescent] package'
+        run: |
+          cp formal/Depth22Certificate.lean "$RUNNER_TEMP/Depth22Certificate-original.lean"
+          python formal/generate_depth22_tree.py
+          cmp formal/Depth22Certificate.lean "$RUNNER_TEMP/Depth22Certificate-original.lean"

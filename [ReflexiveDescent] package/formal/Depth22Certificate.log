@@ -1,0 +1,4 @@
+'ReflexiveDescent.Depth22.certificate_checked' does not depend on any axioms
+'ReflexiveDescent.Depth22.graph_lower_bound' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.Depth22.root_0_shortest' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.Depth22.root_1_shortest' depends on axioms: [propext, Quot.sound]

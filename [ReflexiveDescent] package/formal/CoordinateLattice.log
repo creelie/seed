@@ -1,0 +1,1 @@
+'ReflexiveDescent.Geometry.coordinatePairing_integral' depends on axioms: [propext, Classical.choice, Quot.sound]

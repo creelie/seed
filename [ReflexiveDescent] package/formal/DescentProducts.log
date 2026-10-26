@@ -1,0 +1,4 @@
+'ReflexiveDescent.descent_product_iff' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.shortest_product' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.longest_product' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.product_order_covers' depends on axioms: [propext, Classical.choice, Quot.sound]

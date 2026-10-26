@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "modules": [
+    "DescentProducts",
+    "FiniteBases",
+    "FreeSumGeometry",
+    "CoordinateLattice",
+    "FreeSumDepth",
+    "DepthGrowth",
+    "IntervalDescents",
+    "FiniteReflexive",
+    "Depth22Certificate"
+  ],
+  "wall_seconds": 686.619,
+  "scope": "Lean kernel replay of new module declarations relative to their imports; not an independent proof assistant"
+}

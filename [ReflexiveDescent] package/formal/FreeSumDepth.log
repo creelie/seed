@@ -1,0 +1,3 @@
+'ReflexiveDescent.Geometry.freeSum_descent_lengths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.freeSum_shortest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.freeSum_longest' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,5 @@
+'ReflexiveDescent.pentagon_shortest' depends on axioms: [propext]
+'ReflexiveDescent.pentagon_longest' depends on axioms: [propext]
+'ReflexiveDescent.power_shortest' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.power_longest' depends on axioms: [propext, Quot.sound]
+'ReflexiveDescent.unbounded_power_gap' depends on axioms: [propext, Quot.sound]

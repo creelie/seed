@@ -1,0 +1,50 @@
+{
+  "triangle_subsets_checked": 512,
+  "triangle_reflexive_subpolytopes": 79,
+  "triangle_depth": 5,
+  "triangle_height": 6,
+  "triangle_chain_profile": {
+    "5": 150,
+    "6": 240
+  },
+  "pentagon_subsets_checked": 32,
+  "pentagon_reflexive_subpolytopes": 5,
+  "pentagon_depth": 1,
+  "pentagon_height": 2,
+  "pentagon_chain_profile": {
+    "1": 1,
+    "2": 2
+  },
+  "independent_enumerators_agree": true,
+  "four_dimensional_lattice_points": 19,
+  "product_graph_nodes": 6241,
+  "product_root_depth": 10,
+  "product_root_height": 12,
+  "triangle_minimal_masks": [
+    78,
+    88,
+    98,
+    113,
+    116,
+    135,
+    148,
+    161,
+    178,
+    184,
+    198,
+    262,
+    340,
+    418
+  ],
+  "triangle_depth_histogram": {
+    "0": 14,
+    "1": 33,
+    "2": 19,
+    "3": 9,
+    "4": 3,
+    "5": 1
+  },
+  "method": "two exact integer enumerators; no floating point, external database or imported certificate",
+  "sharp_D4_determined": false,
+  "new_Lean_formalization": false
+}

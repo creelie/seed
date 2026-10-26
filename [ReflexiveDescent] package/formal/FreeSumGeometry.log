@@ -1,0 +1,47 @@
+C:\CLAUDE PAPERS\seed-closure-2026-10-26\formal\FreeSumGeometry.lean:120:0: warning: automatically included section variable(s) unused in theorem `ReflexiveDescent.Geometry.lattice_points_on_axes`:
+  [TopologicalSpace F]
+  [IsTopologicalAddGroup F]
+  [ContinuousSMul ℝ F]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [TopologicalSpace F] [IsTopologicalAddGroup F] [ContinuousSMul ℝ F] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+C:\CLAUDE PAPERS\seed-closure-2026-10-26\formal\FreeSumGeometry.lean:235:0: warning: automatically included section variable(s) unused in theorem `ReflexiveDescent.Geometry.origin_interior_freeSum`:
+  [IsTopologicalAddGroup E]
+  [IsTopologicalAddGroup F]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsTopologicalAddGroup E] [IsTopologicalAddGroup F] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+C:\CLAUDE PAPERS\seed-closure-2026-10-26\formal\FreeSumGeometry.lean:252:0: warning: automatically included section variable(s) unused in theorem `ReflexiveDescent.Geometry.section_origin_interior`:
+  [Module ℝ E]
+  [Module ℝ F]
+  [IsTopologicalAddGroup E]
+  [ContinuousSMul ℝ E]
+  [IsTopologicalAddGroup F]
+  [ContinuousSMul ℝ F]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Module ℝ
+  E] [Module ℝ
+  F] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] [IsTopologicalAddGroup F] [ContinuousSMul ℝ F] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+C:\CLAUDE PAPERS\seed-closure-2026-10-26\formal\FreeSumGeometry.lean:342:0: warning: automatically included section variable(s) unused in theorem `ReflexiveDescent.Geometry.freeSum_mono`:
+  [TopologicalSpace E]
+  [IsTopologicalAddGroup E]
+  [ContinuousSMul ℝ E]
+  [TopologicalSpace F]
+  [IsTopologicalAddGroup F]
+  [ContinuousSMul ℝ F]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [TopologicalSpace
+  E] [IsTopologicalAddGroup
+  E] [ContinuousSMul ℝ E] [TopologicalSpace F] [IsTopologicalAddGroup F] [ContinuousSMul ℝ F] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+'ReflexiveDescent.Geometry.hull_axis_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.polar_freeSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.lattice_points_on_axes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.reflexive_freeSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.reflexive_subpolytope_factors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.Geometry.freeSumOrderIso' depends on axioms: [propext, Classical.choice, Quot.sound]

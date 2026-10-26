@@ -1,0 +1,2 @@
+'ReflexiveDescent.depth_ratio_finite_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ReflexiveDescent.depth_ratio_infinite_limit' depends on axioms: [propext, Classical.choice, Quot.sound]

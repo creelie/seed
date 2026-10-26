@@ -1,0 +1,131 @@
+{
+  "verified_at_utc": "2026-10-25T23:03:17.042452+00:00",
+  "lean_version": "4.34.0-rc2",
+  "lean_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+  "mathlib_commit": "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+  "positive_module_count": 12,
+  "all_positive_modules_compiled": true,
+  "audited_theorem_declarations_including_generated_auxiliaries": 249,
+  "named_source_theorems": 76,
+  "allowed_foundational_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "custom_axioms_or_admitted_proofs_found": false,
+  "corrupt_graph_negative_control": "rejected as a false proposition",
+  "kernel_replay": {
+    "exit_code": 0,
+    "modules": [
+      "DescentProducts",
+      "FiniteBases",
+      "FreeSumGeometry",
+      "CoordinateLattice",
+      "FreeSumDepth",
+      "DepthGrowth",
+      "IntervalDescents",
+      "FiniteReflexive",
+      "Depth22Certificate"
+    ],
+    "wall_seconds": 686.619,
+    "scope": "Lean kernel replay of new module declarations relative to their imports; not an independent proof assistant"
+  },
+  "scope": {
+    "geometric_free_sum_order_isomorphism": true,
+    "geometric_depth_addition": true,
+    "stored_5592_node_graph_checked": true,
+    "both_stored_roots_shortest_22": true,
+    "geometric_pentagon_order_identification": false,
+    "triangle_enumeration_in_Lean": false,
+    "four_dimensional_geometric_cover_completeness": false,
+    "census_and_twelve_witnesses_in_Lean": false,
+    "full_manuscript_formalized": false,
+    "exact_D4_proved": false
+  },
+  "modules": [
+    {
+      "module": "DescentProducts",
+      "source_sha256": "ab767418681fb8ef75bfebc21e2bfd4afec0d3ed2dd3d958999a0b7967c1844d",
+      "olean_sha256": "70fc9de464ee16711a9d72ecdbd2deb2a401da7776b76aec4833f1358ee935a3",
+      "log_sha256": "3008c9052aaa1924846b5c8191b6d7ed774d36e3f3ab968964123c2cf662572c",
+      "named_source_theorems": 8
+    },
+    {
+      "module": "FiniteBases",
+      "source_sha256": "1a23a008cd75feb758dddb824aee9f9a90479bb6d1936210e2b8db4a35db931b",
+      "olean_sha256": "1bb3b6cd1a20fa844fcb648e9662e0810361702ac31f4495384aa1203b46a12e",
+      "log_sha256": "cfa4649280062d773447bb69a4aa64948f11ec39abfdbdc8f46cabfca6ad824b",
+      "named_source_theorems": 10
+    },
+    {
+      "module": "FreeSumGeometry",
+      "source_sha256": "a1c6fa1849716d80e422c74c7acf72bfcf27a15f4e7ca896b18d0cc71cf04b06",
+      "olean_sha256": "6d9f0129b0c98ad4050f7f70d9cb77b449721d36cabaeb9a3f364a31c2d9f103",
+      "log_sha256": "3a6193553aca68e26ca22e9877b347aa5731d955dfef3008e51f991075ad041b",
+      "named_source_theorems": 18
+    },
+    {
+      "module": "CoordinateLattice",
+      "source_sha256": "11a62548fc776b5d563bd7dffdf2c4574714a612a26ea35bef9357b9a1fe4191",
+      "olean_sha256": "08d762d9eb005db355bfc39c7048c6e342e4f733ce456783fe3026d3dfa5415a",
+      "log_sha256": "e7b7241f14df43f3c6b7c9190358b294db0bdde3dd0ca82b7a1dbeda9211e7dd",
+      "named_source_theorems": 1
+    },
+    {
+      "module": "FreeSumDepth",
+      "source_sha256": "ccbce698098aca3275dc0b1224636afed77398dd45e1c742c82631a5eca82188",
+      "olean_sha256": "90d3b390e0d7d1d299ff2027fb12d6857ef1889a19fd74a4e8f30d58190324a8",
+      "log_sha256": "bfedeaa043d05141fa27181735751450d2c0dd6481819de5ae9b6016f90eb5f6",
+      "named_source_theorems": 5
+    },
+    {
+      "module": "DepthGrowth",
+      "source_sha256": "9112e57c2ec2b90b15adf0209e9dde3475c09f5c58c73ff38490dac4e65eacc3",
+      "olean_sha256": "82464b8b0ccbd7f7aa7bde3e7aca1b828867330ddcbbf585580b4a1f408a662f",
+      "log_sha256": "003fe18abac2ff4465551d46301af0ee38f5bb788622e44b98a0ca22d62a2829",
+      "named_source_theorems": 3
+    },
+    {
+      "module": "IntervalDescents",
+      "source_sha256": "3dfb3d1cb2a9c6bca1f8079577217e568517bc1594c25447fa0086de64bc2321",
+      "olean_sha256": "4b176c198649cbe0f16f7669cb79d7b1524d4e4fcf6bb6726e9159ae7027a674",
+      "log_sha256": "e97adf4fe539fb94586f6d596cde516192d3a1b6d2c84081a956ca93067da361",
+      "named_source_theorems": 5
+    },
+    {
+      "module": "FiniteReflexive",
+      "source_sha256": "b9d70b2abe65c740ea7024a4c7cb7246c164962dd8ec66fb61c3f2a82a3a61d8",
+      "olean_sha256": "aaee1f643b6b75eb0929f9d7c1a00f5b460e1df602f852fe3ca540b8e8fa0b69",
+      "log_sha256": "d34d73f7405728d748d2558d0d8e4530dfc443230d1e6cc9849209b284860b2c",
+      "named_source_theorems": 10
+    },
+    {
+      "module": "Depth22Certificate",
+      "source_sha256": "74e7bcfb7794f87f7043c7dbce62e42318e54025514fd3f7e7f29e631b32d059",
+      "olean_sha256": "c9c601f5c671fd0cdd9de5ac5c73fa89c3742528f1620ab774a7fe990369dffe",
+      "log_sha256": "8d20a0dfdf4fb2a1d289a33ea5daf3aa604c16ea5980ba0d96f83ec6143ff033",
+      "named_source_theorems": 13
+    },
+    {
+      "module": "FourDimensionalObstruction",
+      "source_sha256": "ea4e2b2961b4a5c3bd3b061d298ae6e39654f709c4d4ece4abb6d3de16498581",
+      "olean_sha256": "8ff13d3217b60889c97834e89ba44babd4678f65a8c1331dbdf49ecd7fc5189c",
+      "log_sha256": "bc3a21088f529a8d48817bbf368a12d8fee1ec34b8b6d236ae159b4682681a2e",
+      "named_source_theorems": 3
+    },
+    {
+      "module": "ReflexiveDescentFormal",
+      "source_sha256": "ed8ba446a05b3ed151a61ae7807ec37cdbe12452bc5ef41b4bb919f4011fed48",
+      "olean_sha256": "33016470c9529e4fcffbd14d2832cdd726dcfb57ee513d2ac3e98f8e5acb2250",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "named_source_theorems": 0
+    },
+    {
+      "module": "AxiomsAudit",
+      "source_sha256": "a7f7610e1b0467c2e6f990f2ccc983b81a01acdadca182231d2aa648442089d6",
+      "olean_sha256": "e60d895fe9619cff2ea32c6b96b70ecb2614551149cd570b3c3d72e2ff3f28c4",
+      "log_sha256": "8ab341a756483211407ec0c1fbc8758f4b675681ce4def3108a5933c3b2febbb",
+      "named_source_theorems": 0
+    }
+  ]
+}

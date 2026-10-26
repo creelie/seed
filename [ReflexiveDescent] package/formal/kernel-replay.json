@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "modules": [
+    "IntervalDescents",
+    "FiniteReflexive",
+    "FourDimensionalObstruction",
+    "PolarConvention"
+  ],
+  "wall_seconds": 293.544,
+  "scope": "Lean kernel replay of new module declarations relative to their imports; not an independent proof assistant"
+}

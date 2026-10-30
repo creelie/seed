@@ -1,0 +1,1438 @@
+{
+ "T": 50,
+ "shards": 49,
+ "missing": [],
+ "items": 29177,
+ "certified": 28955,
+ "max": 137,
+ "left": 222,
+ "hard": [
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 622366,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 662823,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 671950,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 662803,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 240842,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 592499,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 813234,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 606199,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 677351,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 555033,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 428493,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 22028,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 839971,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 291576,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 819169,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 1,
+   "row": 990447,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 841435,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 518033,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 263590,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 8953,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 662797,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 601419,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 518034,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 522034,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 580661,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 549206,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 730039,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 663695,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 418473,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 154838,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 783235,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 838746,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 685972,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 673813,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 699128,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 291088,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 19613,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 808526,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 686282,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 591318,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 291580,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 27,
+   "row": 188293,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 799946,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 686283,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 534150,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576534,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 159939,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 786497,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 820380,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 804799,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 771043,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 685973,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 553836,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 837608,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 217295,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 574866,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 709417,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 608225,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 520628,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 549160,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 247354,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576535,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 647464,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 677353,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 591316,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 520709,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 523598,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 768076,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 722051,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 592445,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 584481,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 64224,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 786987,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 622418,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 766533,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 5,
+   "row": 985563,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 517873,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 418579,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 20687,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "13",
+   "rowgroup": 43,
+   "row": 387754,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 6,
+   "row": 951871,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 681221,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 138817,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 694839,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 175449,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 839668,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 684801,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 581584,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 814968,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 265954,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 591319,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 810250,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 593628,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 428237,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 28,
+   "row": 152597,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 297974,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 14,
+   "row": 462344,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 543931,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 23371,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 166569,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 832844,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 584946,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 681167,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 29,
+   "row": 179302,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 837610,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 561572,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 412609,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576537,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 29,
+   "row": 179366,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 6,
+   "row": 475781,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 663697,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 677355,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576532,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 291578,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 580817,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 28,
+   "row": 862089,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 822088,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 817415,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 853680,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 753331,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 776817,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 657102,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 699139,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 592475,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 808558,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 671485,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 823673,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 742209,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 23873,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 697193,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 124079,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 507087,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 481247,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 298484,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 172697,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 12,
+   "row": 647887,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 808702,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 809822,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 511326,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "13",
+   "rowgroup": 40,
+   "row": 580052,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 608224,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 123967,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "13",
+   "rowgroup": 43,
+   "row": 443735,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 21544,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 841488,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 838743,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 516133,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 662822,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 698730,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 124004,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 799903,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 605930,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 770940,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 673934,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 123759,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 602183,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 138843,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 820383,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 699116,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 23410,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 667556,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 15,
+   "row": 111633,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576530,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 523591,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 29,
+   "row": 180572,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "06",
+   "rowgroup": 0,
+   "row": 23883,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 164496,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 701415,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 818279,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 671951,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "13",
+   "rowgroup": 43,
+   "row": 387756,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 549376,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 164494,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 776815,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 456729,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 677219,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 662805,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 592447,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 28,
+   "row": 861842,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 52254,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 52327,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 506851,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 520708,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576458,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 284629,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 822200,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 567036,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 835107,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 684737,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 835133,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 837640,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 606288,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 709409,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 499347,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 704276,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 522038,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 591314,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 268371,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 580874,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 605975,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 520520,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "12",
+   "rowgroup": 28,
+   "row": 878004,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 536599,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 771042,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 12,
+   "row": 978516,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 673809,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 348157,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 428235,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 173186,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 498863,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "08",
+   "rowgroup": 0,
+   "row": 822085,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 806972,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 276688,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 534187,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 576538,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "07",
+   "rowgroup": 0,
+   "row": 166462,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 424307,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "09",
+   "rowgroup": 2,
+   "row": 854428,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "10",
+   "rowgroup": 7,
+   "row": 658457,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 514206,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 592474,
+   "reason": "MemoryError"
+  },
+  {
+   "file": "11",
+   "rowgroup": 16,
+   "row": 593631,
+   "reason": "MemoryError"
+  }
+ ],
+ "hist": {
+  "13": 1,
+  "16": 2,
+  "20": 3,
+  "21": 6,
+  "22": 9,
+  "23": 7,
+  "24": 13,
+  "25": 9,
+  "26": 11,
+  "27": 20,
+  "28": 29,
+  "29": 94,
+  "30": 184,
+  "31": 385,
+  "32": 572,
+  "33": 731,
+  "34": 787,
+  "35": 825,
+  "36": 860,
+  "37": 862,
+  "38": 834,
+  "39": 841,
+  "40": 872,
+  "41": 1010,
+  "42": 1246,
+  "43": 1572,
+  "44": 1837,
+  "45": 2183,
+  "46": 2286,
+  "47": 2524,
+  "48": 2704,
+  "49": 2752,
+  "50": 2884,
+  "52": 3,
+  "53": 2,
+  "54": 5,
+  "55": 2,
+  "56": 8,
+  "57": 9,
+  "58": 4,
+  "59": 5,
+  "60": 4,
+  "61": 7,
+  "62": 3,
+  "63": 3,
+  "64": 5,
+  "65": 2,
+  "67": 5,
+  "68": 5,
+  "69": 6,
+  "70": 8,
+  "71": 5,
+  "72": 2,
+  "73": 7,
+  "74": 6,
+  "75": 4,
+  "76": 6,
+  "77": 12,
+  "78": 3,
+  "81": 2,
+  "82": 2,
+  "83": 5,
+  "84": 7,
+  "85": 4,
+  "86": 3,
+  "88": 5,
+  "89": 12,
+  "90": 8,
+  "91": 6,
+  "92": 4,
+  "93": 2,
+  "94": 1,
+  "95": 2,
+  "96": 1,
+  "97": 2,
+  "98": 1,
+  "99": 2,
+  "100": 2,
+  "101": 2,
+  "102": 2,
+  "105": 1,
+  "106": 2,
+  "107": 2,
+  "108": 1,
+  "109": 2,
+  "111": 2,
+  "112": 1,
+  "117": 1,
+  "124": 1,
+  "129": 1,
+  "135": 1,
+  "137": 1
+ },
+ "secs": 58981
+}

@@ -37,17 +37,23 @@
 \newcommand{\UBplus}{349}
 \newcommand{\LB}{22}
 \newcommand{\DUB}{31}
+\newcommand{\UBs}{50}
+\newcommand{\seedRelease}{2.0.0}
+\newcommand{\seedDOI}{10.5281/zenodo.23483239}
+\newcommand{\Nabove}{92{,}422{,}743}
+\newcommand{\Nleft}{79{,}757}
 
 \begin{document}
-
 \title{Reflexive Descent to Minimal Seeds in the Kreuzer--Skarke List}
 
 \author{Deep Bhattacharjee}
 \address{Formerly, Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar, Odisha 751030, India}
-\address{Formerly, University of Calcutta, Senate House, 87/1 College Street, Kolkata 700073, West Bengal, India}
-\email{itsdeep@live.com}
+\address{Formerly, University of Calcutta (Heramba Chandra College), 23/49 Gariahat Road, Golpark, Kolkata 700029, West Bengal, India}
+\email{d.bhattacharjee@erl-forschung.de}
 \urladdr{\href{https://orcid.org/0000-0003-0466-750X}{https://orcid.org/0000-0003-0466-750X}}
-\thanks{Corresponding author; second e-mail address \nolinkurl{d.bhattacharjee@erl-forschung.de}}
+\thanks{Corresponding author: Deep Bhattacharjee, \nolinkurl{d.bhattacharjee@erl-forschung.de}; further addresses \nolinkurl{itsdeep@live.com} and \nolinkurl{egspl@proton.me} (contact for the code archive, GitHub \nolinkurl{creelie})}
+
+\thanks{Preprint: Hexagon \href{https://hexagonmath.org/2610.00456v1}{2610.00456v1}; this paper is its revised version.}
 
 \author{Ushashi Bhattacharya}
 \address{Formerly, National Taiwan University, Taipei 106319, Taiwan}
@@ -55,25 +61,17 @@
 \urladdr{\href{https://orcid.org/0009-0002-2254-3914}{https://orcid.org/0009-0002-2254-3914}}
 
 \subjclass[2020]{Primary 52B20, 14M25; Secondary 14J32, 06A07, 52-08}
-\keywords{reflexive polytopes, Kreuzer--Skarke list, Calabi--Yau threefolds, lattice polytopes}
+\keywords{reflexive polytopes, Kreuzer--Skarke list, Calabi--Yau threefolds, free sums}
 
 \begin{abstract}
-Kreuzer and Skarke built the list of reflexive polytopes by growing it
-from small seed polytopes. We ask how far a polytope can be from its seeds
-when it is shrunk through reflexive polytopes only, one at a time and
-without skipping any. Such a descent always exists and always ends at a
-seed. In four dimensions no descent takes more than 348 steps, which
-proves the conjecture of a uniform transition depth, and in two and three
-dimensions the exact maxima are five and eleven. In four dimensions two
-polytopes with thirty-seven lattice points need exactly twenty-two steps, so
-the maximum lies between twenty-two and 348.
+Every reflexive polytope descends to a minimal seed through reflexive
+polytopes, one cover at a time. We prove that the largest length $D_d$ of
+a shortest such descent is $5$ in dimension two and $11$ in dimension
+three, that $22\le D_4\le\UBs$, and that $D_d$ grows at least linearly
+with $d$.
 \end{abstract}
 
 \maketitle
-
-
-\setcounter{tocdepth}{1}
-\tableofcontents
 
 \section{Introduction}\label{sec:intro}
 
@@ -98,27 +96,22 @@ Skarke worked with a sharper notion: a reflexive polytope is
 \emph{r-minimal} when it contains no reflexive polytope other than itself,
 and every reflexive polytope contains an r-minimal one. Both notions
 describe the seeds from which the whole list is grown, and the question
-studied here is how far a polytope is from its seeds.
+studied here is how far a polytope is from its seeds when it is shrunk
+through reflexive polytopes only.
 
-The seed universality preprint~\cite{Bha26a} proposed that the list is
-generated from at most $64$ seed orbits with Hodge numbers constant on each
-orbit. A later note~\cite{Bha26b} refuted that proposal, kept what is true
-near it, and isolated the following statement as the part that remained
-open.
+The question arose from the seed-orbit picture of the first author's
+preprint~\cite{Bha26a}, which proposed that the four-dimensional list is
+generated from a few seed orbits. That proposal is false as stated
+(duality exchanges the Hodge pairs $(1,101)$ and $(101,1)$ of the quintic
+and its mirror, and the list realises $30{,}108$ Hodge pairs), and the
+part of it that survives is the following statement.
 
-\begin{conjecture}[Uniform transition depth~\cite{Bha26b}]\label{conj:depth}
+\begin{conjecture}[Uniform transition depth]\label{conj:depth}
 There is an absolute constant $D$ such that every $\Delta\in\KS_4$ is
 connected to some minimal seed by a chain of at most $D$ subpolytope steps
 $\Delta_i\supset\Delta_{i+1}$ in which every intermediate hull is
-reflexive after unimodular equivalence. The stratification data suggest a
-value of $D$ of order a few tens.
+reflexive after unimodular equivalence; $D$ should be of order a few tens.
 \end{conjecture}
-
-The note also asserted that descent through reflexive polytopes alone is
-not always possible, and offered a vertex-deletion chain with
-non-reflexive intermediate hulls as the substitute. We show that the
-assertion is false, prove the conjecture with an explicit constant, and
-determine the constant exactly in dimensions two and three.
 
 To make the statement precise we use the order of the reflexive polytopes
 by inclusion. A reflexive polytope $\Gamma\subsetneq\Delta$ is a
@@ -135,13 +128,14 @@ $\Delta$ is a chain
 \Delta=\Delta_0\supsetneq\Delta_1\supsetneq\cdots\supsetneq\Delta_k
 \]
 in which each $\Delta_{i+1}$ is a cover of $\Delta_i$ and $\Delta_k$ is
-r-minimal. Its length is $k$, and the \emph{transition depth}
-$\delta(\Delta)$ is the least length of a reflexive descent of $\Delta$.
-A descent never skips a reflexive polytope, so it is the strictest form of
-the chains in Conjecture~\ref{conj:depth}; without the cover condition
-every polytope reaches a seed in one step, as we explain in
-Section~\ref{sec:literal}. We write $D_d$ for the largest transition depth
-in $\KS_d$, and $|P|$ for the number of lattice points of a polytope $P$.
+r-minimal. Its length is $k$. The \emph{transition depth}
+$\delta(\Delta)$ is the least length of a reflexive descent of $\Delta$,
+and $h(\Delta)$ is the greatest. A descent never skips a reflexive
+polytope, so it is the strictest form of the chains in
+Conjecture~\ref{conj:depth}; without the cover condition every polytope
+reaches a seed in one step (Section~\ref{sec:literal}). We write $D_d$ and
+$H_d$ for the largest values of $\delta$ and of $h$ on $\KS_d$, and $|P|$
+for the number of lattice points of a polytope $P$.
 
 \begin{theorem}\label{thm:A}
 Every reflexive polytope has a reflexive descent, every reflexive descent
@@ -152,67 +146,70 @@ polytope fits between two consecutive members.
 \end{theorem}
 
 \begin{theorem}\label{thm:B}
-No reflexive descent in dimension four has more than $\UB$ steps. More
-precisely, every reflexive descent of $\Delta\in\KS_4$ has length at most
-$\min(|\Delta|-6,\,680-|\Delta^*|)$ and at most the pair bound
-$L(|\Delta|,|\Delta^*|)$ of Section~\ref{sec:counting}. The first number
-never exceeds $654$ and the second never exceeds $\UB$, and each maximum
-is attained by a single polytope. Hence $D_4\le\UB$, and
-Conjecture~\ref{conj:depth} holds with $D=\UBplus$.
-\end{theorem}
-
-\begin{theorem}\label{thm:C}
 $D_2=5$ and $D_3=11$. In dimension two the maximum is attained only by the
 triangle with ten lattice points; in dimension three it is attained by
 exactly two polytopes, with $35$ and $31$ lattice points, both of which are
 contained in no larger reflexive polytope.
 \end{theorem}
 
-\begin{theorem}\label{thm:D}
-The polytopes $P_1$ and $P_2$ of Section~\ref{ssec:depth22}, with $37$
-lattice points each, have transition depth exactly $\LB$, and $P_1$ is
-unimodularly equivalent to the polytope reached after ten steps of a
-reflexive descent of the simplex $\Dbig$ with $680$ lattice points, the
-largest reflexive polytope in dimension four. The transition depth of
-$\Dbig$ is at most $\DUB$. Hence $\LB\le D_4\le\UB$.
+\begin{theorem}\label{thm:C}
+In dimension four,
+\[
+\LB\le D_4\le\UBs\qquad\text{and}\qquad H_4\le\UB .
+\]
+The lower bound is attained by two polytopes $P_1$, $P_2$ with $37$
+lattice points each, and $P_1$ lies ten covers below the largest reflexive
+polytope $\Dbig$, which has $\delta(\Dbig)\le\DUB$. Hence
+Conjecture~\ref{conj:depth} holds with $D=51$.
 \end{theorem}
 
-Theorem~\ref{thm:B} bounds every descent, not only the shortest one, so it
-also bounds the longest chain of covers below any polytope. The existence
-of some constant $D$ is the easy part of the conjecture: the list is finite
-and Theorem~\ref{thm:A} gives each polytope a descent. The content of
-Theorem~\ref{thm:B} is that the constant can be read off from two numbers
-attached to each polytope, its lattice points and the lattice points of
-its dual, without examining any polytope. The same count, with
-Blichfeldt's bound on lattice points and the volume theorem of Balletti,
-Kasprzyk and Nill in place of the list, bounds the depth in every
-dimension: $D_d\le2(s_d-1)^2-2$ for $d\ge4$, where $s_d$ is Sylvester's
-sequence (Proposition~\ref{prop:everydim}). The guess of ``a few tens'' in
-the conjecture is neither confirmed nor refuted. The exact values $5$ and
-$11$ in lower dimension, the depth $\LB$ of two polytopes with thirty-seven
-points and the descent of length $\DUB$ from the largest polytope are
-consistent with it, but we do not know where $D_4$ lies between $\LB$ and
-$\UB$.
+\begin{theorem}\label{thm:D}
+The reflexive subpolytopes of a free sum $P\oplus Q$ of reflexive polytopes
+are exactly the free sums of reflexive subpolytopes of $P$ and of $Q$, and
+the order they form is the product of the two orders. Consequently
+$\delta(P\oplus Q)=\delta(P)+\delta(Q)$ and $h(P\oplus Q)=h(P)+h(Q)$, and
+for all $d,e\ge1$
+\[
+D_{d+e}\ge D_d+D_e,\qquad H_{d+e}\ge H_d+H_e .
+\]
+In particular $D_d\ge\tfrac{11}{2}d-6$ for every $d$, and
+$D_d/d$ converges to a limit in $[\tfrac{11}{2},\infty]$.
+\end{theorem}
 
-Theorem~\ref{thm:A} is a short argument in the inclusion order
-(Section~\ref{sec:literal}). Theorem~\ref{thm:B} counts lattice points on
-both sides of the duality: along a descent the polytope loses points and
-its dual gains them, and both counts must stay among the pairs that occur
-in the list (Section~\ref{sec:counting}). For the lower bounds we need all
-covers of a given polytope. Section~\ref{sec:cuts} describes them as cuts
-along dual lattice points; the volume bound of Balletti, Kasprzyk and
-Nill~\cite{BKN22} leaves finitely many cuts to try, and a climbing lemma
-certifies one cover without listing the others. In dimension two these
-tools give $D_2=5$ by hand, and in dimensions three and four they give the
-exact values and constructions of Sections~\ref{sec:low}
+The bound $H_4\le\UB$ holds for every descent, not only for a shortest
+one, and it is read off from two numbers attached to each polytope, its
+lattice points and those of its dual: along a descent the polytope loses
+points and its dual gains them, and both counts must stay among the pairs
+that occur in the list (Section~\ref{sec:counting}). The same count, with
+Blichfeldt's bound and the volume theorem of Balletti, Kasprzyk and
+Nill~\cite{BKN22} in place of the list, bounds the depth in every
+dimension: $D_d\le H_d\le2(s_d-1)^2-2$ for $d\ge4$, where $s_d$ is
+Sylvester's sequence (Proposition~\ref{prop:everydim}). Together with
+Theorem~\ref{thm:D} this places $D_d$ between a linear and a doubly
+exponential function of $d$.
+
+The bound $D_4\le\UBs$ needs more. For the polytopes whose pair bound is
+at most $\UBs$ there is nothing to do; each of the others, about a fifth of
+the list, receives a chain of reflexive polytopes cut out by single dual
+lattice points, and the lengths of descents through such a chain are
+bounded by a short lemma (Lemma~\ref{lem:chain}). These chains were found
+by a search over the whole list and are checked one polytope at a time by
+a separate program. For the lower bounds we need all covers of a given
+polytope. Section~\ref{sec:cuts} describes them as cuts along dual lattice
+points; the volume bound of~\cite{BKN22} leaves finitely many cuts to try,
+and a climbing lemma certifies one cover without listing the others. In
+dimension two these tools give $D_2=5$ by hand, and in dimensions three and
+four they give the exact values and constructions of Sections~\ref{sec:low}
 and~\ref{sec:four}. A lower bound for a depth is a statement about every
 descent, and in dimension four we prove it with a certificate: a finite set
 of polytopes with their complete lists of covers and a bound attached to
 each, subject to a condition that can be checked one polytope at a time
 (Lemma~\ref{lem:certificate}). The polytopes $P_1$ and $P_2$ are skew
 bipyramids over a three-dimensional reflexive tetrahedron, and their
-certificate contains $5{,}592$ polytopes. Section~\ref{sec:open} lists what
-remains open.
+certificate contains $5{,}592$ polytopes. Theorem~\ref{thm:D} is proved by
+hand in Section~\ref{sec:freesum}: a lattice point of a free sum of
+reflexive polytopes lies in one of the two summands, and everything else
+follows from this. Section~\ref{sec:open} lists what remains open.
 
 \subsection*{History}
 
@@ -263,16 +260,11 @@ $84$ in the weighted projective space $\mathbb{P}(1,1,12,28,42)$, whose
 mirror is the Calabi--Yau threefold with the largest value of $h^{1,1}$ in
 the list.
 
-The question of distance to the seeds came from the seed universality
-preprint~\cite{Bha26a}. Its orbit picture combined polar duality, stellar
-subdivision and flips, and claimed constant Hodge numbers on at most $64$
-orbits; the correcting note~\cite{Bha26b} disposed of that claim with two
-observations (duality exchanges the Hodge pairs $(1,101)$ and $(101,1)$ of
-the quintic and its mirror, and the list realises $30{,}108$ Hodge pairs),
-proved the statements that survive at a fixed polytope, and stated
-Conjecture~\ref{conj:depth}. The present paper answers it. Related work of
-the first author on Calabi--Yau geometry and the landscape
-includes~\cite{Bha26c}.
+Free sums, the operation of Theorem~\ref{thm:D}, are a standard way to
+build reflexive polytopes from lower-dimensional ones; the dual of a free
+sum is the product of the duals, and the corresponding toric varieties are
+products. Related work of the first author on Calabi--Yau geometry and the
+landscape includes~\cite{Bha26c}.
 
 \section{Reflexive polytopes and their order}\label{sec:prelim}
 
@@ -345,19 +337,15 @@ r-minimal polytopes, which are the seeds of the four-dimensional
 classification~\cite{KS00}, a reflexive descent ends at a seed. If the
 seeds are minimal polytopes, at most one further step is needed. In every
 reading the chain length is controlled by the transition depth, which is
-the quantity bounded in Theorem~\ref{thm:B}.\footnote{In dimensions two and
+the quantity bounded in Theorem~\ref{thm:C}.\footnote{In dimensions two and
 three we checked which r-minimal polytopes are themselves minimal. The
 three r-minimal polygons are minimal; in dimension three, twelve of the
 sixteen r-minimal polytopes are minimal and four contain a smaller
-minimal polytope that is not reflexive. In dimension four Kreuzer and
-Skarke found seven r-minimal polytopes that do not come from weight
-systems, and each of them contains a single minimal subpolytope, a simplex
-that is not reflexive~\cite{KS00}.}
+minimal polytope that is not reflexive.}
 
-The correcting note~\cite{Bha26b} stated that descent through reflexive
-polytopes only is not always possible. Theorem~\ref{thm:A} shows that it
-always is. What fails is descent by deleting vertices, which is the
-operation the note had in mind, and it fails in two ways.
+Descent through reflexive polytopes is therefore always possible. What
+fails is descent by deleting vertices, the operation of the seed-orbit
+picture of~\cite{Bha26a}, and it fails in two ways.
 
 \begin{proposition}\label{prop:vertexdeletion}
 \begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
@@ -386,16 +374,16 @@ $(-4,4,-3)$. Removing any one vertex and taking the hull of the remaining
 fourteen lattice points gives a polytope that is not reflexive, yet the
 polytope has a reflexive descent of length $5$. In dimension four the
 largest polytope $\Dbig$ is a simplex, so by part (i) it cannot be reduced
-by vertex deletion at all, while Theorem~\ref{thm:D} gives it a descent of
+by vertex deletion at all, while Theorem~\ref{thm:C} gives it a descent of
 length $\DUB$.
 \end{example}
 
-The vertex-deletion chain of the note does reach a minimal polytope, and
-its length is less than the number of vertices~\cite{Bha26b}; in dimension
-four the vertex counts range from $5$ to $33$~\cite{KS00}, so such chains
-have at most $28$ steps. Its intermediate hulls are not reflexive in
-general, which is why the conjecture was stated with reflexive
-intermediates.
+A chain that deletes one vertex at a time and keeps the origin inside
+does reach a minimal polytope, and its length is less than the number of
+vertices; in dimension four the vertex counts range from $5$ to
+$33$~\cite{KS00}, so such chains have at most $28$ steps. Their
+intermediate hulls are not reflexive in general, which is why the
+conjecture is stated with reflexive intermediates.
 
 \section{Counting lattice points}\label{sec:counting}
 
@@ -493,7 +481,12 @@ length of a descent is at least $X$, for the simple bound and the pair
 bound.}\label{fig:pairs}
 \end{figure}
 
-\begin{proof}[Proof of Theorem~\ref{thm:B}]
+\begin{proposition}\label{prop:pairmax}
+Every reflexive descent in dimension four has length at most $\UB$, so
+$D_4\le H_4\le\UB$.
+\end{proposition}
+
+\begin{proof}
 Lemma~\ref{lem:counting} applies to every reflexive descent. Over
 $\mathcal{P}_4$ the largest value of $\min(p-6,680-q)$ is $654$, attained
 only at $(680,26)$, and this pair belongs to one polytope, the simplex
@@ -506,9 +499,7 @@ single polytope, with vertices
 \end{multline*}
 and Hodge numbers $(h^{1,1},h^{2,1})=(10,376)$ for the hypersurface of
 which it is the Newton polytope. So every reflexive descent in dimension
-four has at most $\UB$ steps, $D_4\le\UB$, and with one more step to a
-minimal polytope (Theorem~\ref{thm:A}) Conjecture~\ref{conj:depth} holds
-with $D=\UBplus$.
+four has at most $\UB$ steps.
 \end{proof}
 
 The pair bound of $\Dbig$ is $347$. A longest chain of pairs from
@@ -562,8 +553,8 @@ $2(s_d-1)^2$, gives $V_d\le2(s_d-1)^2$ for $d\ge4$. \end{proof}
 
 The bound is doubly exponential in $d$, and in low dimensions it is weak:
 $V_2=9$ and $V_3=72$ give $D_2\le7$ and $D_3\le70$ against the exact values
-$5$ and $11$ of Theorem~\ref{thm:C}, and in dimension four it gives
-$D_4\le3526$ against $\UB$. Its point is that it needs no classification.
+$5$ and $11$ of Theorem~\ref{thm:B}, and in dimension four it gives
+$D_4\le3526$ against $\UBs$. Its point is that it needs no classification.
 The dual side gives nothing better: the counts $|\Delta_i^*|$ rise from at
 least $d+2$ to at most $V_d+d$, which is the same bound.
 
@@ -760,7 +751,7 @@ ends at $E$, of length $|\Delta|-|E|$. Every descent loses one point per
 step and ends at an r-minimal polygon, which gives the formula.
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:C} in dimension two]
+\begin{proof}[Proof of Theorem~\ref{thm:B} in dimension two]
 There are sixteen reflexive polygons, listed in Appendix~\ref{app:twod}
 with their covers; three are r-minimal, the square
 $\conv(\pm e_1,\pm e_2)$ and the triangle with vertices $(1,0)$, $(0,1)$,
@@ -799,7 +790,7 @@ off as maximal elements. The second uses Corollary~\ref{cor:covers} with
 $V_3=72$. The two agree on all $4{,}303$ polytopes that are not r-minimal,
 and give $21{,}841$ covers in all.
 
-\begin{proof}[Proof of Theorem~\ref{thm:C} in dimension three]
+\begin{proof}[Proof of Theorem~\ref{thm:B} in dimension three]
 With the cover relation known, transition depths follow by induction on
 the number of lattice points: $\delta(\Delta)=0$ if $\Delta$ has no cover
 and $\delta(\Delta)=1+\min\delta(\Gamma)$ over its covers otherwise. The
@@ -1064,30 +1055,12 @@ reflexive polytopes $Q'$, with $a,b$ lattice points of $Q'$ and $k\ge1$,
 ranked by the length of a descent found greedily with the cuts of
 Section~\ref{sec:cuts}; the exact depths of the highest ranked were then
 computed with complete lists of covers.\footnote{The search was organised
-on the Anaxia engine of the BLLM programme~\cite{Ana26,BB26}, release
-3.0.5, its whole record was rerun on release 3.1.1, and it is kept in release 3.2.1. Anaxia runs a failure-driven loop: each strategy for a target is a
-list of checks, a computation or a proof with a named source, a failed
-check is recorded together with the change of strategy it forces, all
-checks are rerun from the archived data, and the label of a target (open,
-candidate, proved) is computed from the record, never assigned by hand.
-For the upper bound of Theorem~\ref{thm:B} its record shows the first two
-strategies failing: descent by deleting one vertex at a time fails on $7$
-of $400$ sampled three-dimensional polytopes, which have no reflexive
-vertex deletion, and cuts at dual lattice points of gauge two miss covers
-on $73$ of the $400$; the change forced by the second failure was the
-complete set of cuts of Corollary~\ref{cor:covers}, which agrees with the
-vertex-deletion order on all of them. For the sharp form of
-Conjecture~\ref{conj:depth} the first strategy, a sweep of the whole list,
-failed on cost, since $162{,}328{,}050$ polytopes have
-$\min(|\Delta|-6,680-|\Delta^*|)>40$; the second and third gave the descent
-of $\Dbig$ with exact depths of small polytopes along it; the fourth was
-the search over skew bipyramids that produced $P_1$ and $P_2$, with the
-certificate of Proposition~\ref{prop:depth22} and the identification of
-Proposition~\ref{prop:gamma10} as its checks. Its check that the sharp
-constant is determined fails, and that target stays open. The engine
-organises and reruns the computations; every statement of this section is
-proved in the text, and the certificate is checked by the programs of
-Appendix~\ref{app:checks}, which do not use the engine.}
+on the Anaxia engine~\cite{Ana26}, release 3.0.5, rerun on release 3.1.1
+and kept in release 3.2.1. The engine records each strategy as a list of
+checks and each failed check with the change of strategy it forced; it
+organises and reruns the computations and decides nothing. The
+certificate of Proposition~\ref{prop:depth22} is checked by the programs
+of Appendix~\ref{app:checks}, which do not use the engine.}
 
 \begin{proposition}\label{prop:depth22}
 $\delta(P_1)=\delta(P_2)=22$.
@@ -1150,13 +1123,110 @@ a descent of $22$ steps from $\Gamma_9$, which has $44$ lattice points: it
 removes one or two points at a time and ends at an r-minimal polytope with
 $19$ lattice points. Hence $\delta(\Dbig)\le9+22=\DUB$.
 
-\begin{proof}[Proof of Theorem~\ref{thm:D}]
+\subsection{An upper bound for every polytope}\label{ssec:upper}
+
+The pair bound of Section~\ref{sec:counting} bounds every descent and is
+therefore far from the depth of most polytopes. To bound the shortest
+descent of a given polytope it is enough to exhibit a chain of reflexive
+subpolytopes, not necessarily covers, and to bound the descents through
+it.
+
+\begin{lemma}[Chain lemma]\label{lem:chain}
+Let $\Delta=\Gamma_0\supsetneq\Gamma_1\supsetneq\cdots\supsetneq\Gamma_m$
+be reflexive polytopes, and for $1\le i\le m$ let $c_i$ be the least
+length of a maximal chain of reflexive polytopes from $\Gamma_{i-1}$ down
+to $\Gamma_i$. Then
+\[
+\delta(\Delta)\le c_1+\cdots+c_m+\delta(\Gamma_m),\qquad
+c_i\le\min\bigl(|\Gamma_{i-1}|-|\Gamma_i|,\ |\Gamma_i^*|-|\Gamma_{i-1}^*|\bigr),
+\]
+and in dimension four $\delta(\Gamma_m)\le L(\Gamma_m)$.
+\end{lemma}
+
+\begin{proof}
+Take a maximal chain of reflexive polytopes from $\Gamma_{i-1}$ down to
+$\Gamma_i$ of length $c_i$. Each of its steps is a cover: a reflexive
+polytope strictly between two consecutive members contains $\Gamma_i$ and
+lies in $\Gamma_{i-1}$, so it could be inserted, against maximality. The
+$m$ chains followed by a shortest descent of $\Gamma_m$ form a reflexive
+descent of $\Delta$ of length $c_1+\cdots+c_m+\delta(\Gamma_m)$. Along any
+chain the point counts strictly decrease and the dual point counts
+strictly increase (Lemma~\ref{lem:basic}), which bounds $c_i$, and
+$\delta(\Gamma_m)\le L(\Gamma_m)$ by Lemma~\ref{lem:counting}.
+\end{proof}
+
+The number $c_i$ can be computed exactly when $\Gamma_{i-1}$ and
+$\Gamma_i$ are close. Every reflexive $\Gamma'$ with
+$\Gamma_i\subseteq\Gamma'\subseteq\Gamma_{i-1}$ is the convex hull of its
+lattice points, which are those of $\Gamma_i$ together with a set $S$ of
+lattice points of $\Gamma_{i-1}$ outside $\Gamma_i$; dually $\Gamma'^*$ is
+the convex hull of the lattice points of $\Gamma_{i-1}^*$ and a set of
+lattice points of $\Gamma_i^*$ outside $\Gamma_{i-1}^*$. When one of these
+two differences has at most twelve lattice points, all subsets can be
+tried, the interval $[\Gamma_i,\Gamma_{i-1}]$ is listed completely, and
+$c_i$ is the distance from top to bottom in its Hasse diagram.
+
+\begin{proposition}\label{prop:upper}
+Every $\Delta\in\KS_4$ has $\delta(\Delta)\le\UBs$. Hence $D_4\le\UBs$.
+\end{proposition}
+
+\begin{proof}
+If $L(\Delta)\le\UBs$ there is nothing to prove, by
+Lemma~\ref{lem:counting}. Each of the remaining $\Nabove$ polytopes of the
+list has a chain as in Lemma~\ref{lem:chain} in which every step is a cut,
+$\Gamma_i=\conv\{x\in\Gamma_{i-1}\cap M:\ \ip{x}{q_i}\ge-1\}$ for a dual
+lattice point $q_i$, and for which the sum of the numbers $c_i$, each
+bounded as in the lemma or computed exactly as above, plus
+$L(\Gamma_m)$ is at most $\UBs$. The chains are recorded as the lists of
+vectors $q_1,\dots,q_m$, and a separate program checks, polytope by
+polytope, that every cut is the set of lattice points of a reflexive
+polytope, recomputes the point counts, the dual point counts and the exact
+intervals, and adds up the bound (Appendix~\ref{app:checks}).
+\end{proof}
+
+The chains were found in two stages. A fast search tries cuts at the
+lattice points of $3\Delta^*$ outside $\Delta^*$, cheapest first, and
+settles all but $\Nleft$ of the $\Nabove$ polytopes; for those it uses
+exact intervals, a beam over partial chains and, for thin simplices whose
+$3\Delta^*$ has no useful lattice point, the complete set of cuts of
+Proposition~\ref{prop:cuts}. The bound $\UBs$ is the threshold given to
+the search, not the largest depth: Table~\ref{tab:upper} shows how the
+certified bounds are spread.
+
+\begin{table}[t]
+\caption{The certified bounds of Proposition~\ref{prop:upper}: the number
+of polytopes of $\KS_4$ with pair bound above $\UBs$ whose chain gives a
+bound in each range.}\label{tab:upper}
+\centering
+\begin{tabular}{lr}
+\toprule
+certified bound & polytopes\\
+\midrule
+$11$--$20$ & $144{,}099$\\
+$21$--$25$ & $7{,}065{,}826$\\
+$26$--$30$ & $25{,}414{,}397$\\
+$31$--$35$ & $27{,}377{,}593$\\
+$36$--$40$ & $17{,}260{,}043$\\
+$41$--$45$ & $9{,}664{,}369$\\
+$46$--$49$ & $4{,}597{,}166$\\
+$50$ & $899{,}250$\\
+\midrule
+total & $92{,}422{,}743$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{proof}[Proof of Theorem~\ref{thm:C}]
 Proposition~\ref{prop:depth22} gives $\delta(P_1)=\delta(P_2)=\LB$, so
 $D_4\ge\LB$, and Proposition~\ref{prop:gamma10} identifies $P_1$ with
 $\Gamma_{10}$. The nine covers from $\Dbig$ to $\Gamma_9$ in
-Table~\ref{tab:chain}, each certified by the climbing lemma,
-followed by the descent of $22$ steps from $\Gamma_9$, form a descent of
-$\Dbig$ of length $\DUB$. Finally $D_4\le\UB$ by Theorem~\ref{thm:B}.
+Table~\ref{tab:chain}, each certified by the climbing lemma, followed by
+the descent of $22$ steps from $\Gamma_9$, form a descent of $\Dbig$ of
+length $\DUB$. Proposition~\ref{prop:upper} gives $D_4\le\UBs$ and
+Proposition~\ref{prop:pairmax} gives $H_4\le\UB$. Finally every
+$\Delta\in\KS_4$ has a descent of at most $\UBs$ steps, and one more step
+reaches a minimal polytope (Theorem~\ref{thm:A}), so
+Conjecture~\ref{conj:depth} holds with $D=51$.
 \end{proof}
 
 Smaller polytopes along the descent of $\Dbig$ have smaller depth: the
@@ -1165,29 +1235,177 @@ lattice points and $\delta(\Gamma_{32})=4$ for the one with fifteen, and
 among the four-polytopes with at most eleven lattice points the largest
 transition depth is $5$.
 
+\section{Free sums}\label{sec:freesum}
+
+Let $M_1\cong\Z^d$ and $M_2\cong\Z^e$, and put $M=M_1\oplus M_2$, with
+dual lattice $N=N_1\oplus N_2$. For polytopes $P\subset M_{1,\R}$ and
+$Q\subset M_{2,\R}$, each with the origin in its interior, the
+\emph{free sum} is
+\[
+P\oplus Q=\conv\bigl((P\times0)\cup(0\times Q)\bigr)\subset M_\R .
+\]
+We write $\|y\|_P=\min\{t\ge0:\ y\in tP\}$ for the gauge of $P$. When $P$
+is reflexive, $P=\{y:\ \ip{y}{u}\ge-1\ \text{for}\ u\in P^*\}$ and
+\begin{equation}\label{eq:gauge}
+\|y\|_P=\max_{u}\,\bigl(-\ip{y}{u}\bigr),
+\end{equation}
+the maximum over the vertices $u$ of $P^*$, which lie in $N_1$; so
+$\|y\|_P$ is a nonnegative integer for $y\in M_1$, and it vanishes only at
+$y=0$.
+
+\begin{lemma}\label{lem:freesum}
+Let $P$ and $Q$ be reflexive.
+\begin{enumerate}
+\item $\|(y,z)\|_{P\oplus Q}=\|y\|_P+\|z\|_Q$, and
+$(P\oplus Q)^*=P^*\times Q^*$. In particular $P\oplus Q$ is reflexive.
+\item Every lattice point of $P\oplus Q$ lies in $P\times0$ or in
+$0\times Q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+A point $(y,z)$ lies in $t(P\oplus Q)$ exactly when $(y,z)=\lambda(y',0)+
+\mu(0,z')$ with $y'\in P$, $z'\in Q$ and $\lambda+\mu=t$, that is, when
+$\|y\|_P+\|z\|_Q\le t$; this is the formula for the gauge. A vector
+$(u,w)\in N_\R$ satisfies $\ip{x}{(u,w)}\ge-1$ on $P\oplus Q$ exactly when
+it does so on $P\times0$ and on $0\times Q$, that is, when $u\in P^*$ and
+$w\in Q^*$. A product of lattice polytopes is a lattice polytope, so the
+dual of $P\oplus Q$ is a lattice polytope, and $P\oplus Q$, whose vertices
+are those of $P$ and of $Q$, is reflexive. For (ii), a lattice point
+$(y,z)$ of $P\oplus Q$ has $y\in M_1$, $z\in M_2$ and
+$\|y\|_P+\|z\|_Q\le1$. Both gauges are nonnegative integers by
+\eqref{eq:gauge}, so one of them is $0$, and then $y=0$ or $z=0$.
+\end{proof}
+
+For a reflexive polytope $\Delta$ write $\mathcal R(\Delta)$ for the set
+of reflexive polytopes contained in $\Delta$, ordered by inclusion. The
+covers of $\Delta$ are its lower neighbours in this order, the r-minimal
+polytopes are its minimal elements, and a reflexive descent is a maximal
+chain of $\mathcal R(\Delta)$ that starts at $\Delta$.
+
+\begin{proposition}\label{prop:freesum}
+Let $P$ and $Q$ be reflexive. The map
+$(\Gamma_1,\Gamma_2)\mapsto\Gamma_1\oplus\Gamma_2$ is an isomorphism of
+ordered sets $\mathcal R(P)\times\mathcal R(Q)\to\mathcal R(P\oplus Q)$,
+where the product carries the order coordinate by coordinate.
+\end{proposition}
+
+\begin{proof}
+The map takes values in $\mathcal R(P\oplus Q)$ by
+Lemma~\ref{lem:freesum}(i), and $\Gamma_1\oplus\Gamma_2\subseteq P\oplus
+Q$ because each summand lies in the corresponding summand. Since the
+origin lies in $\Gamma_2$, the intersection of $\Gamma_1\oplus\Gamma_2$
+with $M_{1,\R}\times0$ is $\Gamma_1\times0$, and likewise for the second
+factor. Hence $\Gamma_1\oplus\Gamma_2\subseteq\Gamma_1'\oplus\Gamma_2'$
+holds exactly when $\Gamma_1\subseteq\Gamma_1'$ and
+$\Gamma_2\subseteq\Gamma_2'$, so the map is injective and respects the
+order in both directions.
+
+It remains to show that every $\Gamma\in\mathcal R(P\oplus Q)$ is a free
+sum. The vertices of $\Gamma$ are lattice points of $P\oplus Q$, so by
+Lemma~\ref{lem:freesum}(ii) they form a set $A\times0$ with $A\subset P$
+together with a set $0\times B$ with $B\subset Q$. The projection of
+$M_\R$ onto $M_{1,\R}$ along $M_{2,\R}$ carries $\Gamma$ onto
+$\conv(A\cup\{0\})$, and an open map carries interior points to interior
+points, so the origin is an interior point of $\conv(A\cup\{0\})$. If the
+origin were not an interior point of $\conv A$, a nonzero linear form
+would be nonnegative on $A$, hence on $\conv(A\cup\{0\})$, which is
+impossible. So $\Gamma_1=\conv A$ has the origin in its interior, and so
+does $\Gamma_2=\conv B$; then $\Gamma=\Gamma_1\oplus\Gamma_2$, and both
+are lattice polytopes. By Lemma~\ref{lem:freesum}(i) the dual of $\Gamma$
+is $\Gamma_1^*\times\Gamma_2^*$, which is a lattice polytope only if both
+factors are, so $\Gamma_1$ and $\Gamma_2$ are reflexive.
+\end{proof}
+
+\begin{theorem}\label{thm:freesum}
+For reflexive polytopes $P$ and $Q$,
+\[
+\delta(P\oplus Q)=\delta(P)+\delta(Q),\qquad h(P\oplus Q)=h(P)+h(Q).
+\]
+\end{theorem}
+
+\begin{proof}
+In a product of ordered sets an element covers another exactly when they
+agree in one coordinate and the other coordinate goes down by a cover.
+The minimal elements are the pairs of minimal elements. By
+Proposition~\ref{prop:freesum}, a reflexive descent of $P\oplus Q$ is
+therefore a sequence of pairs that starts at $(P,Q)$, lowers one
+coordinate by a cover at each step and ends at a pair of r-minimal
+polytopes. Reading off the steps that lower the first coordinate gives a
+reflexive descent of $P$, the other steps give one of $Q$, and the length
+is the sum of the two lengths. Conversely any two descents of $P$ and of
+$Q$ can be interleaved in this way. Taking least and greatest lengths
+gives both formulas.
+\end{proof}
+
+\begin{corollary}\label{cor:superadditive}
+For all $d,e\ge1$,
+\[
+D_{d+e}\ge D_d+D_e,\qquad H_{d+e}\ge H_d+H_e .
+\]
+Moreover $D_1=0$, $D_d\ge22\lfloor d/4\rfloor+c_{d\bmod4}$ with
+$(c_0,c_1,c_2,c_3)=(0,0,5,11)$, and $D_d\ge\tfrac{11}{2}d-6$ for every
+$d\ge1$. The ratio $D_d/d$ converges, as $d\to\infty$, to
+$\sup_dD_d/d\in[\tfrac{11}{2},\infty]$.
+\end{corollary}
+
+\begin{proof}
+If $P\in\KS_d$ and $Q\in\KS_e$ attain $D_d$ and $D_e$, the free sum
+$P\oplus Q$ is a reflexive polytope of dimension $d+e$ by
+Lemma~\ref{lem:freesum}, and Theorem~\ref{thm:freesum} gives
+$\delta(P\oplus Q)=D_d+D_e$; the same argument applies to $h$. The only
+reflexive polytope of dimension one is the segment $[-1,1]$, which has no
+reflexive proper subpolytope, so $D_1=0$. Writing $d=4k+r$ and adding $k$
+copies of the polytope $P_1$ of Theorem~\ref{thm:C} to a polytope of
+dimension $r$ of largest depth gives the second bound, by
+Theorem~\ref{thm:B}. The third follows because $c_r\ge\frac{11}{2}r-6$
+for $r=0,1,2,3$. A superadditive sequence of real numbers satisfies
+$a_d/d\to\sup_da_d/d$ (Fekete's lemma), and $\sup_dD_d/d\ge D_4/4\ge
+\frac{11}{2}$.
+\end{proof}
+
+The same argument applies to the gap between the shortest and the longest
+descent: by Theorem~\ref{thm:freesum}, $h-\delta$ is additive on free
+sums, so its largest value on $\KS_d$ is superadditive in $d$. The
+three-dimensional simplex of Section~\ref{sec:open}, with gap $20$, gives
+a gap of at least $20\lfloor d/3\rfloor$ in dimension $d$. In dimension
+two the triangle $T$ with ten lattice points has $\delta(T)=5$ and
+$h(T)=6$, so the free sum of $r$ copies of $T$ has depth $5r$ and longest
+descent $6r$; in dimension four the two numbers are $10$ and $12$, well
+below the depth $\LB$ of $P_1$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:D}]
+The first sentence is Proposition~\ref{prop:freesum}, the formulas for
+$\delta$ and $h$ are Theorem~\ref{thm:freesum}, and the rest is
+Corollary~\ref{cor:superadditive}.
+\end{proof}
 \section{Open questions}\label{sec:open}
 
 The main open problem is the exact value of $D_4$. We know
-$\LB\le D_4\le\UB$. The upper bound comes from point counts alone and is
-attained by no descent that we know; the lower bound comes from two
-polytopes with thirty-seven points, one of which lies ten covers below
-$\Dbig$. Two improvements look within reach. The upper bound can be
-lowered polytope by polytope: a few certified covers bring a polytope to
-one with a small pair bound, as for the polytope at $(521,22)$ in
-Section~\ref{sec:counting}, and only $106$ polytopes have pair bound above
-$340$. The lower bound rises as soon as one polytope is found all of whose
-covers have depth at least $\LB$, and Lemma~\ref{lem:certificate} turns
-such a search into a checkable certificate. The reflexive polytopes that
-contain $P_1$ or $P_2$, and the polytopes $\Gamma_9,\dots,\Gamma_1$ of the
-descent of $\Dbig$, are the first candidates; the cost of the search lies
-in listing covers of polytopes with many lattice points.
+$\LB\le D_4\le\UBs$. The lower bound comes from two polytopes with
+thirty-seven points, one of which lies ten covers below $\Dbig$; the upper
+bound is the threshold given to the search of
+Section~\ref{ssec:upper}, and no polytope is known whose depth exceeds
+$\LB$. The upper bound can be lowered by running the same search with a
+smaller threshold, and Table~\ref{tab:upper} shows how many polytopes
+would then need a new chain. The lower bound rises as soon as one
+polytope is found all of whose covers have depth at least $\LB$, and
+Lemma~\ref{lem:certificate} turns such a search into a checkable
+certificate. The reflexive polytopes that contain $P_1$ or $P_2$, and the
+polytopes $\Gamma_9,\dots,\Gamma_1$ of the descent of $\Dbig$, are the
+first candidates; the cost of the search lies in listing covers of
+polytopes with many lattice points. For longest descents the gap is wider:
+$H_4\le\UB$ is all we know above, and we know no lower bound for $H_4$
+beyond the length $38$ of the descent of $\Dbig$ in
+Table~\ref{tab:chain}.
 
-Three further questions seem natural. First, how does $D_d$ grow with the
-dimension? Proposition~\ref{prop:everydim} gives $D_d\le2(s_d-1)^2-2$ for
-$d\ge4$, a doubly exponential bound; the pair bound of
-Section~\ref{sec:counting} would do far better as soon as the joint
-distribution of point counts is known, and that distribution is not known
-in dimension five. We know no lower bound for $D_d$ that grows with $d$.
+Three further questions seem natural. First, how fast does $D_d$ grow?
+Corollary~\ref{cor:superadditive} gives $D_d\ge\frac{11}{2}d-6$ and the
+existence of $\lim D_d/d$, and Proposition~\ref{prop:everydim} gives
+$D_d\le2(s_d-1)^2-2$ for $d\ge4$, a doubly exponential bound. Whether the
+limit is finite is open, and so is whether it exceeds $\frac{11}{2}$,
+which would follow from $D_d>\frac{11}{2}d$ for a single $d$, for instance
+from $D_8\ge45$.
 
 Second, how far apart can the shortest and the longest descent of one
 polytope be? In dimension two they differ by at most one. In dimension
@@ -1195,31 +1413,35 @@ three the largest difference is $20$, for the simplex with vertices
 $(1,0,0)$, $(1,2,0)$, $(1,2,4)$, $(-7,-6,-4)$ and $35$ lattice points,
 whose depth is $8$ and whose longest descent has $28$ steps
 (Fig.~\ref{fig:depth3}); it is not the polytope with $35$ points of
-Theorem~\ref{thm:C}.
+Theorem~\ref{thm:B}. By Section~\ref{sec:freesum} the largest difference
+grows at least linearly with the dimension.
 
 Third, do the polytopes of maximal depth share a structure? In dimension
 two the extreme polygon is the triangle of the weights $(1,1,1)$, and in
 dimension three both extremes are r-maximal. In dimension four the
 polytope $P_1$ is the simplex of the weights $(8,4,2,1,1)$ and lies inside
 $\Dbig$, so it is not r-maximal; whether the polytope of largest depth in
-dimension four is r-maximal is open.
+dimension four is r-maximal is open. Neither $P_1$ nor $P_2$ is a free sum: by
+Theorem~\ref{thm:freesum} a free sum in dimension four has depth at most
+$\max(2D_2,D_3+D_1)=11$.
 
 \section*{Data availability}
 
-The code and data behind every computation in this paper are archived in release 1.2.0 of the repository,
-\url{https://github.com/creelie/seed/releases/tag/v1.2.0}~\cite{Repo}. The
-archive contains the joint distribution of point counts over the whole
-list, the pair bounds, the cover relation in dimensions two and three, the
-descent of $\Dbig$ with its certificates, the certificate of
-Lemma~\ref{lem:certificate} for $P_1$ and $P_2$, the checks of the cuts formed by
-Corollary~\ref{cor:covers} in dimension three and at the certificate polytopes, and independent checks in
-C, C++, Python, Julia, Macaulay2, shell and Lean~4. The Kreuzer--Skarke
-list was read from its public copy~\cite{HF4D}. The search for long
-descents was organised on the Anaxia engine, release 3.0.5, and rechecked
-on release 3.1.1; the engine is archived in release 3.2.1~\cite{Ana26} and described in~\cite{BB26}, and its record of strategies,
-failed checks and the changes they forced is part of the archive. The
-computations and the preparation of the text were carried out with AI
-assistance from Claude (Anthropic).
+The code and data behind every computation in this paper are archived in
+release \seedRelease{} of the code archive, Zenodo
+\href{https://doi.org/\seedDOI}{doi:\seedDOI}~\cite{Repo}. The archive
+contains the joint distribution of point counts over the whole list, the
+pair bounds, the cover relation in dimensions two and three, the descent
+of $\Dbig$ with its certificates, the certificate of
+Lemma~\ref{lem:certificate} for $P_1$ and $P_2$, the checks of the cuts
+formed by Corollary~\ref{cor:covers} in dimension three and at the
+certificate polytopes, the chains of Proposition~\ref{prop:upper} for all
+polytopes with pair bound above $\UBs$ together with the program that
+checks them, and independent checks in C, C++, Python, Julia, Macaulay2,
+shell and Lean~4. The Kreuzer--Skarke list was read from its public
+copy~\cite{HF4D}. The search for long descents was organised on the Anaxia
+engine~\cite{Ana26}. The computations and the preparation of the text were
+carried out with AI assistance from Claude (Anthropic).
 
 \section*{Declarations}
 
@@ -1237,7 +1459,7 @@ vertices, with the number of lattice points, the number of covers, the
 transition depth $\delta$ and the length $h$ of a longest descent. For each
 polygon with at least six points the last column gives the vertices of an
 r-minimal polygon with five lattice points inside it, which is what the
-proof of Theorem~\ref{thm:C} needs. Each entry can be checked by hand.
+proof of Theorem~\ref{thm:B} needs. Each entry can be checked by hand.
 
 \section{The descent from the largest polytope}\label{app:chain}
 
@@ -1300,6 +1522,22 @@ stored as a chain of subpolytopes of $\Gamma_9$, and each of its steps is
 checked to be a cover in the same way. Lemma~\ref{lem:certificate}, the
 point counts along the descents and the arithmetic of $G$ are also
 theorems of the Lean file.
+
+\paragraph*{The chains of Proposition~\ref{prop:upper}.} The search
+stores, for each of the $\Nabove$ polytopes with pair bound above $\UBs$,
+the list of dual vectors $q_1,\dots,q_m$ and the bound it claims. A replay
+program reads the polytopes again from the public copy of the list,
+rebuilds every cut from its vector, checks with PALP that the points kept
+are the lattice points of a reflexive polytope, recomputes the
+point counts of the polytopes and their duals and, where an exact interval
+was used, lists the interval again; it then adds the bounds of
+Lemma~\ref{lem:chain} and compares the sum with $\UBs$. It was run over
+all $473{,}800{,}776$ polytopes of the list, reading every row group, and
+accepted a chain for each of the $\Nabove$ polytopes, the largest
+certified bound being $\UBs$; no row group was skipped. Nineteen of the
+files written by the first stage had been cut off when their jobs were
+stopped; the replay reads such a file up to the cut, and every polytope
+whose certificate was lost there was covered by another certificate.
 
 \paragraph*{Every dimension.} The step from Blichfeldt's inequality to the
 bound of Proposition~\ref{prop:everydim} is a theorem of the Lean file for
@@ -1390,10 +1628,6 @@ four: generation of the Kreuzer--Skarke Calabi--Yau landscape via toric
 seed orbits, Preprints.org (2026),
 \href{https://doi.org/10.20944/preprints202603.1056.v1}{doi:10.20944/preprints202603.1056.v1}.
 
-\bibitem{Bha26b}
-D.~Bhattacharjee, Seeds and orbits in the Kreuzer--Skarke landscape,
-manuscript, Preprints.org submission 229062 (2026).
-
 \bibitem{Bha26c}
 D.~Bhattacharjee, Calabi--Yau saturation universality: toric mirror laws,
 Hodge statistics, and the higher-dimensional landscape, Int. J. Prof.
@@ -1407,14 +1641,10 @@ engine, release 3.2.1, Zenodo (2026),
 all versions
 \href{https://doi.org/10.5281/zenodo.23286641}{doi:10.5281/zenodo.23286641}.
 
-\bibitem{BB26}
-D.~Bhattacharjee and U.~Bhattacharya, BLLM: Beyond the LLM with Deep
-Human-Mind-AI, paper distributed with the engine~\cite{Ana26} (2026).
-
 \bibitem{Repo}
 D.~Bhattacharjee, Reflexive descent to minimal seeds in the
-Kreuzer--Skarke list: code, data and checks, release 1.2.0,
-\url{https://github.com/creelie/seed/releases/tag/v1.2.0} (2026).
+Kreuzer--Skarke list: code, data and checks, release \seedRelease, Zenodo
+(2026), \href{https://doi.org/\seedDOI}{doi:\seedDOI}.
 
 \end{thebibliography}
 \endgroup

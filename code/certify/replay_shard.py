@@ -13,10 +13,10 @@ bound, and the polytopes with no accepted certificate (with the reasons of the f
 import sys, os, json, glob, gzip, re, time
 from multiprocessing import Pool
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import farm_shard, verify_certs
+import farm_shard, verify_certs, replay_fast
 
 LEGACY={'t50'}
-CH=50
+CH=200
 
 def stage1(art,v,rg):
     """certificates of the first stage for row group v:rg, as row -> [(bound, cuts, legacy)]"""
@@ -38,6 +38,10 @@ def stage2(results):
     return C
 
 def work(args):
+    T,items=args
+    return replay_fast.replay_chunk(T,items)
+
+def work_single(args):
     T,items=args; out=[]
     for r,V,cands in items:
         why=[]
@@ -64,13 +68,13 @@ if __name__=='__main__':
             C=stage1(art,v,rg); C2=S2.get((v,rg),{})
             work_items=[(r,V,C.get(r,[])+C2.get(r,[])) for r,V,p,q in items]
             chunks=[(T,work_items[j:j+CH]) for j in range(0,len(work_items),CH)]
-            covered=0; mx=0; bad=[]
+            covered=0; mx=0; bad=[]; hist={}
             for res in pool.imap_unordered(work,chunks):
                 for r,got,why in res:
                     if got is None: bad.append(dict(row=r,why=why))
-                    else: covered+=1; mx=max(mx,got)
+                    else: covered+=1; mx=max(mx,got); hist[got]=hist.get(got,0)+1
             s=dict(file=v,rowgroup=rg,T=T,rows=nrows,above=len(items),covered=covered,max=mx,
-                   uncovered=bad,secs=round(time.time()-t0,1))
+                   uncovered=bad,hist=hist,secs=round(time.time()-t0,1))
             json.dump(s,open(os.path.join(out,f'rsummary-{v}-{rg}.json'),'w'))
             print(json.dumps({k:s[k] for k in ('file','rowgroup','rows','above','covered','max','secs')}),
                   'uncovered',len(bad),flush=True)

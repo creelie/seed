@@ -40,7 +40,9 @@ which thin simplices need because their 3 Delta* has no useful lattice point.
 searches them with beams up to (256, 1600) and 80 steps, then with the full set of cuts, whose
 candidate vectors `complete.candidate_cuts` enumerates one plane of the box at a time;
 `results/t50w` holds its certificates for the 41 polytopes left by `t50h5`.
-`replay_shard.py` runs one job of `.github/workflows/replay.yml`, which reads `replay_queue.json`:
+`replay_fast.py` replays the certificates of many polytopes step by step with one PALP call per
+step, under the acceptance rule of `verify_certs.replay`, and hands anything it does not accept
+to that function. `replay_shard.py` runs one job of `.github/workflows/replay.yml`, which reads `replay_queue.json`:
 it reads its row groups of the list again and replays, with `verify_certs.py`, a certificate of
 the first or second stage for every polytope whose pair bound exceeds T; `replay_merge.py` writes
 `results/<tag>/replay.json`, which lists every polytope left without an accepted certificate.

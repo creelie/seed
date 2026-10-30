@@ -17,6 +17,9 @@ authors:
     orcid: "https://orcid.org/0009-0002-2254-3914"
 identifiers:
   - type: doi
+    value: 10.5281/zenodo.23793880
+    description: "Version DOI of release 2.0.0."
+  - type: doi
     value: 10.5281/zenodo.23483239
     description: "Concept DOI (all versions)."
 abstract: >-

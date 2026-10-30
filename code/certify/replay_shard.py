@@ -17,13 +17,25 @@ import farm_shard, verify_certs, replay_fast
 
 LEGACY={'t50'}
 CH=200
+TRUNCATED=[]
+
+def lines(f):
+    """the complete lines of a gzip file; a file cut off by a killed job yields the lines before
+    the cut and is recorded in TRUNCATED.  Polytopes whose certificate is lost this way are not
+    covered by it, so a cut can only add to the list of uncovered polytopes."""
+    try:
+        with gzip.open(f,'rt') as g:
+            for line in g:
+                if line.endswith('\n'): yield line
+    except (EOFError,OSError,__import__('zlib').error):
+        TRUNCATED.append(f)
 
 def stage1(art,v,rg):
     """certificates of the first stage for row group v:rg, as row -> [(bound, cuts, legacy)]"""
     C={}
     for f in glob.glob(os.path.join(art,'*',f'certs-{v}-{rg}.jsonl.gz'))+glob.glob(os.path.join(art,'*',f'certs-{v}-{rg}-*.jsonl.gz')):
         tag=os.path.basename(os.path.dirname(f)).rsplit('-',1)[0]
-        for line in gzip.open(f,'rt'):
+        for line in lines(f):
             r,b,cuts=json.loads(line); C.setdefault(r,[]).append((b,cuts,tag in LEGACY))
     return C
 
@@ -31,7 +43,7 @@ def stage2(results):
     """second-stage certificates, as (file, rowgroup) -> row -> [(bound, cuts, False)]"""
     C={}
     for f in sorted(glob.glob(os.path.join(results,'*','certs.jsonl.gz'))):
-        for line in gzip.open(f,'rt'):
+        for line in lines(f):
             d=json.loads(line)
             if not d.get('cuts'): continue
             C.setdefault((d['file'],d['rowgroup']),{}).setdefault(d['row'],[]).append((d['bound'],d['cuts'],False))
@@ -60,12 +72,12 @@ if __name__=='__main__':
     here=os.path.dirname(os.path.abspath(__file__))
     RG=json.load(open(os.path.join(here,'rowgroups.json')))
     groups=[(v,r) for v,sz in RG.items() for r in range(len(sz))]
-    S2=stage2(os.path.join(here,'results'))
+    S2=stage2(os.path.join(here,'results')); S2T=list(TRUNCATED)
     with Pool(nproc) as pool:
         for i,(v,rg) in enumerate(groups):
             if i%N!=K: continue
             t0=time.time(); nrows,items=farm_shard.read_group(v,rg,T)
-            C=stage1(art,v,rg); C2=S2.get((v,rg),{})
+            TRUNCATED.clear(); C=stage1(art,v,rg); C2=S2.get((v,rg),{})
             work_items=[(r,V,C.get(r,[])+C2.get(r,[])) for r,V,p,q in items]
             chunks=[(T,work_items[j:j+CH]) for j in range(0,len(work_items),CH)]
             covered=0; mx=0; bad=[]; hist={}
@@ -74,7 +86,7 @@ if __name__=='__main__':
                     if got is None: bad.append(dict(row=r,why=why))
                     else: covered+=1; mx=max(mx,got); hist[got]=hist.get(got,0)+1
             s=dict(file=v,rowgroup=rg,T=T,rows=nrows,above=len(items),covered=covered,max=mx,
-                   uncovered=bad,hist=hist,secs=round(time.time()-t0,1))
+                   uncovered=bad,hist=hist,truncated=sorted(set(TRUNCATED+S2T)),secs=round(time.time()-t0,1))
             json.dump(s,open(os.path.join(out,f'rsummary-{v}-{rg}.json'),'w'))
             print(json.dumps({k:s[k] for k in ('file','rowgroup','rows','above','covered','max','secs')}),
                   'uncovered',len(bad),flush=True)

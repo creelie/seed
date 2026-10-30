@@ -37,8 +37,37 @@ jobs:
           print(f"n={Q['jobs']}"); print(f"T={Q['T']}"); print(f"tag={Q['tag']}")
           print('runs='+' '.join(str(r) for r in Q['runs']))
           PY
-  shard:
+  gather:
+    # The first-stage artifacts are fetched once here and handed to the shards as one artifact:
+    # fetching them in every shard exceeds the API rate limit of the workflow token.
     needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Download the first-stage certificates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p art
+          for r in ${{ needs.plan.outputs.runs }}; do
+            ok=0
+            for i in $(seq 1 30); do
+              rm -rf "tmp-$r"
+              if gh run download "$r" -R "$GITHUB_REPOSITORY" -D "tmp-$r"; then ok=1; break; fi
+              sleep 300
+            done
+            [ "$ok" = 1 ] || { echo "could not download run $r"; exit 1; }
+            cp -r "tmp-$r"/. art/ && rm -rf "tmp-$r"
+          done
+          du -sh art; find art -name 'certs-*.jsonl.gz' | wc -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ needs.plan.outputs.tag }}-stage1
+          path: art/
+          retention-days: 7
+          compression-level: 0
+  shard:
+    needs: [plan, gather]
     name: Replay ${{ matrix.k }}
     runs-on: ubuntu-latest
     timeout-minutes: 350
@@ -63,14 +92,11 @@ jobs:
           tar xzf palp.tar.gz
           make -C palp-2.21 poly.x > /dev/null
           echo "PALP=$PWD/palp-2.21/poly.x" >> "$GITHUB_ENV"
-      - name: Download the first-stage certificates
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for r in ${{ needs.plan.outputs.runs }}; do
-            for i in 1 2 3 4 5; do gh run download "$r" -R "$GITHUB_REPOSITORY" -D art && break; sleep $((20*i)); done
-          done
-          du -sh art
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.plan.outputs.tag }}-stage1
+          path: art
+      - run: du -sh art
       - name: Replay
         run: |
           timeout 335m python3 code/certify/replay_shard.py art "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "$(nproc)" out
@@ -78,7 +104,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ needs.plan.outputs.tag }}-${{ matrix.k }}
+          name: ${{ needs.plan.outputs.tag }}-sum-${{ matrix.k }}
           path: out/
           retention-days: 90
   merge:
@@ -89,7 +115,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          pattern: ${{ needs.plan.outputs.tag }}-*
+          pattern: ${{ needs.plan.outputs.tag }}-sum-*
           path: rart
       - name: Merge the summaries
         run: python3 code/certify/replay_merge.py rart "code/certify/results/${{ needs.plan.outputs.tag }}"

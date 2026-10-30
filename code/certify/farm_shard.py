@@ -3,10 +3,12 @@ Kreuzer-Skarke list (the Hugging Face copy calabi-yau-data/polytopes-4d) whose p
 exceeds T, by chains of cuts (bcert.py).
 
   python3 farm_shard.py GROUPS T NPROC BUDGET OUTDIR
-GROUPS is a comma-separated list file:rowgroup, e.g. 13:0,13:1.  Polytopes left above T by the
+GROUPS is a comma-separated list file:rowgroup, e.g. 13:0,13:1; file:rowgroup/k/n takes only the
+polytopes of index congruent to k modulo n (after sorting by L), so that a row group too large for
+one job can be split over n jobs.  Polytopes left above T by the
 fast search are searched again with every cut at each step.  For each row group the job writes
-OUTDIR/summary-F-R.json (counts, largest bound, histogram, the polytopes left above T) and
-OUTDIR/certs-F-R.jsonl.gz (one line [row, bound, cut vectors] per certified polytope).
+OUTDIR/summary-F-R[-k].json (counts, largest bound, histogram, the polytopes left above T) and
+OUTDIR/certs-F-R[-k].jsonl.gz (one line [row, bound, cut vectors] per certified polytope).
 BUDGET is in seconds; a row group not finished in time is marked done=false."""
 import sys, os, json, gzip, time, csv
 from multiprocessing import Pool
@@ -44,16 +46,22 @@ LT=np.full((1200,1200),bcert.BIG,dtype=np.int64)
 for (a,b),l in bcert.Lpair.items(): LT[a,b]=l
 
 if __name__=='__main__':
-    groups=[(g.split(':')[0],int(g.split(':')[1])) for g in sys.argv[1].split(',') if g]
+    groups=[]
+    for g in sys.argv[1].split(','):
+        if not g: continue
+        v,r=g.split(':'); r=r.split('/')
+        groups.append((v,int(r[0]),(int(r[1]),int(r[2])) if len(r)==3 else None))
     T=int(sys.argv[2]); nproc=int(sys.argv[3]); budget=float(sys.argv[4]); out=sys.argv[5]
     os.makedirs(out,exist_ok=True); t0=time.time()
     pool=Pool(nproc)
     if True:
-        for v,rg in groups:
+        for v,rg,sl in groups:
             t1=time.time(); nrows,items=read_group(v,rg,T)
+            if sl: items=items[sl[0]::sl[1]]
+            sfx=f'-{sl[0]}' if sl else ''
             chunks=[(T,False,items[i:i+CH]) for i in range(0,len(items),CH)]
             hist={}; mx=0; ndone=0; left=[]; done=True
-            with gzip.open(os.path.join(out,f'certs-{v}-{rg}.jsonl.gz'),'wt') as fh:
+            with gzip.open(os.path.join(out,f'certs-{v}-{rg}{sfx}.jsonl.gz'),'wt') as fh:
                 for res in pool.imap_unordered(work,chunks):
                     for r,b,cut,V,p,q in res:
                         if b>T: left.append((r,V,p,q,b,cut)); continue
@@ -72,8 +80,9 @@ if __name__=='__main__':
                     if seen<len(again): pool.terminate(); pool=Pool(nproc)
                 else: left=[dict(row=r,bound=b,cuts=cut,verts=V,points=p,dual_points=q) for r,V,p,q,b,cut in left]
             s=dict(file=v,rowgroup=rg,T=T,rows=nrows,todo=len(items),certified=ndone,max=mx,
-                   hist={str(k):hist[k] for k in sorted(hist)},left=left,done=done,secs=round(time.time()-t1,1))
-            json.dump(s,open(os.path.join(out,f'summary-{v}-{rg}.json'),'w'))
+                   hist={str(k):hist[k] for k in sorted(hist)},left=left,done=done,secs=round(time.time()-t1,1),
+                   slice=list(sl) if sl else None)
+            json.dump(s,open(os.path.join(out,f'summary-{v}-{rg}{sfx}.json'),'w'))
             print(json.dumps({k:s[k] for k in ('file','rowgroup','rows','todo','certified','max','done','secs')}),
                   'left',len(left),flush=True)
             if not done: break

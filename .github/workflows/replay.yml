@@ -1,0 +1,105 @@
+name: replay
+
+# Full replay of the certificate farm (code/certify/replay_shard.py).  A push that changes
+# code/certify/replay_queue.json starts a run: each job downloads the artifacts of the first-stage
+# runs named in the queue, reads its row groups of the Kreuzer-Skarke list, and replays a
+# certificate for every polytope whose pair bound exceeds T with the independent checker
+# verify_certs.py; the last job merges the summaries into code/certify/results/<tag>/replay.json.
+
+on:
+  push:
+    # never on main, so that merging the farm data does not start a second run
+    branches-ignore: [main]
+    paths: ["code/certify/replay_queue.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      jobs: ${{ steps.p.outputs.jobs }}
+      n: ${{ steps.p.outputs.n }}
+      T: ${{ steps.p.outputs.T }}
+      tag: ${{ steps.p.outputs.tag }}
+      runs: ${{ steps.p.outputs.runs }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        run: |
+          python3 - >> "$GITHUB_OUTPUT" <<'PY'
+          import json
+          Q=json.load(open('code/certify/replay_queue.json'))
+          print('jobs='+json.dumps(Q.get('only',list(range(Q['jobs'])))))
+          print(f"n={Q['jobs']}"); print(f"T={Q['T']}"); print(f"tag={Q['tag']}")
+          print('runs='+' '.join(str(r) for r in Q['runs']))
+          PY
+  shard:
+    needs: plan
+    name: Replay ${{ matrix.k }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      # at most 15 runners at a time, so that the other repositories of the account keep
+      # runners for their own checks
+      max-parallel: 15
+      matrix:
+        k: ${{ fromJSON(needs.plan.outputs.jobs) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numpy, scipy, pyarrow and fsspec
+        run: python3 -m pip install -q numpy scipy pyarrow fsspec aiohttp
+      - name: Build PALP
+        run: |
+          curl -sSfL --retry 5 -o palp.tar.gz https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-2.21.tar.gz
+          echo "7e4a7bf219998a844c0bcce0a176e49d0743cb4b505a0e195329bf2ec196ddd7  palp.tar.gz" | sha256sum -c
+          tar xzf palp.tar.gz
+          make -C palp-2.21 poly.x > /dev/null
+          echo "PALP=$PWD/palp-2.21/poly.x" >> "$GITHUB_ENV"
+      - name: Download the first-stage certificates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for r in ${{ needs.plan.outputs.runs }}; do
+            for i in 1 2 3 4 5; do gh run download "$r" -R "$GITHUB_REPOSITORY" -D art && break; sleep $((20*i)); done
+          done
+          du -sh art
+      - name: Replay
+        run: |
+          timeout 335m python3 code/certify/replay_shard.py art "${{ matrix.k }}" "${{ needs.plan.outputs.n }}" "${{ needs.plan.outputs.T }}" "$(nproc)" out
+      - name: Keep the summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ needs.plan.outputs.tag }}-${{ matrix.k }}
+          path: out/
+          retention-days: 90
+  merge:
+    needs: [plan, shard]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ needs.plan.outputs.tag }}-*
+          path: rart
+      - name: Merge the summaries
+        run: python3 code/certify/replay_merge.py rart "code/certify/results/${{ needs.plan.outputs.tag }}"
+      - name: Commit the merged summary
+        run: |
+          git config user.name "Deep Bhattacharjee"
+          git config user.email "itsdeep@live.com"
+          git add code/certify/results
+          git commit -q -m "Certificate replay ${{ needs.plan.outputs.tag }}: merged summary"
+          for i in 1 2 3 4 5; do
+            git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && break
+            sleep $((10*i))
+          done

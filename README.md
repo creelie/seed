@@ -75,10 +75,11 @@ the point counts were read from its public copy on Hugging Face
 ## Citation
 
 See [`CITATION.cff`](CITATION.cff). Zenodo archives each GitHub release under
-its own version DOI and gathers all of them under one concept DOI.
+its own version DOI and gathers all of them under one concept DOI. The paper cites the version DOI of release v2.0.0.
 
 | | DOI |
 | --- | --- |
+| release v2.0.0 (version DOI) | [10.5281/zenodo.23793880](https://doi.org/10.5281/zenodo.23793880) |
 | release v1.3.0 (version DOI) | [10.5281/zenodo.23653341](https://doi.org/10.5281/zenodo.23653341) |
 | release v1.2.0 (version DOI) | [10.5281/zenodo.23539317](https://doi.org/10.5281/zenodo.23539317) |
 | release v1.1.1 (version DOI) | [10.5281/zenodo.23487205](https://doi.org/10.5281/zenodo.23487205) |

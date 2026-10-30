@@ -54,3 +54,9 @@ Run one job by hand:
     python3 hcert_shard.py results/t50/left.json 0 10 50 4 out
     python3 hcert_wide.py results/t50h5/left.json 50 3 5 out
     python3 verify_certs.py out/certs.jsonl 50
+
+The replay at T = 50 (`results/r50/replay.json`) read all 493 row groups, 473,800,776
+polytopes, and accepted a certificate for each of the 92,422,743 polytopes whose pair bound
+exceeds 50, with largest bound 50 and no polytope uncovered. Nineteen first-stage files had
+been cut off by stopped jobs; they are listed under `truncated`, and every polytope whose
+certificate was lost in a cut carried another accepted certificate.
